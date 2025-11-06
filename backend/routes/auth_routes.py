@@ -116,7 +116,7 @@ def get_enrolled_paths(user_id: int, db: Session = Depends(get_db)):
     path_ids = user.path or []
     if not path_ids:
         return []
-
+    
     paths = db.query(Path).filter(Path.id.in_(path_ids)).all()
     return [
         {

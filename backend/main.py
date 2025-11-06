@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from routes.auth_routes import auth_router
 from routes.path_routes import path_router
 from routes.topic_routes import topic_router
+from routes.path_generation_routes import path_generation_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="LearnerPath API")
@@ -10,6 +11,7 @@ app = FastAPI(title="LearnerPath API")
 app.include_router(auth_router)
 app.include_router(path_router)
 app.include_router(topic_router)
+app.include_router(path_generation_router)
 
 # Allow frontend to access backend
 app.add_middleware(
