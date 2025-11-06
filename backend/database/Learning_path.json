@@ -1,0 +1,995 @@
+[
+  {
+    "id": "foundational_skills",
+    "title": "Foundational Skills",
+    "type": "main_node",
+    "estimated_time": 36,
+    "load": "mixed",
+    "difficulty": 5,
+    "resources": {},
+    "embedding": [0.02, 0.03, 0.04],
+    "prerequisites": [],
+    "subnodes": ["python_basics", "linear_algebra", "statistics"]
+  },
+  {
+    "id": "data_science_core",
+    "title": "Data Science Core",
+    "type": "main_node", 
+    "estimated_time": 24,
+    "load": "medium",
+    "difficulty": 6,
+    "resources": {},
+    "embedding": [0.09, 0.10, 0.11],
+    "prerequisites": ["foundational_skills"],
+    "subnodes": ["numpy_pandas", "data_visualization", "data_engineering"]
+  },
+  {
+    "id": "machine_learning_fundamentals",
+    "title": "Machine Learning Fundamentals",
+    "type": "main_node",
+    "estimated_time": 36,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {},
+    "embedding": [0.13, 0.14, 0.15],
+    "prerequisites": ["foundational_skills", "data_science_core"],
+    "subnodes": ["ml_basics", "supervised_learning", "unsupervised_learning", "feature_engineering"]
+  },
+  {
+    "id": "deep_learning_specialization",
+    "title": "Deep Learning Specialization", 
+    "type": "main_node",
+    "estimated_time": 58,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [0.20, 0.21, 0.22],
+    "prerequisites": ["machine_learning_fundamentals"],
+    "subnodes": ["neural_networks", "cnn_rnn", "advanced_dl"]
+  },
+  {
+    "id": "ai_domains",
+    "title": "AI Domains & Applications",
+    "type": "main_node",
+    "estimated_time": 42,
+    "load": "heavy", 
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [0.25, 0.26, 0.27],
+    "prerequisites": ["deep_learning_specialization", "machine_learning_fundamentals"],
+    "subnodes": ["nlp_basics", "advanced_nlp", "reinforcement_learning", "multi_agent_rl"]
+  },
+  {
+    "id": "production_scale",
+    "title": "Production & Scale",
+    "type": "main_node",
+    "estimated_time": 32,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [0.38, 0.39, 0.40],
+    "prerequisites": ["data_science_core", "deep_learning_specialization"],
+    "subnodes": ["big_data", "mlops"]
+  },
+  {
+    "id": "ethics_capstone",
+    "title": "Ethics & Capstone Projects",
+    "type": "main_node", 
+    "estimated_time": 34,
+    "load": "mixed",
+    "difficulty": 7,
+    "resources": {},
+    "embedding": [0.40, 0.41, 0.42],
+    "prerequisites": ["ai_domains", "production_scale"],
+    "subnodes": ["ethics_ai", "ai_projects", "data_science_projects"]
+  },
+  {
+    "id": "python_basics",
+    "title": "Python Basics",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "light", 
+    "difficulty": 3,
+    "resources": {
+      "Short_videos": ["https://youtu.be/fr1f84rg4Nw?si=v923d-FSQZvoSaK7", "https://youtu.be/t2_Q2BRzeEE?si=FMLH5T74FifFQLie"],
+      "Long_videos": ["https://youtu.be/v9bOWjwdTlg?si=B2dpVLxgcXHI5po3", "https://youtu.be/gTqV-h_v8Pw?si=sUwUG-hRSde6TVpk"],
+      "images":["https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.geeksforgeeks.org%2Fpython%2Fpython-basics%2F&psig=AOvVaw26EPlK58hytvGAGz6ef4Av&ust=1759819459946000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCOjjjsz8jpADFQAAAAAdAAAAABAE","https://www.google.com/url?sa=i&url=https%3A%2F%2Fintellipaat.com%2Fblog%2Ftutorial%2Fpython-tutorial%2Fpython-cheat-sheet-basics%2F&psig=AOvVaw26EPlK58hytvGAGz6ef4Av&ust=1759819459946000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCOjjjsz8jpADFQAAAAAdAAAAABAJ"],
+      "reading_material": ["https://www.w3schools.com/python/python_intro.asp"],
+      "projects": ["python_variables_project"],
+      "quizzes": ["python_quiz_1"]
+    },
+    "embedding": [0.01, 0.02, 0.03],
+    "prerequisites": [],
+    "subtopics": [
+      "Python Syntax & Variables",
+      "Data Types & Collections (lists, dicts, sets)", 
+      "Loops & Conditionals",
+      "Functions & Modules",
+      "File I/O & Exception Handling",
+      "Object-Oriented Programming (Classes, Inheritance)",
+      "Basic Python Projects (calculator, simple CLI tools)"
+    ]
+  },
+  {
+    "id": "linear_algebra",
+    "title": "Linear Algebra",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {
+      "Short_videos": ["https://youtu.be/pvMkV_NoskI?si=_ZB4Wwt7eBZhYvDM", "https://youtu.be/mQewAJb8oJ8?si=h6_1hFUxsXbASeWE"],
+      "Long_videos":["https://youtu.be/3eSVw8zn8DU?si=xRSlO9nSY-WvZMrP","https://youtu.be/ILQTG5bMENI?si=K0Hnhfkr-ro81CjK"],
+      "images":["https://www.google.com/imgres?q=linear%20algebra&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2F0WDhKCPtbng%2Fsddefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D0WDhKCPtbng&docid=j2-jOtHf1YMpCM&tbnid=OXXmdi-Qn29u_M&vet=12ahUKEwjc9rDb_o6QAxUuxTgGHe2oNNYQM3oECB4QAA..i&w=640&h=480&hcb=2&ved=2ahUKEwjc9rDb_o6QAxUuxTgGHe2oNNYQM3oECB4QAA","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.classcentral.com%2Fcourse%2Fessential-linear-algebra-for-data-science-66491&psig=AOvVaw2dJljnIESmA1JgeI1s-oi8&ust=1759820056540000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKiKveP-jpADFQAAAAAdAAAAABAE"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/ml-linear-algebra-operations/","https://www.w3schools.com/ai/ai_algebra.asp"],
+      "projects": ["matrix_multiplication_project"],
+      "quizzes": ["linear_algebra_quiz_1"]
+    },
+    "embedding": [0.05, 0.06, 0.07],
+    "prerequisites": [],
+    "subtopics": [
+      "Scalars, Vectors, Matrices",
+      "Matrix Operations & Properties",
+      "Eigenvalues & Eigenvectors", 
+      "Determinants & Inverse",
+      "Linear Transformations",
+      "Applications in Machine Learning (PCA, regression)"
+    ]
+  },
+  {
+    "id": "statistics",
+    "title": "Statistics & Probability",
+    "type": "subnode",
+    "estimated_time": 10,
+    "load": "heavy",
+    "difficulty": 6,
+    "resources": {
+      "Long_videos": ["https://youtu.be/CJz2F7o4MMM?si=7YcJt6IrVqMaXQ7m", "https://youtu.be/qNGDD_Rh8ps?si=JrKJEmO57nghQHaP"],
+      "Short_videos":["https://youtu.be/_Hjp6aFJO40?si=S6TugVWClnOQphsY","https://youtu.be/4LxrzD-MRBk?si=jnCEW5v6dAWGMtQb"],
+      "images":["https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Fexamath%2Fposts%2Fprobability-and-statistics-notessource-enginerdmath%2F676052196461068%2F&psig=AOvVaw0AgnrTa5p9Glaht4j8edfS&ust=1759820343049000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMCS_OX_jpADFQAAAAAdAAAAABAE","https://www.google.com/url?sa=i&url=http%3A%2F%2Fmatthias.vallentin.net%2Fblog%2F2010%2F10%2Fprobability-and-statistics-cheat-sheet%2F&psig=AOvVaw0AgnrTa5p9Glaht4j8edfS&ust=1759820343049000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMCS_OX_jpADFQAAAAAdAAAAABAK"],
+      "reading_material": ["https://www.geeksforgeeks.org/maths/probability-and-statistics/","https://www.khanacademy.org/math/statistics-probability"],
+      "projects": ["probability_simulation_project"],
+      "quizzes": ["statistics_quiz_1"]
+    },
+    "embedding": [0.08, 0.09, 0.1],
+    "prerequisites": [],
+    "subtopics": [
+      "Descriptive Statistics (mean, median, variance)",
+      "Probability Theory Basics", 
+      "Distributions (Normal, Binomial, Poisson)",
+      "Hypothesis Testing",
+      "Correlation & Covariance",
+      "Bayesian Statistics",
+      "Sampling & Estimation"
+    ]
+  },
+  {
+    "id": "numpy_pandas",
+    "title": "NumPy & Pandas",
+    "type": "subnode",
+    "estimated_time": 6,
+    "load": "light",
+    "difficulty": 4,
+    "resources": {
+      "Long_videos": ["https://youtu.be/x7ULDYs4X84?si=ZMz-x64J1XNw4bau", "https://www.youtube.com/live/XF6DCrNTzug?si=4ZK_HErYz-ga0drs"],
+      "Short_videos":["https://youtu.be/Rbh1rieb3zc?si=uqgnXtrYR-6bfeIP","https://youtu.be/RhEjmHeDNoA?si=E7vpEzWiDJbQ_ZXX"],
+      "images":["https://www.google.com/imgres?q=pandas%20cheat%20sheet&imgurl=https%3A%2F%2Fwww.datasciencecentral.com%2Fwp-content%2Fuploads%2F2021%2F10%2F2808327959.png&imgrefurl=https%3A%2F%2Fwww.datasciencecentral.com%2Fdata-science-in-python-pandas-cheat-sheet%2F&docid=bpMdTmgQvaOnbM&tbnid=ukbOUVikhaOoEM&vet=12ahUKEwjpnJapgI-QAxX1SGwGHWLOLzoQM3oECBwQAA..i&w=903&h=639&hcb=2&ved=2ahUKEwjpnJapgI-QAxX1SGwGHWLOLzoQM3oECBwQAA","https://www.google.com/imgres?q=pandas%20cheat%20sheet&imgurl=https%3A%2F%2Fwww.googleapis.com%2Fdownload%2Fstorage%2Fv1%2Fb%2Fkaggle-user-content%2Fo%2Finbox%252F3298899%252Ff2421efc76679aa59f61087f7e5b5b6f%252Fpandas_cheatsheet.png%3Fgeneration%3D1591527308819478%26alt%3Dmedia&imgrefurl=https%3A%2F%2Fwww.kaggle.com%2Fgetting-started%2F156692&docid=jjDP_Bm-GH5BDM&tbnid=d5x5Wy8S1qv2fM&vet=12ahUKEwjpnJapgI-QAxX1SGwGHWLOLzoQM3oECBsQAA..i&w=2560&h=1440&hcb=2&ved=2ahUKEwjpnJapgI-QAxX1SGwGHWLOLzoQM3oECBsQAA"],
+      "reading_material": ["https://www.w3schools.com/python/pandas/default.asp","https://pandas.pydata.org/"],
+      "projects": ["dataframe_operations_project"],
+      "quizzes": ["numpy_pandas_quiz_1"]
+    },
+    "embedding": [0.11, 0.12, 0.13],
+    "prerequisites": ["python_basics"],
+    "subtopics": [
+      "NumPy Arrays & Vectorization",
+      "Array Operations & Broadcasting",
+      "Pandas DataFrames & Series",
+      "Data Cleaning & Handling Missing Values",
+      "Merging, Grouping, and Aggregation",
+      "Time-Series Basics",
+      "Mini Projects: Data manipulation and analysis"
+    ]
+  },
+  {
+    "id": "data_visualization",
+    "title": "Data Visualization (Matplotlib, Seaborn, Plotly)",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "medium",
+    "difficulty": 4,
+    "resources": {
+      "Long_videos": ["https://youtu.be/9GvnrQv138s?si=_2m1UmX7ezmDTZh4", "https://www.youtube.com/live/XaKn_cKFlSY?si=sS7Mmy40hBFgo4JW", "plotly_intro.mp4"],
+      "Short_videos":["https://youtu.be/aYmcRnmZVGQ?si=b7h7EzW2Zdd2meBm","https://youtu.be/xXibS9832FM?si=99ZavwfXi8tTI9qR"],
+      "reading_material":["https://www.datacamp.com/cheat-sheet/matplotlib-cheat-sheet-plotting-in-python","https://www.geeksforgeeks.org/blogs/matplotlib-cheatsheet/"],
+      "images": ["https://www.google.com/imgres?q=matplotlib%20cheat%20sheet&imgurl=https%3A%2F%2Fmatplotlib.org%2Fcheatsheets%2F_images%2Fcheatsheets-1.png&imgrefurl=https%3A%2F%2Fmatplotlib.org%2Fcheatsheets%2F&docid=sp5Rnd2jwSH-gM&tbnid=2xtlbm43gANRQM&vet=12ahUKEwjGqM_6gI-QAxU9XmwGHao0AFMQM3oECBsQAA..i&w=1754&h=1240&hcb=2&ved=2ahUKEwjGqM_6gI-QAxU9XmwGHao0AFMQM3oECBsQAA","https://www.google.com/imgres?q=matplotlib%20cheat%20sheet&imgurl=https%3A%2F%2Fmatplotlib.org%2Fcheatsheets%2F_images%2Fhandout-beginner.png&imgrefurl=https%3A%2F%2Fmatplotlib.org%2Fcheatsheets%2F&docid=sp5Rnd2jwSH-gM&tbnid=C1NF6t7kmq4L8M&vet=12ahUKEwjGqM_6gI-QAxU9XmwGHao0AFMQM3oECBYQAA..i&w=1754&h=1240&hcb=2&ved=2ahUKEwjGqM_6gI-QAxU9XmwGHao0AFMQM3oECBYQAA"],
+      "projects": ["visualization_project"],
+      "quizzes": ["data_viz_quiz_1"]
+    },
+    "embedding": [0.14, 0.15, 0.16],
+    "prerequisites": ["numpy_pandas"],
+    "subtopics": [
+      "Matplotlib Basics & Customization",
+      "Seaborn for Statistical Plots",
+      "Plotly for Interactive Charts", 
+      "Dashboard Building Concepts",
+      "Visual Storytelling & Interpretation",
+      "Projects: Exploratory Data Analysis (EDA)"
+    ]
+  },
+  {
+    "id": "data_engineering",
+    "title": "Data Engineering Basics",
+    "type": "subnode",
+    "estimated_time": 10,
+    "load": "medium",
+    "difficulty": 6,
+    "resources": {
+      "Long_videos": ["https://youtu.be/hf2go3E2m8g?si=qxeBBhC_miQcT2zx","https://youtu.be/PHsC_t0j1dU?si=925uN48AcH_HbCCj"],
+      "Short_videos":["https://youtu.be/1VBQmmdRQfM?si=EViSd85FtN4Q18bS","https://youtu.be/ZRz-7E-7X7c?si=ZHHAyLrbTV7sxiHp"],
+      "images":["https://www.google.com/imgres?q=data%20engineering%20cheat%20sheet&imgurl=https%3A%2F%2Fmedia.licdn.com%2Fdms%2Fimage%2Fv2%2FD5612AQGVYdLcndAb0w%2Farticle-cover_image-shrink_720_1280%2Farticle-cover_image-shrink_720_1280%2F0%2F1733285255417%3Fe%3D2147483647%26v%3Dbeta%26t%3DkQOxZKnPf9tpcglYI__EZa86qjx6AkTBHE-_1T__4tk&imgrefurl=https%3A%2F%2Fwww.linkedin.com%2Fpulse%2Fazure-data-engineering-cheat-sheet-aritra-ghosh-fb9vc&docid=itt4ibzW7yugrM&tbnid=b7SdKRr7nR10eM&vet=12ahUKEwjruqHrgY-QAxXmTmwGHTnQDAcQM3oECBsQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjruqHrgY-QAxXmTmwGHTnQDAcQM3oECBsQAA","https://www.google.com/imgres?q=data%20engineering%20cheat%20sheet&imgurl=https%3A%2F%2Fwww.kdnuggets.com%2Fwp-content%2Fuploads%2Fawan_7_essential_cheat_sheets_data_engineering_8-1.png&imgrefurl=https%3A%2F%2Fwww.kdnuggets.com%2F2022%2F12%2F7-essential-cheat-sheets-data-engineering.html&docid=hqHSOKKS-IYPjM&tbnid=5C_OwlmjYm4QIM&vet=12ahUKEwjruqHrgY-QAxXmTmwGHTnQDAcQM3oECBcQAA..i&w=1259&h=832&hcb=2&ved=2ahUKEwjruqHrgY-QAxXmTmwGHTnQDAcQM3oECBcQAA"],
+      "reading_material": ["https://www.ibm.com/think/topics/data-engineering","https://medium.com/@TheWuraolah/introduction-to-data-engineering-a-complete-beginners-guide-0b955f5eb50c"],
+      "projects": ["etl_project"],
+      "quizzes": ["data_eng_quiz_1"]
+    },
+    "embedding": [0.36, 0.37, 0.38],
+    "prerequisites": ["python_basics", "numpy_pandas"],
+    "subtopics": [
+      "SQL & NoSQL Databases",
+      "ETL Pipelines", 
+      "Data Warehousing Concepts",
+      "Projects: ETL pipeline for dataset"
+    ]
+  },
+  {
+    "id": "ml_basics",
+    "title": "Machine Learning Basics",
+    "type": "subnode",
+    "estimated_time": 10,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {
+      "Long_videos": ["https://youtu.be/ZftI2fEz0Fw?si=gkq9F2Oum4Y6CGmB", "https://youtu.be/gmvvaobm7eQ?si=I_0kOUElcADfoVDH"],
+      "Short_videos":["https://youtu.be/6dqAwh2MCg0?si=TNxdljJYiRLKNbUt","https://youtu.be/7IgVGSaQPaw?si=FidqX0npupLnjAZB"],
+      "images":["https://www.google.com/imgres?q=ml%20basics&imgurl=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fresize%3Afit%3A1400%2F1*enJYZp_vNDFIdHnNyAtgsw.jpeg&imgrefurl=https%3A%2F%2Fmedium.com%2Fdata-science%2Fgetting-started-with-the-basics-of-machine-learning-35954a94e961&docid=hzy2VvRrMRz1HM&tbnid=6l2mnxhnoO_1SM&vet=12ahUKEwjn9d2ugo-QAxWDUGwGHTaCHW0QM3oECBoQAA..i&w=1200&h=813&hcb=2&ved=2ahUKEwjn9d2ugo-QAxWDUGwGHTaCHW0QM3oECBoQAA","https://www.google.com/imgres?q=ml%20basics&imgurl=https%3A%2F%2Fd1rwhvwstyk9gu.cloudfront.net%2F2023%2F08%2FDifference-between-Machine-Learning-Artificial-Intelligence-and-Deep-Learning-1024x768.png&imgrefurl=https%3A%2F%2Fblog.quantinsti.com%2Fmachine-learning-basics%2F&docid=odY7rL8qcQ1VXM&tbnid=-F5PExO3fFzZpM&vet=12ahUKEwjn9d2ugo-QAxWDUGwGHTaCHW0QM3oECBgQAA..i&w=1024&h=768&hcb=2&ved=2ahUKEwjn9d2ugo-QAxWDUGwGHTaCHW0QM3oECBgQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/machine-learning/", "https://www.w3schools.com/python/python_ml_getting_started.asp"],
+      "projects": ["linear_regression_project"],
+      "quizzes": ["ml_quiz_1", "ml_quiz_2"]
+    },
+    "embedding": [0.12, 0.34, 0.56],
+    "prerequisites": ["linear_algebra", "statistics", "numpy_pandas"],
+    "subtopics": [
+      "Linear & Logistic Regression",
+      "Model Evaluation Metrics",
+      "Train-Test Split & Cross-Validation",
+      "Overfitting & Underfitting",
+      "Data Preprocessing", 
+      "ML Pipelines"
+    ]
+  },
+  {
+    "id": "supervised_learning",
+    "title": "Supervised Learning",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {
+      "Long_videos": ["https://youtu.be/kE5QZ8G_78c?si=ulDJrEu9MmCWFVzF", "https://youtu.be/97HCQqvhK0Y?si=-xjkN0NAZ49igF3D"],
+      "Short_videos":["https://youtu.be/W01tIRP_Rqs?si=XfwwoRkIcgKYC8DG","https://youtu.be/1FZ0A1QCMWc?si=Uxyqao3vP42B_xVs"],
+      "images":["https://www.google.com/imgres?q=supervised%20learning&imgurl=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fwp-content%2Fuploads%2F20250522132238780028%2Fintroduction_to_machine_learning_1.webp&imgrefurl=https%3A%2F%2Fwww.geeksforgeeks.org%2Fmachine-learning%2Fintroduction-machine-learning%2F&docid=vknTyv0xZ472PM&tbnid=hRyoWuPUP2nw-M&vet=12ahUKEwjOmaL9go-QAxXgxDgGHXHUD7wQM3oECBUQAA..i&w=800&h=400&hcb=2&ved=2ahUKEwjOmaL9go-QAxXgxDgGHXHUD7wQM3oECBUQAA","https://www.google.com/imgres?q=supervised%20learning&imgurl=https%3A%2F%2Fmiro.medium.com%2F1*Iz7bCLrPTImnBDOOEyE3LA.png&imgrefurl=https%3A%2F%2Fmedium.com%2F%40ngneha090%2Fa-guide-to-supervised-learning-f2ddf1018ee0&docid=HW9Twrjh9GUDKM&tbnid=7Lvlbbe4ckbNKM&vet=12ahUKEwjOmaL9go-QAxXgxDgGHXHUD7wQM3oECBsQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwjOmaL9go-QAxXgxDgGHXHUD7wQM3oECBsQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/supervised-machine-learning/","https://www.ibm.com/think/topics/supervised-learning",""],
+      "projects": ["classification_project"],
+      "quizzes": ["supervised_quiz_1"]
+    },
+    "embedding": [0.15, 0.16, 0.17],
+    "prerequisites": ["ml_basics"],
+    "subtopics": [
+      "Classification Algorithms (KNN, Decision Trees)",
+      "Regression Algorithms (Linear, Ridge, Lasso)", 
+      "Model Tuning & Hyperparameter Optimization",
+      "Cross-Validation & Grid Search",
+      "Projects: Spam detection, price prediction"
+    ]
+  },
+  {
+    "id": "unsupervised_learning",
+    "title": "Unsupervised Learning",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/live/teWYOMn9Lso?si=Nq2Z7UW5UiL-v8VJ", "https://youtu.be/Aa4MACKaDC0?si=kfVmBbdHJz_QnExV"],
+      "Short_videos":["https://youtu.be/fM8XdC1EweU?si=STH5S-Zs595LgJf1","https://youtu.be/J1cpZOYBi8A?si=3YOoYx0Tw5X3g2cs"],
+      "images":["https://www.google.com/imgres?q=unsupervised%20learning%20cheat%20sheet&imgurl=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fmachine-learning%2Fmedia%2Falgorithm-cheat-sheet%2Fmachine-learning-algorithm-cheat-sheet.png%3Fview%3Dazureml-api-1&imgrefurl=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fmachine-learning%2Falgorithm-cheat-sheet%3Fview%3Dazureml-api-1&docid=r1ArzfCOkmbndM&tbnid=SzMy43iczRvNVM&vet=12ahUKEwivs_qyg4-QAxXmzDgGHT61BccQM3oECBYQAA..i&w=5100&h=3300&hcb=2&ved=2ahUKEwivs_qyg4-QAxXmzDgGHT61BccQM3oECBYQAA","https://www.google.com/imgres?q=unsupervised%20learning%20cheat%20sheet&imgurl=https%3A%2F%2Fblogger.googleusercontent.com%2Fimg%2Fb%2FR29vZ2xl%2FAVvXsEihyphenhyphen0NANgWsnpVjOafuGCyBQppYXA25H8ZKv7SXxhbSxfSmBKpD5CCjGb_cXXqXzPIjdK_h8pLO7XAGDR1bDXKc9nAtRpE4tFCzcD6kUzMgZTE_NXN35GtvDD_JE9pF-jVCzY0aYfPPAk0%2Fs1600%2Fdrop_shadows_background.png&imgrefurl=https%3A%2F%2Fpeekaboo-vision.blogspot.com%2F2013%2F01%2Fmachine-learning-cheat-sheet-for-scikit.html&docid=ZL3Rmk3Fjj133M&tbnid=tW46wIyGtPq20M&vet=12ahUKEwivs_qyg4-QAxXmzDgGHT61BccQM3oECBcQAA..i&w=1600&h=888&hcb=2&ved=2ahUKEwivs_qyg4-QAxXmzDgGHT61BccQM3oECBcQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/unsupervised-learning/","https://en.wikipedia.org/wiki/Unsupervised_learning"],
+      "projects": ["clustering_project"],
+      "quizzes": ["unsupervised_quiz_1"]
+    },
+    "embedding": [0.18, 0.19, 0.2],
+    "prerequisites": ["ml_basics"],
+    "subtopics": [
+      "Clustering (KMeans, Hierarchical, DBSCAN)",
+      "Dimensionality Reduction (PCA, t-SNE)", 
+      "Anomaly Detection",
+      "Association Rule Mining",
+      "Projects: Customer segmentation, anomaly detection"
+    ]
+  },
+  {
+    "id": "feature_engineering",
+    "title": "Feature Engineering & Dimensionality Reduction",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "medium",
+    "difficulty": 7,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/watch?v=tNuP2WuxuXg", "https://www.youtube.com/watch?v=QXSIO9IpcEw"],
+      "Short_videos":["https://www.youtube.com/watch?v=x4K7mDCFZVQ","https://codebasics.io/courses/feature-engineering-tutorial-python"],
+      "images":["https://www.google.com/imgres?q=feature_engineering&imgurl=https%3A%2F%2Fsplashbi.com%2Fwp-content%2Fuploads%2F2021%2F07%2Ffeature-engineering-blog.png&imgrefurl=https%3A%2F%2Fsplashbi.com%2Fblog%2Fwhat-is-feature-engineering%2F&docid=hCP5K7NCQLqP8M&tbnid=vQG6ewwhSJpCwM&vet=12ahUKEwihu8mKio-QAxWFTGwGHZZBNJMQM3oECBIQAA..i&w=1200&h=630&hcb=2&ved=2ahUKEwihu8mKio-QAxWFTGwGHZZBNJMQM3oECBIQAA","https://www.google.com/imgres?q=feature_engineering&imgurl=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fkuana2sp%2Fproduction-main%2F7b91c1015748142a4f43f9767ae44feb8905ad55-739x349.webp&imgrefurl=https%3A%2F%2Fdomino.ai%2Fdata-science-dictionary%2Ffeature-engineering&docid=2ahPiWu9EdTtSM&tbnid=R8kP9KBq5NoNjM&vet=12ahUKEwihu8mKio-QAxWFTGwGHZZBNJMQM3oECBwQAA..i&w=739&h=349&hcb=2&ved=2ahUKEwihu8mKio-QAxWFTGwGHZZBNJMQM3oECBwQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/","https://en.wikipedia.org/wiki/Feature_engineering"],
+      "projects": ["feature_selection_project"],
+      "quizzes": ["feature_engineering_quiz"]
+    },
+    "embedding": [0.19, 0.2, 0.21],
+    "prerequisites": ["ml_basics"],
+    "subtopics": [
+      "Handling Missing Values",
+      "Encoding Categorical Variables",
+      "Scaling & Normalization", 
+      "Feature Selection Techniques",
+      "Feature Construction",
+      "PCA & Dimensionality Reduction",
+      "Project: Feature engineering for ML dataset"
+    ]
+  },
+  {
+    "id": "neural_networks",
+    "title": "Neural Networks & Deep Learning",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/watch?v=VMj-3S1tku0", "https://www.youtube.com/watch?v=AsNTP8Kwu80"],
+      "Short_videos":["https://www.youtube.com/watch?v=aircAruvnKk&vl=en","https://www.youtube.com/watch?v=Wo5dMEP_BbI"],
+      "images":["https://www.google.com/imgres?q=neural_networks&imgurl=https%3A%2F%2Ftikz.net%2Fwp-content%2Fuploads%2F2021%2F12%2Fneural_networks-002.png&imgrefurl=https%3A%2F%2Ftikz.net%2Fneural_networks%2F&docid=P0PwJCpYIt_G4M&tbnid=CDirDQdmFbCw4M&vet=12ahUKEwiI46Piio-QAxV5XWwGHYHzKFoQM3oECBcQAA..i&w=3056&h=2180&hcb=2&ved=2ahUKEwiI46Piio-QAxV5XWwGHYHzKFoQM3oECBcQAA","https://www.google.com/imgres?q=neural_networks&imgurl=https%3A%2F%2Fwww.ibm.com%2Fcontent%2Fdam%2Fconnectedassets-adobe-cms%2Fworldwide-content%2Fcdp%2Fcf%2Ful%2Fg%2F3a%2Fb8%2FICLH_Diagram_Batch_01_03-DeepNeuralNetwork.png&imgrefurl=https%3A%2F%2Fwww.ibm.com%2Fthink%2Ftopics%2Fneural-networks&docid=Fnuq7E0Ik1hjxM&tbnid=f-_AHmwUHxPN9M&vet=12ahUKEwiI46Piio-QAxV5XWwGHYHzKFoQM3oECBkQAA..i&w=1120&h=631&hcb=2&ved=2ahUKEwiI46Piio-QAxV5XWwGHYHzKFoQM3oECBkQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/neural-networks-a-beginners-guide/","https://www.sciencedirect.com/journal/neural-networks"],
+      "projects": ["nn_project"],
+      "quizzes": ["nn_quiz_1", "nn_quiz_2"]
+    },
+    "embedding": [0.21, 0.22, 0.23],
+    "prerequisites": ["supervised_learning", "unsupervised_learning", "feature_engineering"],
+    "subtopics": [
+      "Perceptron & Multilayer Perceptron",
+      "Activation Functions", 
+      "Backpropagation & Optimization",
+      "Regularization (Dropout, L2)",
+      "Deep Learning Frameworks (TensorFlow, PyTorch)",
+      "Projects: Handwritten digit recognition, MNIST dataset"
+    ]
+  },
+  {
+    "id": "cnn_rnn",
+    "title": "CNNs & RNNs",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/watch?v=1v32WU4Z1k0", "https://www.youtube.com/watch?v=SH8D4WJBhms"],
+      "Short_videos":["https://www.youtube.com/watch?v=ES-gCBsMxSo", "https://www.youtube.com/watch?v=gkx6CqCklxg"],
+      "images":["https://www.google.com/imgres?q=cnn%20rnn%20oneshot&imgurl=https%3A%2F%2Fashutoshtripathi.com%2Fwp-content%2Fuploads%2F2021%2F06%2Frnn-vs-cnn.png&imgrefurl=https%3A%2F%2Fashutoshtripathi.com%2F2021%2F07%2F12%2Fthe-main-difference-between-rnn-vs-cnn-nlp%2F&docid=ZUh6A6-qrVwcvM&tbnid=RPZXbikhU7FoCM&vet=12ahUKEwj8u9TUi4-QAxW1XGwGHWqbBYAQM3oECB0QAA..i&w=792&h=570&hcb=2&ved=2ahUKEwj8u9TUi4-QAxW1XGwGHWqbBYAQM3oECB0QAA", "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUSEhIVFRUXFx0aGRgXGB8XGxcYGRcYGBsYGxoaICggGBsmHRcaITEhJSkrLi4uGh8zODMwNygtLisBCgoKDg0OGxAQGzglHyUtLS0tLSs1MC0tLS0tLS0rLS0tLTI1Ly0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAJMBWAMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQIDBAUGB//EAEwQAAECBAQBBwgGBwYFBQEAAAECEQADITEEEkFREwUiMlJhcZEGFBUzQoGS0SNTYoKhwXKTsbLS4fAWNENUY8IkZKLT4gdzdMTxRP/EABkBAQADAQEAAAAAAAAAAAAAAAABAgMEBf/EADIRAAIBAgQEBAQFBQAAAAAAAAABAhESAxMhUQQxQWEUIqGyMlKB8AWRscHRIyRCcfH/2gAMAwEAAhEDEQA/APalzFFRSkpcJBqCakkA7NzT2/mpEzdDONDbXW+0Rzp2QrWczJQD2UKyW7bP92MKd5TTPZlpA+05/Y0WjFy5FZSS5nQgTN03OhtprfeEImbotsek972bSOVV5RTzqkdyfnEZ5exH1n/Sn5RfJkVzYnXkTHulnGhtrrfaBpm6NXofu6+P5RyI5exHXf7qflEiPKOeOoe9PyIhkyGbE6kiZoUO2xu9TezaQpEzdLPsejqL37YwJHlMr25YbdJb9vzix5T+UYwgQ0szFLdhmCRzcrvcnpCgEVWHJuha9Uqa4EzdGr0P3dfGEImNdDsNDfXW0edYny/xWkuUgdqVE+OYD8Ipr8uMafbQO5A/N43XB4jKZ0T1JlvdLZtj0dr37YAJm6HY6G+mto8p/tnjvr/+hH8MPR5b40f4iT3oT+QET4LE7EZ0T1IiZuiw0N9dfCGzlTEhSuaWctZwBQOSwL62jznD+X2LdiiUv7qgfwV+UdDyN5WeciZKmSRLVw1KcnMkgCuYMFAV0fWM58NiQVWWWJF6HTJmKUVBJTzVAGh6oURpVlBmhwEzdGuhtpr4xFnIE01pUZrUlpNN0u/veE4szdPwn+KOWU1HmapNkrTGuh22PSfvs2kK0zdNxobai9+2Ky8UoEArlgqLBwQ5AKiBzq0BPcDAnFKICguWQpspYsXsxzVeK50SbWWQJm6NdD93XxhGmtdDtsb662iqrGkXmSxcVDWv7WkSGet2zIfbKe37XYfAwzoi1lhlvdLPsejqL37YaBM3Rrob6a+MQKxCwwKkByw5pqWJYc7YE+6GyMYVjMiZLUndIcWBuFbEH3wzoi1lkiZuiw0N9dbQ5lvdLPsejte/bEHEmbp+E/xQiZ0w1CkfCf4oZ0RYyYCZuix0N9NbQETN0aaH36+ERcWZun4T/FCy5q8yQSkglqAjQnc7RKxYt0Di0SBagoA5WLtoWDNTXV/dEWEnLmS0TEqQQtAUCApnUxBqQWY2IBiaYeejuOj7a6Qzk1+DLzZ3yJfO2d8ofM1M27axoVHkTN03GhtrreACZujXQ2018YmggCBpjXQ7bHpPe9m0hWmbpuNDbXW8TQQBCBM3Rrofdr4wjTGuh22N9dbRPBAETLe6WfY9HUXv2w0CZujXQ3018YnggCAiZuh2GhvrraHMt7pZ9j0dr37YlggCACZuix0N9NbQpEzdGmhvrr4RNBAELTHuln2PR2vfthAJjXQ7HQ301t2RPBAEKVqzZSHBS7gWIYEEvq9O4wQiwOKmz5Fa1vLsnUWrpTeCAKvKY5s+3qd6/wCJpoO3Wu0cBOxiUEg0YOS7FucaDXomPRMTKzmahwCqWBaofiBydR2aV3jmZ3k9PFglXcfm0bYUkkZYibZgelEOBmLkgDvNh/VtYRHKqCaGlGLO5JIbsND+MbCuSZ4/wle6v7IqT0lC0S18xcx+GhRyqmNfIk1Uzh2tG1VuZU7FE8ry9zRJU4GgJBNP0fx72WbymElWZwEliXcjmpU5Gg5wHe28avo6d9Uv4TEiOSJ5tKV72H7TEVW4p2MnD4tK3CTUAEjbM7W1pFv/ANVVsMMWfmzKb+qjUk+Tk5XSyoHaXPgPnFvyw8ml4sSyhaUql5gygWVmy6i3R2N4QxIrETb3LWu16HkKeUAHbMNabaH+V4kGPqGKrd1HZr7/ADtHTz/InGptLSv9FY/3NFVfktjRfDr9xSf2GO5YkH/kjK17HPDGg7uSR4HV7e/8jD/SL5ecqpDVs5b3a+EX5/Jc0TUSFy2mrBKJaiM6wAXKUkuQADbYxdT5MY0//wA6/ew/aYm+PzIUexgK5QoXdg+r2Kk+634x1P8A6fzAcQvK9JMwc0OX5thqYST5F45V5QT+ktP5EmOk8nPJKbhiudNWgnhKTkSSLgXWWy221jHGxYWNXF4RdVodUUuJ4ADk6F3PCQKj2T2dx1hM/Yr4T8oh5RI4OKfKwSp8yHHqU9IN9IG/CmkUMZPCFVYkgqqJYJMspCRVNTz6HSPDx5QTV3od0E+hZWqVPcOpXDWxYKGVYDsabGuhBIOoiD0NKYBplsti7Hta9TW9WtSMzD4qWh1BLBayokZSc65SC+VSAU5gUJbc1GsbHJ4SsSyQkpWkBilBGUpKwlwkUeu0ZRlBtLUlp8xwwCGZlsygQEkOleXMlglgDlFqhqGKMvkzDgpkkkzAlKiAhswRzc2XKQBW2ur3ixipgS6iR60DooDHiZEqcpuARW8ZisWnNxAgFSUrSGyAsTLzBIyZVFWdFQWNnhmQrTX0JtZrYXkyXLKSkTBldqFq5n9n7RPvhg5HlDIwmcxOVNDonK/R6Ta71iPCzUzEqKWKRzeighSUsoez0aggRuTZUtNSgXzURmOYAnNQXYGvu1jTDUZ1pUrKqMVPIckeyuyR0bhAYA82os4N2EOPI0mvNXX7JcUAocrig/E7l9ZUiXlJEtNAoDmtvmoRY/jGTjMZLQcqpcvnS1FiEgESygBFe1YbuiMSyDSbeojVl2TikKKkpJJQWUMqqFgWNNjCYnBy52VE2UFpzOQtDjoqAPODaxkYfHS0KUsSx9JNSSbkTFShlVlUAQ4CU7ue8xfwc4KOHUlISFF+agUSqUtbEjoh2Li5beKwlh3KlSWpUFmeTWDzp/4SS1XaWltLhqxHyb5OYIyZZOEw5JQk0SmYOiLLIdf6Wt42JrZ0Wsrv0tEXJShwJRdLcNJcJyJbKKhPsDs0jsMir/ZnBf5SR+qT8oP7M4L/ACkj9Un5Ro+co66fEQeco66fEQBnf2ZwX+Ukfqk/KHeS4/4TDj/ST+6IvnEo66fERleSmLScHhyTlPDTzV81QpqNIA2oIi85R10+Ig85R10+IgCWCGoWDUEHurDoAIIIIAIIIIAIIIIAgWfpE2fIrSt0e1oOzWm0EKoHiJ6TZVfo3Rftu33oWAES/EV0myp/Rd1u3bZ/uxNECAOKqz5E61uu40F2PftE8ARzpyUB1qCRuogDxMedeW4mTOVOS58kSpkqQqZnVxkgJzpT0uqAEu4d7XZ+v8rPUfeH5xw+IWQzC5qWKmoS7CpqAPfHRhYF8a1Mp4lroej+k5H10r40/OD0nI+ulfGn5x5crGTG9UQQ70KqhrMKv+US+dqyqPCVQAgVckkhrXDf1eL+GW/oVzXsemek5H10r40/OD0nI+ulfGn5x5mjEqKgMhAepIJDZSXFKVAFd/CKXi5tM0o2DsD0nIUX2o4F/GHhlv6E5r2PUfScj66V8afnB6TkfXSvjT848vOOUKmUpn7aUDaVrSkPViVioRmSUhQYEmrunvsXaHhlv6EZr2L3lFLmL5d5PxUsSlSJUqYFTOMkBOZC0nMLg88MA+bsYt6DKx8lRCUzZaibAKBJ9wMeYSMUokAyyCyXLEByHNxp/KNzyd/vMvvP7ioh8OlFupKxXWlDvIgxzcNbs2RVw4sbjUdkTxFi3yLbM+Utl6VtO2OU2KeM9ViH4jZVW6TcIer/ABZ/aeH/AEW5/GIcekGTigyapU/OZ/oU9I+xT8GMQ4nBzFFJALAlw5DuGdxqL/zYjl4mTTXlqaQVepLhSM0zOotn5lCOZw0H73OKq+7SLMoS8wYl9L7H8njClYGarMETnKObQk5VMCUqrXpFjQjm7V2JMlQWksWBP7pjHDm70rPQs1pzHtKc1Ny97uX/ABeIFFPFSyjkyKeh6QUjLXuKqNEWIwkxSVBLpJUog9mcnSrEUcVrFKZglleQTCgqZXDCy4SModOoFwzMebarw5ur8noTTTmbChK1J/GL8YsrCzAhlc5VXIDO5JoHLd0a80KbmkA9ofQtYjVj3AjVx0cPJtPy0M5qnUWYAxezV7or5Je48Ylmg5FPUsbDvYd7Ri4qStWVgtgahlpzAgi4Dgh393cRHESaa8tSYKvUt4Mc6dnIyiYBLZxzOFLJcvzueV1ptpEPLKlpShWGlomzQskJXO4SfVzHchKiqnsterhnjNThlqzBE5ZKKe2cqiCSlY16VLEc3qiNCZ6yU4bnqbMkj/Bm9EtQ/k8ZYc3elZ6FmtOZoYfEcQSV2zozMz3SC2bS/viIP5pzs78GvEYrfJXO1M27aw3kn1WGv6lOtOgm41hJAHmScoSBwAwQcyQOGGCVGqk7HWO6XJmD5HMtA0BigjArSAEzSGDWfnNfx07ffHmJHIX2gaKHmMxiBNazMmzN28521+bu8zVznmOSE5SR0SglQJD86pGzt2wotx9S60DRRGCmA0msHLDLZLME3q1338ItYdBSkBSsxF1EM/u0g0gdL5L+rX/7n+xEbMcvyNgFzErKcVOlDO2WWJRHQRX6SWov72pGj6Hm/wCfxXhh/wDsR6GF8COqHwo14IyPQ83/AD+K8MP/ANiD0PN/z+K8MP8A9iNCxrwRz+Iw86TNw3/GT5iVzihSFpksU8Gar2JSVCqAaHSOggAggggCBYHFSaPkXrXpS7DUUDnSm8EC/WJr7CqN2o9rTu1fshYARB+kV+gnTtX7Wvdp74niFL8RV2yp15t12Gh3PdtE0AYvlZ6j7w/OOMj0PlBcsI+kSFJexAVXuMZvnGE+pT+rTHTg4rhGlKmM4VdanHQ2YHBAu0dn5xhPqU/q0wecYT6lP6tMa+IfylMrucCZM6rLGjAklrPUhyCz+8jthVyp1GWKA9xsxIy9/wDVI73zjCfUp/VpjnPJQKRNxpxcpJQvEFWHqJjSiAwAbmJ7N3pRzGc/lZOX3MvDoWHzqBs34voImjsfOMJ9Sn9WmDzjCfUp/VpifEP5WMrucdGj5O/3mX3n9xUdB5xhPqU/q0xNg52GK0hEpKVaEIAah1FqRE8duLVoWHR8y3yhynIkAKnzpcpJLAzFpQCbsCohzGZivKrk9SFpGOwhJSQB5xLDuLPmp3xbx/8AecN3TP3RFzGn6Nbt0FXGYWNxqOyOI6DC/tRgFCagYvCzCo5QgTEHOTKTzGB57sf2aRMMWXfKh3KrG5ubxoqw4WJiVA3oSxZ5aUujqipHfm3iH0T9v8P5xw8YuJqsj68v3NsLL1vMjAI4RmsEHiLKrGgUlIKelXou/bFvzo9VGmh9m2sXPRP2/wAP5weift/h/OOOn4jv7TWvD/dTPncpZGUUpuS7G5FTeKa8bLE0TCqVSUqXlqzZ0qLnNRi3jGzN5ESoMpTjYpp+2sRK8m5ZuXcMSxcilHfsiyXH9X7SG8Hp+5UXyuipHDVVHRclyQlFlbmERyzLu8oUUqrhgaKJc83asW0+TaAVHMecQSNHSQQRWhcA+6BXkzKL0FQAeboGYXtQeEWpx2/tIrg/dSM4nTIi2Wxs7t0t4ccWXfKi4NjcWN4t+ift/h/OD0T9v8P5xnT8R39pavD/AHUysIChUxTIPEWVsx5roSgjpVfK/vi9hcSSoDKkOkhw9AATqeyJ/RP2/wAP5w6XydlObM7PRuwj840wVx16venXkVm8Gjt5/UbyT6rDW9SL36CbQ/DIK8KkJIJVJABy8MElArl9gdmloZyT6rDX9SnRx0E3OkWuTAeDKfO/DS+c5lvlHSUOkrc6mPWepzGB6Cn/AOl8av4IPQU//S+NX8EdRBGPh4GeXE5f0FP/ANL41fwQegp/+l8av4I6iCHh4DLicv6Cn/6Xxq/gg9BT/wDS+NX8EdRBDw8BlxM7kTBLlIUF5XK35pJDZUjUDaNGCOe8p0gqQ40P5RaTWHH/AEWbtR0MEcHkGw8IMg2HhGPiuxnm9jovKCcEzcE71xLBklVTh592BYdppG1HB8MbDwgyDYeEPFLYZvY7yCODyDYeEOloDiguNO2Hiewzex2igeIm7ZVa826Gcam7HSu8ENWPpU9F8i/0ulLsLNv92COo2FQBxVWfInvuu4s1298TxCk/SKr7KaN2r9rXu0btiaAM3l/1X3h+cczNnBLZiwJA95tHTcv+q+8PzjmpksKDKAI2NrN+cdWD8JjicyGVjpagCFCrUNDUAil7GHS8XLUwC0kmwcVa8HmcvqD+m+Q8IaMEgKSoBil2al7xpqU0E8/ls5Ld9CBzXJGjFQB2iRWKRXnAsQCxdiTlD7VhFYOWboTW9LurMX35xJ74UYZABASGJc9pBd++gr2CGo0GjHSr8RDV9oaM/wC0eMKcZL66bgX1OVh/1J8Yb5lL6oZiG0IUQS490L5nL6idNNreDUhqNByMVLJAC0kmwcOfdGjyR65Hef3TGcjCoDEJAazaRo8keuR3n90xEvhZK5mtjv7zhu6Z+6IvYp8imd8pbLd207Yo47+84bumfuiLmObhrdmyKuWFjc6DtjiOggWBln9HV2r/AISelsWb3NDTJT1U+AiVKX4qSTUtZmeWmx9rd/dpEHER9Yv4P/GMMZVpqXgwmSkgEhCXA1DflGavlJASDwFE0cJRmoSHajmj6VI7RFnDYlRXNCytKUqAQQg85JSCSebooke6LcspJAExbndLftTGSj3X5lmzPn4xKVNwgU50poA7KSkhdWGTMrK73HeAwcpIauHWLlsqXZKstnubt3xpTMjsVroeo9RXqxWmYk8VCQVmWUqKlZC4UCnKGy6gnw8VvdfmKkJxgObLJdsgAICXK1lJ0sAx/a0IOUJeslVwKJDOokakFgxJJAp20jQC0/WL+D/xix5qeurwT8olQb5fqLqGMOUUUaQtydUptmCSXBO/4e+JMNjJa1JHBUM1iUhrZqsSRTcDa9I1FYdg5mKYdiflFfio+smfB/4wcGuf6hSHcFPVT4CIcTzMpRKKy5DIyg1QrrqSG98RyMQSuYFlYSCMignpApBL82jGkW5KkFSeesl6ApYPlOuUaPCEfMtUG9BOT5KkIkJUGKZYB5woQlIIb2raRLyOBwJLZG4aGyElDZQ2UmpTsTpEk3potZV76WhnJR+hlVJ+jTUpyE80VKB0P0dLR1mRaggggAggggAggggAjn/KbpI7j+UdBHP+U3SR3H8oxx/gZTE+E5HlBCcyjxsnNBIZ6SlBWa7OM9vtJd2EKqWc4+n9opyhJL9E5DWgFKmrGpi1OwMtb5gS76kXSEmx2ArCjAy82bLV3dzetWdia37thHHdoYVRXXIYuJoBCQ9HqihVemg9zRWyMEp84AISAk5D7RSARzmLlSAO/ti/6OluTlLkhT5lXS4Bv2mBXJ8s3TdISecqqQzC/Z/TwUhUqI1aeSM+iTp0kO+oSS+lGpfUwlkOrMebzmZ7VbR9orej5bvlqCSC5o7ktWgqaRawyAnKBo0Q2mRU7NXrE1PRVRqXR7Wndr7oWEUDxE3bKrWl0XTqb10rvCx6Z1gkfSKv0U60uuw0PbrTaJogR61XR6Cd83SmX0bb70TwBDisjc8OH1DxUyyOoPhiflDo+/5xnxpFVRVlnLI6g+GDLI6g+GM+figggEGoJcWABSCTX7QtCS8bLUWCnLkChDkByA+rRa3uRU0csjqD4Y53yU5PmypuNOKCFImYgrkMozMssgMkAgZB2DV9GJvSuUpZAVmYHehoKgjQix7YVXKMoAnNbsN9q628RuIWrcVNPLI6g+GDLI6g+GM1ePlgElTAX8VDTtSR3hrwefy7FTFyG7U38LnYEO0LVuKmllkdQfDEkgScwyoAOhZtIpRLhemn+tDEOOgqOx395w3dM/dEXcafo1/onTNodNe6KWO/vOG7pn7oi9i+gtsz5T0SyrGx0MZFxkkVmX6Wpf2EWHsjs3c6xj4vCqWQRmHNUk8xXtZaghmIynxjVlFuKRlfM9Hd+GjpPra2jRRnY5ScozKJUWAATU5VK1GyTHLxNlVc315GmHdrQy5OBdSssxWdCkhRCCCk5SSkgUqiYNNjs2tybIKeGllHKACSkh2QQ9d4zEcriWZi3mDMoKW4RzDw8qSdklMpNajnB2rl2cPPWVJBUSDcEDYnQdkYxyrlq6l3dRkHKElSnABHOSXykjmqCmpuze+MqbgQV5FrOaYJignIoFualRSRXmlaTejhmjWxWOUgLWVEBOY0AskncdmpijP5SImAkTM6QpKUjJzgrKotuRkTqOkPdDyrnq+bHmoWOT8MtD5ipZUoEnIRXKlJ7hzX7Hjamy8wYkjuJFwRp3/sjKwePMwBSVnKSRZNWUU7Ut39xjVmzUpDqUEjtLWBJv2AnuBjo4azW31KYldKjZsvmKAcuDcvUvv3xjYnDKUzBQ5qh0Ve01QQxBDfjGyuaMqlJILA9tQ4I9xDRlzsctOUZlEqOUABNTlUrUbJMRxOXpf35DDrrQzEYElXNWc6ClyJZcFlqYgACqZiRaye5tLkrDKQJKDmOQAFRCg7IKXJU5cnck1ikjlnKVl5gdXPcI5lFAKP2CJdw7PVmVl18HPUoh1FiHYgbdgjGOVctXzLu6jLUx86btWwppc6RDgV5MPLKswyy0vmVnUGSHdQ6Z3IvE0wc9HcrVttNYoyG8yS2RuAG4b5G4Y6D1y7PVmjvbojBjvTcnc/CYPTcnc/CY43E4hSSWQSAkGgKsxcukNZgBfrdhhi8cof4S/asCei9KDVqdhGtBx58zDMkdr6bk7n4TB6bk7n4THEefLc/QrYNYF3ZRJFGUKC1a+6BWPW5HBXQtQGtCSRS1BXUmJzsQZkjt/Tcnc/CYPTcnc/CY41eJUC2QmiWYG5d3UzUYeMJLxSipI4akvckEtzVa94v8xEZ8xmSO9weMTNBKDQFqhqsD+YhmM5PlzSCsGlmJF+6KPkx6tf/uf7ERsx1R80VU1Wq1Mz0FI2V8avnB6CkbK+NXzjTghlx2JtWxzXK/JiULwyZYpMn5F5lKPM4M1ZysaF0Jr2dsaXoKRsr41fOGct+swn/wAj/wCvPjWhlx2Fq2Mz0FI2V8avnCjkOSKsr4lfONKCGXHYWrYrr9ano9Be+bpS7aNv93thYVRPETdsqtKXRc6G7DWu0EXJBPrFX6KdKXXY6ns0pvE0QJH0ir9BOtLr9nTv190TwBV5Q6Pv+cZ8a82UlQZQBGxD/tiLzGV9Wj4R8ovGVEQ1UylyUkgqSCRYkAtY02sPAQxGDlhiJaAQ7MkBnoWpR411YSSLy5Y70iIFDDDSV4Ji11ehWlOpn+aS/q0fCNgnbZIHcBtCKwMo3lINX6Avva9B4ReK8LtL+AfKOa8iZMxHnnnoQc+LmTJLqM3LJVlyoS6eYgNQUueaNZq9iNNzX8xlfVS7v0Bfe1+2F8zl/Vo19kau+mrl+8xfBwu0r4R8olRJw5smUe4JiLqdCdNyjE2F6Y/rQxc8xlfVo+EfKHIwksFwhAI1CQDEOZNpSx395w3dM/dEXMcBw1uzZFdIsLG5FhFPH/3nDd0z90Rdxnq11bmmrZmofZ9ru1jMsMlB+ICSz7NTIix9odu7jSKK5cghjOcduU/7YvSRWZQ9Ld35iLD2e736xzuLw8xWUoEwEF+isA80hiAGNSDXaOHjMRxcUoXc/obYUU660LWFEsqmhUwBKVhKKJDo4SFGpTzhmWsUpQjeNDDJlZhlmlR0DprQ7DZ457BonFaiolYDJKUpVzVBzVk0LKGxttXS5HlLBlhQW4DKUUqAJyEEuRqY5sPGk8RLL6rXX+C8oK1+YuzkSsxeaQXLh00cubiKKpcoTUITMHDyLKuamiwZYQxZhRS6M5bRi6cqyVqKwlKwSaEJWPxSIyzLn50JKmq4TlVmUkAg+y6mzC7tQ3uljSul/T6vo9fQlQVF5joZaZLhpxvbm3Jfq7xqxzGCkrCjmQuq3FFqYUGqebZ2sHMdJNCvZIB7Q+h7Rq34946uDxHO6sLTLFjSmtRZgDEGzV7oylIkEMZzjtyn/bGjNScigalizDsoO+OYxmGmKyFAmApJJ5swA8xQAIAZXOKTXaI4zEcXGkLuf0/6MKNa60L0hErMsKmDKCAiiRQpBNWrVSrdsX8Lwswyzcx0DprTsGwjm8OifnIWcxyVQErSa2VQUDgh2f4WOlyTKWFSgpK3DuSFN0FDpKA/GOfDxpZiWX1Wuv8ABpKCo/Mbc0jOizsrSuljpFRJPmgfMTwQ+ZORT5PaQOid06Wi5MJzpu1Xa2l4gwEp8PLQoEPKSCCvORzACM46Z+1rePVaqjmZyURYmWVAAFjmSbkUChmt2OI6v0FK+14/yg9BSvteP8o4vDzOfKkcbJRPcZlIIo+9uc3NGtB2fixUidZKw2a5JfLmcCxq1O2O19BSvteP8oPQUr7Xj/KJyJ9icuRyOFE2vEKezL39oH9fjYjpvQUr7Xj/ACg9BSvteP8AKI8PMjKkZ3IeA4iVq4s1HPZkKYdBFWa8aPof/mMR+sHyi3gsGmUCEuxL1rVgPyEWY7IKkUmbxVFQy/Q//MYj9YPlB6H/AOYxH6wfKNSCLEmWjkVOeWtU2csy1ZkhS3GbKpDkAVosxqQQQAQQQQBAv1iaewqubtR7Ovfo3bCwiyOKmz5F6V6Uuxs1n90EACCOKqz5E995lzZrt74niFJPEVdsqdOa7rdjqbONKbxNABBBBAHK8oTBxFlR9o3Pb2xFDuWMJmWc2ZLLKgRTceFYzTya5rMmMwZlMekolyNGUA2yRsG7o8tDifPU0A28FIoejU9eZr7Q1SEva4Zx2wg5LTT6SYWepU9SGcuKnX3mJ1I0LxWncXbS+3fDqRSHJ6WAKlHmlJdnUFZXctfmCvaYJHJ4SpKguYSNyOd0rsKtnLAUtE6jQ6Xk7lGUhATMmy0mtFLALPsS7Ra9L4f/ADEn9Yn5xHydIPBYhiXZxZ7GGjAzXpMAGzZmP6Rr/wDp7I4Z/Eztw15VUp47lXD+c4c8eVaZ/iJ6o7Yu4rlbDlCgJ8skpLZZqQXbQvQ9sMTgZ2RSTMS5erVGYqND2OG7A1Lwk/DTQlRWqWU5VZgoUbKQBQOBqdWihei3I1cu4ZHE+nkZipkgLDrXwkkJvzlHLpoBrDvSi9k+B+cWVYVMziJUmyuaSkc15YDo+JVdyoQz0SOufCOLjFxNVkfXl+5phZet5nYKeqWqaoZTxV5zQ05qUtevRf3xb9KL2T4H5xN6JHXPhB6JHXPhHHT8R39pt/b/AHUpT+XiggKyh9Skt71Ow98VcRyonjImlcsGWhaW3zlL1zXBls3bGnM5DSpiVEtb8O3sEQnyZlVG4b3O7X3i6XH9X7Sryfuo307oFSyahhUuA5DZrtDJflECLoFQGIINcrUJf20+IiZPk4gKCgpQIemhcEV3v+Ag/s3K/rsZnrWw8BE047f2iuD91FRyuohxkI3Dn84d6UXsnwPzh8vkVKQwUw7ty+8P9EjrnwjNr8R39pP9D7qZyJ6hPVP5rqlpQzH2VKU7v9r8I0MJygtS0pISxewOxO/ZC+iR1z4RJh+TsqgrM7dm4I/OL4S4+9X8q6/DyIlkUdOf1J5vTRaytW201iLkcjzeS2RuEhsgIQ2UNlBqE7A6RLNPPRaytK6WOkN5MUTJlFWdzLS+cZVvlD5kiiVbjQx65ylmCCCACCCCACCCCACCCCACCCCACCCCACCCCAIVE8RPSbKrTm3Rc6G7D9LaCEWPpE09hVX7Uezr36N2wsAIn1iv0E69q/Z079fdE8ZuPzFbIUkKATehLicEudRmYt2K3iuZCyElS0KZeYupgoCSUKsKc85raaRFS6in1NqCMMSZ4FJ6KIABJ3bnlwXLCjvUmsTzMKSsqTMCVFSQGINObmBBF2SadukK9hatzViNWHQboSe8CMtKZ1DxkEM+lg4UejXQv7iNYbwp5Z56KF3DahQF0tqPD3QqxYt0aZwcv6tPgITzKX1E+AinyeuaFqExYIoEl01IAzUABcmt/cI0OMnrCz3Ft+6LXMo4JMaMJL6ifhESJQBYAd0JxU9Yaa728YOKnrC7X1FxCrIoPgiPjJ6ws9xbfuheKnrDx3tEEj4hxnq136JsMxsbJ1PZD+KnrDXXa8Q4yanhrYg8wmigl6NRXs11gBcN0pn6Q1d+YjT2e736xYjJxMsqUoJUkNMDjol+GghzqfGhHVhgw6in1ozBeYKfRKAlVBRicxI7d4gsorc2YIwpuDmZCgTUhOUhidFJYHNdwXU/tO0OOEm5n4ySp2uKUWGAanSBbsOkKvYtZH5jbgjGkma6wVhmGVRULBsxoHrzq6NDDh5pAC5yVMpKjpUTM4ZhqkBLe/vV7CxdWjcgjHVhFOoomJSpS1avRiySGuFEE90NEiY+bioNKEkWAWNA11X7PdCr2ItW5tQRjokTEknjC41D9JagkuNcwH3e1os8lTF5AJqhmc6g7Eilm2rBMOKSrUvwRHxk9YWe4tv3QvFT1h472iSg2Y+dPS1tbS/5RDyT6iVRvo0Uz8RuaKZ/b/S1vD1rSVoqknnNWujsNdH2jGwSVKkoUhaMqpaSnJzEgcNACkpNUoBCjlo34QJSqdDBGLOwajMK0zUgZ8+V7EylSwffzSzM7m5eDzabmB4ydU0Z2pzahnBq7F9RWIq9i9sdzagjETgyMpExDiUlLvYpCxmqKglQ1FoeZEzNm4qSzM53IO3tAAfiIVItW5sQRi8CcSHnJ27HBSSWapZNu02ifCpmBYUqckpYlnFibuwfZ4V7BxW5pwQzip6w8d7QcVPWGuu14koPgiPjJ6ws9xbfuheKnrC7X1OnfAD4IZxk9Ya67XhOMnrDe4tvAEkEM4qdxdr67d8HGT1h47XgCNZHFTZ8i9Ks8t2Ogs41cbQQmcGYliTzFWbLdDP23b70LAEykg3ALQ3gp6o8N7wkEALwU9UeG1oOGnYXe2u/fBBAAJKeqNraHSDhJ6o8NrQQQAcNOwu9td4OCnqizW02hIIAXhJ6o002tBwk9Ub21NzBBABwU9UWa2m3dBwk9UeG1oIIAOEnqjXTe8HBT1RZrabd0JBADigbCEEpPVHhveCCADhJ6o8NrQcNOwu9td++CCAASU9UWa2h0g4SeqNNNrQQQAcJPVF3trv3wcFPVFmtptCQQAvCT1R4bWg4SeqPDe8EEAHBT1RZrabd0HCT1R4bWgggBUoAsAPdveE4SeqPDeCCADhJ6o8NrQcNOw3trvBBABwU9UWa2m0HCT1RpptaCCADhJ6o8N7wcFPVFmtpt3QkEALwk9UeG1oOEnqjw3vBBABwU9UWa2m0HCT1Rd7a7wQQAcJPVHhveDgp6o2tptCQQAvDTsLvbXeDhJ6o8N7wQQAqUAWAHu0ggggD/9k="],
+      "reading_material": ["https://serokell.io/blog/nn-and-one-shot-learning", "https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks"],
+      "projects": ["cnn_project", "rnn_project"],
+      "quizzes": ["cnn_quiz_1", "rnn_quiz_1"]
+    },
+    "embedding": [0.24, 0.25, 0.26],
+    "prerequisites": ["neural_networks"],
+    "subtopics": [
+      "Convolutional Neural Networks (CNNs)",
+      "Pooling & Stride Concepts",
+      "Recurrent Neural Networks (RNNs)", 
+      "LSTM & GRU Networks",
+      "Image & Sequence Projects (Image classification, Text generation)"
+    ]
+  },
+  {
+    "id": "advanced_dl",
+    "title": "Advanced Deep Learning (Transformers, GANs, VAEs)",
+    "type": "subnode",
+    "estimated_time": 14,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/watch?v=VVtPlrv6o4o", "https://www.youtube.com/watch?v=AzblgZNoBWw"],
+      "Short_videos":["https://www.youtube.com/watch?v=p1cgUUbd-sw", "https://www.youtube.com/watch?v=aU8OF0htbTo"],
+      "images":["data:image/png;base64,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", "data:image/jpeg;base64,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"],
+      "reading_material": ["advanced_dl_notes.pdf"],
+      "projects": ["gan_project", "vae_project"],
+      "quizzes": ["advanced_dl_quiz_1"]
+    },
+    "embedding": [0.28, 0.29, 0.3],
+    "prerequisites": ["cnn_rnn"],
+    "subtopics": [
+      "Transformers (Attention Mechanism)",
+      "Generative Adversarial Networks (GANs)",
+      "Variational Autoencoders (VAEs)", 
+      "Transfer Learning",
+      "Self-Supervised Learning",
+      "Projects: Image generation, Style transfer"
+    ]
+  },
+  {
+    "id": "nlp_basics",
+    "title": "Natural Language Processing Basics",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "medium",
+    "difficulty": 6,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/watch?v=M7SWr5xObkA", "https://www.youtube.com/watch?v=CG9iLLhqQF8"],
+      "Short_videos":["https://www.youtube.com/watch?v=qhoi771B2vI","https://www.youtube.com/watch?v=d4gGtcobq8M"],
+      "images":["https://www.google.com/imgres?q=nlp%20basics&imgurl=https%3A%2F%2Ff5b623aa.delivery.rocketcdn.me%2Fwp-content%2Fuploads%2F2022%2F10%2FHow-NLP-Works-760px.jpg&imgrefurl=https%3A%2F%2Fwww.shaip.com%2Fblog%2Fwhat-is-nlp-how-it-works-benefits-challenges-examples%2F&docid=MN_FD-qpVHpKAM&tbnid=dS8gaLTawbAhLM&vet=12ahUKEwjuqJe0iY-QAxUnT2wGHZHNIJUQM3oECBgQAA..i&w=760&h=680&hcb=2&ved=2ahUKEwjuqJe0iY-QAxUnT2wGHZHNIJUQM3oECBgQAA","https://www.google.com/imgres?q=nlp%20basics&imgurl=https%3A%2F%2Flitslink.com%2Fwp-content%2Fuploads%2F2020%2F07%2Fnlp-illustration.png&imgrefurl=https%3A%2F%2Flitslink.com%2Fblog%2Fa-complete-guide-to-natural-language-processing-nlp&docid=cPXX3iY2f9__wM&tbnid=gaBpbSs7Jg_k-M&vet=12ahUKEwjuqJe0iY-QAxUnT2wGHZHNIJUQM3oECB0QAA..i&w=1024&h=585&hcb=2&ved=2ahUKEwjuqJe0iY-QAxUnT2wGHZHNIJUQM3oECB0QAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/nlp/natural-language-processing-nlp-tutorial/","https://www.datacamp.com/blog/what-is-natural-language-processing"],
+      "projects": ["nlp_text_project"],
+      "quizzes": ["nlp_quiz_1"]
+    },
+    "embedding": [0.27, 0.28, 0.29],
+    "prerequisites": ["ml_basics"],
+    "subtopics": [
+      "Text Preprocessing (Tokenization, Lemmatization)",
+      "Bag of Words & TF-IDF", 
+      "Word Embeddings (Word2Vec, GloVe)",
+      "Text Classification Projects"
+    ]
+  },
+  {
+    "id": "advanced_nlp",
+    "title": "Advanced NLP (BERT, GPT, Seq2Seq, Embeddings)",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {
+      "Long_videos": ["https://youtu.be/MM48kc5Zq8A?si=yNE_8onHDFc0Ikjp", "https://youtu.be/MgggZi5lL2c?si=-PBlJKUVgjKLu_TE"],
+      "Short_videos":["https://youtu.be/7IgVGSaQPaw?si=le3FUq_lr2CPwxCb","https://youtu.be/6dqAwh2MCg0?si=vVWvqW9PhR2EbUj7"],
+      "images":["https://www.google.com/imgres?q=advanced%20nlp&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2F6NeTO61qc4M%2Fmaxresdefault.jpg%3Fsqp%3D-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGEogZShdMA8%3D%26rs%3DAOn4CLDrSi-2wjpJHd7VELrsiVIlx8VhtQ&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D6NeTO61qc4M&docid=QiehiHWcg58UrM&tbnid=BL2tvQFO8idbaM&vet=12ahUKEwik2eGSiY-QAxV9S3ADHb00DnkQM3oECB0QAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwik2eGSiY-QAxV9S3ADHb00DnkQM3oECB0QAA","https://www.google.com/imgres?q=advanced%20nlp&imgurl=https%3A%2F%2Fmedia.licdn.com%2Fdms%2Fimage%2Fv2%2FC5612AQHaO8GICY2UKw%2Farticle-cover_image-shrink_720_1280%2Farticle-cover_image-shrink_720_1280%2F0%2F1591273084886%3Fe%3D2147483647%26v%3Dbeta%26t%3D4HaLsTW7WxiEVmxEOYu38UaUfHEIRsFU7NqHHjaI9ZI&imgrefurl=https%3A%2F%2Fwww.linkedin.com%2Fpulse%2Ftheoretical-approach-towards-advanced-nlp-using-deep-learning-gode&docid=GMrHeXEOom8N0M&tbnid=3OQOWSGsqfpb6M&vet=12ahUKEwik2eGSiY-QAxV9S3ADHb00DnkQM3oECBkQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwik2eGSiY-QAxV9S3ADHb00DnkQM3oECBkQAA"],
+      "reading_material": ["https://phontron.com/class/anlp2024/","https://www.geeksforgeeks.org/nlp/advanced-topics-in-natural-language-processing/"],
+      "projects": ["bert_project", "gpt_project"],
+      "quizzes": ["advanced_nlp_quiz"]
+    },
+    "embedding": [0.31, 0.32, 0.33],
+    "prerequisites": ["nlp_basics", "advanced_dl"],
+    "subtopics": [
+      "Transformers (BERT, GPT)",
+      "Seq2Seq Models", 
+      "Named Entity Recognition",
+      "Question Answering & Summarization",
+      "Projects: Chatbots, Text summarizer"
+    ]
+  },
+  {
+    "id": "reinforcement_learning",
+    "title": "Reinforcement Learning",
+    "type": "subnode",
+    "estimated_time": 10,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/watch?v=AzblgZNoBWw", "https://www.youtube.com/watch?v=Mut_u40Sqz4"],
+      "Short_videos":["https://www.youtube.com/watch?v=0MNVhXEX9to","https://www.youtube.com/watch?v=VnpRp7ZglfA"],
+      "images":["https://www.google.com/imgres?q=reinforcement%20learning%20in%20machine%20learning&imgurl=https%3A%2F%2Ftechvidvan.com%2Ftutorials%2Fwp-content%2Fuploads%2Fsites%2F2%2F2020%2F08%2FReinforcement-Learning-in-ML-TV.jpg&imgrefurl=https%3A%2F%2Ftechvidvan.com%2Ftutorials%2Freinforcement-learning%2F&docid=VsfR1URN2XUbKM&tbnid=ckZ7q8Oa1QEedM&vet=12ahUKEwiz16u5iI-QAxV5V3ADHb38BnkQM3oECBwQAA..i&w=1200&h=628&hcb=2&ved=2ahUKEwiz16u5iI-QAxV5V3ADHb38BnkQM3oECBwQAA","https://www.google.com/imgres?q=reinforcement%20learning%20in%20machine%20learning&imgurl=https%3A%2F%2Fpythongeeks.org%2Fwp-content%2Fuploads%2F2022%2F03%2Freinforcement-learning-in-machine-learning.webp&imgrefurl=https%3A%2F%2Fpythongeeks.org%2Freinforcement-learning-in-machine-learning%2F&docid=N80dn8sNIS3BcM&tbnid=ixQM-VnwqUd2WM&vet=12ahUKEwiz16u5iI-QAxV5V3ADHb38BnkQM3oECBcQAA..i&w=1200&h=628&hcb=2&ved=2ahUKEwiz16u5iI-QAxV5V3ADHb38BnkQM3oECBcQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/machine-learning/what-is-reinforcement-learning/","https://www.oracle.com/in/artificial-intelligence/machine-learning/reinforcement-learning/"],
+      "projects": ["rl_project"],
+      "quizzes": ["rl_quiz_1"]
+    },
+    "embedding": [0.3, 0.31, 0.32],
+    "prerequisites": ["ml_basics"],
+    "subtopics": [
+      "Markov Decision Process (MDP)",
+      "Q-Learning & SARSA", 
+      "Policy Gradients",
+      "Projects: Gridworld, Simple game agents"
+    ]
+  },
+  {
+    "id": "multi_agent_rl",
+    "title": "Advanced Reinforcement Learning & Multi-Agent RL",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {
+      "Long_videos": ["https://youtu.be/QfYx5q0Q75M?si=sS0ASO4KKN1M8Oe5","https://youtu.be/R8htcydOTKk?si=cn5XvZJWSq7wibVt"],
+      "Short_videos":["https://youtu.be/tMVJroLo5W8?si=1FtMYIL7i37gyLMY","https://youtu.be/Yd6HNZnqjis?si=F8v0YeAL9aOHGafj"],
+      "images":["https://www.google.com/imgres?q=multi%20agent%20systems&imgurl=https%3A%2F%2Fmedia.geeksforgeeks.org%2Fwp-content%2Fuploads%2F20240517143834%2FMultiagent-system-Architecture-(1).webp&imgrefurl=https%3A%2F%2Fwww.geeksforgeeks.org%2Fartificial-intelligence%2Fmultiagent-planning-in-ai%2F&docid=IENcBhkMvCbYbM&tbnid=WcDQfF5Mbty4LM&vet=12ahUKEwj59d3Eh4-QAxX8UGcHHTEKM4cQM3oECB8QAA..i&w=1042&h=746&hcb=2&ved=2ahUKEwj59d3Eh4-QAxX8UGcHHTEKM4cQM3oECB8QAA","https://www.google.com/imgres?q=multi%20agent%20systems&imgurl=https%3A%2F%2Fwww.kdnuggets.com%2Fwp-content%2Fuploads%2FBuilding-Your-First-Multi-Agent-System-A-Beginners-Guide_2.png&imgrefurl=https%3A%2F%2Fmachinelearningmastery.com%2Fbuilding-first-multi-agent-system-beginner-guide%2F&docid=XkV6xIXbMQeRXM&tbnid=K8YtQn1At3HNtM&vet=12ahUKEwj59d3Eh4-QAxX8UGcHHTEKM4cQM3oECBsQAA..i&w=4382&h=1499&hcb=2&ved=2ahUKEwj59d3Eh4-QAxX8UGcHHTEKM4cQM3oECBsQAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/artificial-intelligence/multi-agent-system-in-ai/","https://www.ibm.com/think/topics/multiagent-system"],
+      "projects": ["multi_agent_rl_project"],
+      "quizzes": ["multi_agent_rl_quiz"]
+    },
+    "embedding": [0.34, 0.35, 0.36],
+    "prerequisites": ["reinforcement_learning", "advanced_dl"],
+    "subtopics": [
+      "Multi-Agent Systems",
+      "Cooperative & Competitive Environments", 
+      "Projects: Multi-agent simulations"
+    ]
+  },
+  {
+    "id": "big_data",
+    "title": "Big Data Tools (Hadoop, Spark, Kafka)",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {
+      "Long_videos": ["https://youtu.be/LOuAOZWJ9RA?si=TO9bTDx62VDk6QOe", "https://youtu.be/I_ku0D4uQzQ?si=exJDPwBV4KNd5jZH"],
+      "Short_videos":["https://youtu.be/rsOSrEbK7sU?si=WCIY9w8TQE9lKLg1","https://youtu.be/odZHmYgebbw?si=oK0SnGWOmNjHQURN"],
+      "images":["https://www.google.com/imgres?q=big%20data%20study&imgurl=https%3A%2F%2Fimages.squarespace-cdn.com%2Fcontent%2Fv1%2F606f09be9fd45e6380f33b68%2F1627556680760-N8EKT8H5LA77DFPFPPSL%2F10.4135_9781526421036-fig1.jpg&imgrefurl=https%3A%2F%2Fresearchmethodscommunity.sagepub.com%2Fblog%2Fbig-data-in-social-research&docid=GUxAPe8rxfdyrM&tbnid=vDg_eeVhArtlmM&vet=12ahUKEwjG0Omeh4-QAxXXi2MGHbdvACEQM3oECCIQAA..i&w=500&h=538&hcb=2&ved=2ahUKEwjG0Omeh4-QAxXXi2MGHbdvACEQM3oECCIQAA","https://www.google.com/imgres?q=big%20data%20study&imgurl=https%3A%2F%2Fmedia.springernature.com%2Ffull%2Fspringer-static%2Fimage%2Fart%253A10.1038%252Fs41598-022-26090-5%2FMediaObjects%2F41598_2022_26090_Fig1_HTML.png&imgrefurl=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41598-022-26090-5&docid=kk2L7Ybv_sJgjM&tbnid=gba0Enzy4XGpJM&vet=12ahUKEwjG0Omeh4-QAxXXi2MGHbdvACEQM3oECB4QAA..i&w=885&h=954&hcb=2&ved=2ahUKEwjG0Omeh4-QAxXXi2MGHbdvACEQM3oECB4QAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/data-engineering/what-is-big-data/","https://www.oracle.com/in/big-data/what-is-big-data/"],
+      "projects": ["spark_project", "kafka_project"],
+      "quizzes": ["big_data_quiz_1"]
+    },
+    "embedding": [0.39, 0.4, 0.41],
+    "prerequisites": ["data_engineering"],
+    "subtopics": [
+      "Hadoop & HDFS",
+      "Spark DataFrames & RDD", 
+      "Kafka Streaming",
+      "Projects: Real-time data streaming"
+    ]
+  },
+  {
+    "id": "mlops",
+    "title": "MLOps, Model Deployment & Scaling",
+    "type": "subnode",
+    "estimated_time": 10,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {
+      "Long_videos":["https://www.youtube.com/watch?v=w71RHxAWxaM","https://www.youtube.com/watch?v=Hq46GXuZnRM"],
+      "Short_videos": ["https://www.youtube.com/watch?v=FWy9mf-rIwk","https://www.youtube.com/watch?v=dPmH3G9NQtY"],
+      "images":["https://www.google.com/imgres?q=mlops%20course&imgurl=https%3A%2F%2Fcamo.githubusercontent.com%2Ff459b72e73251f4b7792dfe1048867766a8b8d024dae50541b0c16b1b0d0c854%2F68747470733a2f2f6d616465776974686d6c2e636f6d2f7374617469632f696d616765732f6c6573736f6e732e706e67&imgrefurl=https%3A%2F%2Fgithub.com%2FGokuMohandas%2Fmlops-course&docid=wKW8QCiUU1kGKM&tbnid=w-O2Es0JZ1berM&vet=12ahUKEwjd2q6Zho-QAxVzyjgGHV-JFxkQM3oECBYQAA..i&w=2336&h=1562&hcb=2&ved=2ahUKEwjd2q6Zho-QAxVzyjgGHV-JFxkQM3oECBYQAA","https://www.google.com/imgres?q=mlops%20course&imgurl=https%3A%2F%2Fi.redd.it%2Fb5h042oqecy91.png&imgrefurl=https%3A%2F%2Fwww.reddit.com%2Fr%2Flearnmachinelearning%2Fcomments%2Fynrvs9%2Fopensource_mlops_fundamentals_course%2F&docid=ytv2I1uu2_y9qM&tbnid=zMPfcHJyBSpl6M&vet=12ahUKEwjd2q6Zho-QAxVzyjgGHV-JFxkQM3oECBgQAA..i&w=1388&h=689&hcb=2&ved=2ahUKEwjd2q6Zho-QAxVzyjgGHV-JFxkQM3oECBgQAA"],
+      "reading_material": ["https://www.google.com/aclk?sa=L&ai=DChsSEwiO2t-rho-QAxX_DIMDHS8ULHMYACICCAEQAhoCc2Y&co=1&ase=2&gclid=Cj0KCQjw0Y3HBhCxARIsAN7931U3KJE16FNjFfS--TPzE0a5D94N18iXny8v4IitdZrbZDddvHdif-waAqCnEALw_wcB&cid=CAASQ-Ro-yhfGXPeYB6w9O-U7z-iCW5wDUGtg2IQXTAzdeEbsg5Mk3TdkwJdpi1dIHjDV7ce-s43pc1MjXLTzxHN9fHixkc&cce=2&category=acrcp_v1_32&sig=AOD64_3Vxjzw_hr4iMJf9l6PFv2jVxv4Lw&q&nis=4&adurl&ved=2ahUKEwjv_9irho-QAxXpxTgGHWkFB6cQ0Qx6BAghEAE","https://www.google.com/aclk?sa=L&ai=DChsSEwiO2t-rho-QAxX_DIMDHS8ULHMYACICCAEQAxoCc2Y&co=1&ase=2&gclid=Cj0KCQjw0Y3HBhCxARIsAN7931UE4iWBT-4Mvxpr579DPo7v6l4sqhSkOJxOI7NHLDtqDXK6UJQSbiIaAkBkEALw_wcB&cid=CAASQ-Ro-yhfGXPeYB6w9O-U7z-iCW5wDUGtg2IQXTAzdeEbsg5Mk3TdkwJdpi1dIHjDV7ce-s43pc1MjXLTzxHN9fHixkc&cce=2&category=acrcp_v1_32&sig=AOD64_1PoJ4j1IGPYh-ZHcycClX01jTlnQ&q&nis=4&adurl&ved=2ahUKEwjv_9irho-QAxXpxTgGHWkFB6cQ0Qx6BAgmEAE"],
+      "projects": ["mlops_deployment_project"],
+      "quizzes": ["mlops_quiz"]
+    },
+    "embedding": [0.43, 0.44, 0.45],
+    "prerequisites": ["advanced_dl", "big_data"],
+    "subtopics": [
+      "Model Versioning",
+      "CI/CD for ML Models", 
+      "Model Monitoring & Logging",
+      "Cloud Deployment (AWS, GCP, Azure)",
+      "Projects: Deploying a prediction API"
+    ]
+  },
+  {
+    "id": "ethics_ai",
+    "title": "Ethics, Bias & Responsible AI",
+    "type": "subnode",
+    "estimated_time": 4,
+    "load": "light",
+    "difficulty": 5,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/live/kyIf3OwcC9c?si=WPyJmzGWMHdf60Za","https://youtu.be/tcRGJdmu3go?si=fOaoKP891X6F9sgM"],
+      "Short_videos":["https://youtu.be/COgvUFGLPCs?si=5DNFNXJGCk_brzaj","https://youtu.be/aGwYtUzMQUk?si=kMIjzDi3bSmKlFd4"],
+      "images":["https://www.google.com/imgres?q=ethics%20ai%20meaning&imgurl=https%3A%2F%2Fwww.techtarget.com%2Frms%2Fonlineimages%2Fethical_ai_challenges_and_concerns-f_mobile.png&imgrefurl=https%3A%2F%2Fwww.techtarget.com%2Fwhatis%2Fdefinition%2FAI-code-of-ethics&docid=1JSBNePv5wJQTM&tbnid=zD_QoE2xbzI_HM&vet=12ahUKEwju0KDPhY-QAxVOwzgGHQS1IgoQM3oECBgQAA..i&w=560&h=374&hcb=2&ved=2ahUKEwju0KDPhY-QAxVOwzgGHQS1IgoQM3oECBgQAA","https://www.google.com/imgres?q=ethics%20ai%20meaning&imgurl=https%3A%2F%2Fwww.orientsoftware.com%2FThemes%2FContent%2FImages%2Fblog%2F2022-04-14%2Fethics-in-ai-2.jpg&imgrefurl=https%3A%2F%2Fwww.orientsoftware.com%2Fblog%2Fethics-in-ai%2F&docid=vbX3_IxWwBkHBM&tbnid=1n_hbD0Tb3pkeM&vet=12ahUKEwju0KDPhY-QAxVOwzgGHQS1IgoQM3oECB8QAA..i&w=650&h=498&hcb=2&ved=2ahUKEwju0KDPhY-QAxVOwzgGHQS1IgoQM3oECB8QAA"],
+      "reading_material": ["https://www.ibm.com/think/topics/ai-ethics","https://www.unesco.org/en/artificial-intelligence/recommendation-ethics"],
+      "projects": [],
+      "quizzes": ["ethics_quiz_1"]
+    },
+    "embedding": [0.46, 0.47, 0.48],
+    "prerequisites": [],
+    "subtopics": [
+      "Bias Detection & Mitigation",
+      "Fairness in ML Models", 
+      "AI Regulations & Policies",
+      "Case Studies"
+    ]
+  },
+  {
+    "id": "ai_projects",
+    "title": "Capstone AI Projects",
+    "type": "subnode",
+    "estimated_time": 15,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {
+      "Long_videos": ["https://youtu.be/BP-w99ZINTc?si=dKhXJjOXFHcGwj8c","https://youtu.be/dGdA9z6gBkM?si=FgfM6ERfTo0WA68j"],
+      "Short_videos":["https://youtu.be/JEy7GXpo0oU?si=eUdr6cNoeYOD4OVK","https://youtu.be/HIvQWdqvl7o?si=WVBPC9pnh48md3ud"],
+      "images":["https://www.google.com/imgres?q=ai%20projects%20cheat&imgurl=https%3A%2F%2Fcdn.prod.website-files.com%2F65d8ee5f025f02594c614c17%2F66f13db8501efd695c4c4cd1_66f13c596f66f468d3889822_1%252520(1).webp&imgrefurl=https%3A%2F%2Fdataforest.ai%2Fblog%2Fai-project-cheat-sheet-fast-track-guide&docid=B54AvycRw3niSM&tbnid=YUEz3yXfJ7dR9M&vet=12ahUKEwja_MDlhI-QAxXKTmwGHf1xJWMQM3oECBUQAA..i&w=1251&h=1293&hcb=2&ved=2ahUKEwja_MDlhI-QAxXKTmwGHf1xJWMQM3oECBUQAA","https://www.google.com/imgres?q=ai%20projects%20cheat&imgurl=https%3A%2F%2Fmiro.medium.com%2F0*ecoaJhEHyFMlOXyC&imgrefurl=https%3A%2F%2Fmedium.com%2F%40genai.works%2Ftop-8-cheat-sheets-on-ai-b46b07f439c1&docid=tG1E2GOJm3sJRM&tbnid=LlVrpk-my-TAsM&vet=12ahUKEwja_MDlhI-QAxXKTmwGHf1xJWMQM3oECB8QAA..i&w=1280&h=1600&hcb=2&ved=2ahUKEwja_MDlhI-QAxXKTmwGHf1xJWMQM3oECB8QAA"],
+      "reading_material": ["https://www.geeksforgeeks.org/artificial-intelligence/best-artificial-intelligence-project-ideas/","https://github.com/topics/artificial-intelligence-projects"],
+      "projects": ["ai_capstone_project_1", "ai_capstone_project_2"],
+      "quizzes": []
+    },
+    "embedding": [0.33, 0.34, 0.35],
+    "prerequisites": ["cnn_rnn", "advanced_nlp", "multi_agent_rl", "mlops"],
+    "subtopics": [
+      "AI Projects: CNN, NLP, RL Integration"
+    ]
+  },
+  {
+    "id": "data_science_projects",
+    "title": "Capstone Data Science Projects",
+    "type": "subnode",
+    "estimated_time": 15,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {
+      "Long_videos": ["https://www.youtube.com/live/xut5xpewcrE?si=zU3hOze3fODm6Q2d","https://youtu.be/gDZ6czwuQ18?si=QgviD4GNWFox5vM1"],
+      "Short_videos":["https://youtu.be/RBSUwFGa6Fk?si=X8QALpJU9-rspUte","https://youtu.be/9R3X0JoCLyU?si=_TKQt58wICS2TMXe"],
+      "images":["https://www.google.com/imgres?q=data%20science%20cheat%20sheet&imgurl=https%3A%2F%2Fwww.datasciencecentral.com%2Fwp-content%2Fuploads%2F2021%2F10%2FYTPN7r6.png&imgrefurl=https%3A%2F%2Fwww.datasciencecentral.com%2Fcheat-sheet-python-basics-for-data-science%2F&docid=fVyagBhGEMjuUM&tbnid=Uc46jY4KauuOoM&vet=12ahUKEwi-p7eXhI-QAxXdT2wGHXcnCQkQM3oECBoQAA..i&w=750&h=530&hcb=2&ved=2ahUKEwi-p7eXhI-QAxXdT2wGHXcnCQkQM3oECBoQAA","https://www.google.com/imgres?q=data%20science%20cheat%20sheet&imgurl=https%3A%2F%2Fstorage.googleapis.com%2Fkaggle-datasets-images%2F501056%2F928135%2F8446649747544ab1207bfc019eadecfc%2Fdataset-card.JPG%3Ft%3D2020-02-04-19-49-10&imgrefurl=https%3A%2F%2Fwww.kaggle.com%2Fdatasets%2Ftimoboz%2Fdata-science-cheat-sheets&docid=6kHwYP48SQusFM&tbnid=f3cWe5Iy9noMRM&vet=12ahUKEwi-p7eXhI-QAxXdT2wGHXcnCQkQM3oECBYQAA..i&w=1200&h=1200&hcb=2&ved=2ahUKEwi-p7eXhI-QAxXdT2wGHXcnCQkQM3oECBYQAA"],
+      "reading_material": ["https://www.datacamp.com/cheat-sheet","https://github.com/aaronwangy/Data-Science-Cheatsheet"],
+      "projects": ["ds_capstone_project_1", "ds_capstone_project_2"],
+      "quizzes": []
+    },
+    "embedding": [0.42, 0.43, 0.44],
+    "prerequisites": ["big_data", "ml_basics", "data_visualization"],
+    "subtopics": [
+      "Data Science Projects: Big data analysis, Predictive models, Visualization dashboards"
+    ]
+ 
+  },
+  {
+    "id": "web_dev_foundations",
+    "title": "Web Development Foundations",
+    "type": "main_node",
+    "estimated_time": 40,
+    "load": "mixed",
+    "difficulty": 4,
+    "resources": {},
+    "embedding": [0.50, 0.51, 0.52],
+    "prerequisites": [],
+    "subnodes": ["html_fundamentals", "css_styling", "javascript_basics"]
+  },
+  {
+    "id": "frontend_frameworks",
+    "title": "Frontend Frameworks & Libraries",
+    "type": "main_node",
+    "estimated_time": 48,
+    "load": "heavy",
+    "difficulty": 6,
+    "resources": {},
+    "embedding": [0.55, 0.56, 0.57],
+    "prerequisites": ["web_dev_foundations"],
+    "subnodes": ["react_fundamentals", "vue_js", "advanced_react", "state_management"]
+  },
+  {
+    "id": "backend_development",
+    "title": "Backend Development",
+    "type": "main_node",
+    "estimated_time": 52,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {},
+    "embedding": [0.60, 0.61, 0.62],
+    "prerequisites": ["web_dev_foundations"],
+    "subnodes": ["node_js", "express_framework", "databases", "api_design"]
+  },
+  {
+    "id": "full_stack_integration",
+    "title": "Full Stack Integration",
+    "type": "main_node",
+    "estimated_time": 36,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {},
+    "embedding": [0.65, 0.66, 0.67],
+    "prerequisites": ["frontend_frameworks", "backend_development"],
+    "subnodes": ["mern_stack", "authentication", "deployment"]
+  },
+  {
+    "id": "web_dev_capstone",
+    "title": "Web Development Capstone Projects",
+    "type": "main_node",
+    "estimated_time": 45,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [0.70, 0.71, 0.72],
+    "prerequisites": ["full_stack_integration"],
+    "subnodes": ["ecommerce_project", "social_media_app", "saas_platform"]
+  },
+  {
+    "id": "html_fundamentals",
+    "title": "HTML5 & Semantic Markup",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "light",
+    "difficulty": 2,
+    "resources": {
+      "Short_videos": ["https://youtu.be/UB1O30fR-EE", "https://youtu.be/DPnqb74Smug"],
+      "Long_videos": ["https://youtu.be/pQN-pnXPaVg", "https://youtu.be/kMT54MPz9oE"],
+      "reading_material": ["https://www.w3schools.com/html/", "https://developer.mozilla.org/en-US/docs/Web/HTML"],
+      "projects": ["portfolio_website_html"],
+      "quizzes": ["html_quiz_1"]
+    },
+    "embedding": [0.51, 0.52, 0.53],
+    "prerequisites": [],
+    "subtopics": [
+      "HTML5 Structure & Elements",
+      "Semantic HTML Tags",
+      "Forms & Input Validation",
+      "Accessibility Best Practices",
+      "SEO Fundamentals",
+      "Projects: Personal portfolio site"
+    ]
+  },
+  {
+    "id": "css_styling",
+    "title": "CSS3 & Modern Styling",
+    "type": "subnode",
+    "estimated_time": 16,
+    "load": "medium",
+    "difficulty": 3,
+    "resources": {
+      "Short_videos": ["https://youtu.be/yfoY53QXEnI", "https://youtu.be/1Rs2ND1ryYc"],
+      "Long_videos": ["https://youtu.be/OXGznpKZ_sA", "https://youtu.be/FHZn6706e3Q"],
+      "reading_material": ["https://www.w3schools.com/css/", "https://css-tricks.com/"],
+      "projects": ["responsive_layout_project"],
+      "quizzes": ["css_quiz_1", "css_quiz_2"]
+    },
+    "embedding": [0.52, 0.53, 0.54],
+    "prerequisites": ["html_fundamentals"],
+    "subtopics": [
+      "CSS Grid & Flexbox",
+      "Responsive Design",
+      "CSS Variables & Custom Properties",
+      "Animations & Transitions",
+      "CSS Frameworks (Bootstrap, Tailwind)",
+      "Projects: Responsive dashboard"
+    ]
+  },
+  {
+    "id": "javascript_basics",
+    "title": "JavaScript Fundamentals",
+    "type": "subnode",
+    "estimated_time": 20,
+    "load": "medium",
+    "difficulty": 4,
+    "resources": {
+      "Short_videos": ["https://youtu.be/W6NZfCO5SIk", "https://youtu.be/hdI2bqOjy3c"],
+      "Long_videos": ["https://youtu.be/PkZNo7MFNFg", "https://youtu.be/P7t13SGytRk"],
+      "reading_material": ["https://www.w3schools.com/js/", "https://javascript.info/"],
+      "projects": ["javascript_calculator", "todo_list_app"],
+      "quizzes": ["js_quiz_1", "js_quiz_2"]
+    },
+    "embedding": [0.53, 0.54, 0.55],
+    "prerequisites": ["html_fundamentals"],
+    "subtopics": [
+      "Variables & Data Types",
+      "Functions & Scope",
+      "DOM Manipulation",
+      "Event Handling",
+      "ES6+ Features",
+      "Async JavaScript",
+      "Projects: Interactive web apps"
+    ]
+  },
+
+  {
+    "id": "cyber_foundations",
+    "title": "Cybersecurity Foundations",
+    "type": "main_node",
+    "estimated_time": 35,
+    "load": "medium",
+    "difficulty": 5,
+    "resources": {},
+    "embedding": [0.75, 0.76, 0.77],
+    "prerequisites": [],
+    "subnodes": ["security_principles", "network_security", "cryptography_basics"]
+  },
+  {
+    "id": "ethical_hacking",
+    "title": "Ethical Hacking & Penetration Testing",
+    "type": "main_node",
+    "estimated_time": 50,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {},
+    "embedding": [0.80, 0.81, 0.82],
+    "prerequisites": ["cyber_foundations"],
+    "subnodes": ["pen_testing", "vulnerability_assessment", "web_app_security"]
+  },
+  {
+    "id": "defensive_security",
+    "title": "Defensive Security & Operations",
+    "type": "main_node",
+    "estimated_time": 45,
+    "load": "heavy",
+    "difficulty": 7,
+    "resources": {},
+    "embedding": [0.85, 0.86, 0.87],
+    "prerequisites": ["cyber_foundations"],
+    "subnodes": ["siem_operations", "incident_response", "threat_intelligence"]
+  },
+  {
+    "id": "advanced_cyber",
+    "title": "Advanced Cybersecurity",
+    "type": "main_node",
+    "estimated_time": 40,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [0.90, 0.91, 0.92],
+    "prerequisites": ["ethical_hacking", "defensive_security"],
+    "subnodes": ["cloud_security", "mobile_security", "iot_security"]
+  },
+  {
+    "id": "cyber_capstone",
+    "title": "Cybersecurity Capstone Projects",
+    "type": "main_node",
+    "estimated_time": 38,
+    "load": "heavy",
+    "difficulty": 9,
+    "resources": {},
+    "embedding": [0.95, 0.96, 0.97],
+    "prerequisites": ["advanced_cyber"],
+    "subnodes": ["security_audit_project", "incident_simulation", "security_tool_development"]
+  },
+  {
+    "id": "security_principles",
+    "title": "Security Principles & Concepts",
+    "type": "subnode",
+    "estimated_time": 10,
+    "load": "light",
+    "difficulty": 3,
+    "resources": {
+      "Short_videos": ["https://youtu.be/inWWhr5tnEA", "https://youtu.be/5v6goaPsbWY"],
+      "Long_videos": ["https://youtu.be/U_P23SqJa4w", "https://youtu.be/zO7RnimJgx8"],
+      "reading_material": ["https://www.cisa.gov/cybersecurity-fundamentals", "https://owasp.org/www-project-top-ten/"],
+      "projects": ["security_policy_draft"],
+      "quizzes": ["security_principles_quiz"]
+    },
+    "embedding": [0.76, 0.77, 0.78],
+    "prerequisites": [],
+    "subtopics": [
+      "CIA Triad (Confidentiality, Integrity, Availability)",
+      "Risk Management Framework",
+      "Security Policies & Procedures",
+      "Compliance Standards",
+      "Security Awareness",
+      "Projects: Security policy creation"
+    ]
+  },
+  {
+    "id": "network_security",
+    "title": "Network Security Fundamentals",
+    "type": "subnode",
+    "estimated_time": 15,
+    "load": "medium",
+    "difficulty": 5,
+    "resources": {
+      "Short_videos": ["https://youtu.be/4_zSIXb7tLQ", "https://youtu.be/4jY57c4Lb9k"],
+      "Long_videos": ["https://youtu.be/4jY57c4Lb9k", "https://youtu.be/4_zSIXb7tLQ"],
+      "reading_material": ["https://www.cisco.com/c/en/us/products/security/what-is-network-security.html", "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf"],
+      "projects": ["network_security_audit"],
+      "quizzes": ["network_security_quiz"]
+    },
+    "embedding": [0.77, 0.78, 0.79],
+    "prerequisites": ["security_principles"],
+    "subtopics": [
+      "Firewalls & IDS/IPS",
+      "VPN Technologies",
+      "Network Protocols Security",
+      "Wireless Security",
+      "Network Monitoring",
+      "Projects: Secure network design"
+    ]
+  },
+
+  {
+    "id": "cloud_foundations",
+    "title": "Cloud Computing Foundations",
+    "type": "main_node",
+    "estimated_time": 30,
+    "load": "medium",
+    "difficulty": 4,
+    "resources": {},
+    "embedding": [1.00, 1.01, 1.02],
+    "prerequisites": [],
+    "subnodes": ["cloud_concepts", "virtualization", "cloud_service_models"]
+  },
+  {
+    "id": "aws_core_services",
+    "title": "AWS Core Services",
+    "type": "main_node",
+    "estimated_time": 55,
+    "load": "heavy",
+    "difficulty": 6,
+    "resources": {},
+    "embedding": [1.05, 1.06, 1.07],
+    "prerequisites": ["cloud_foundations"],
+    "subnodes": ["aws_compute", "aws_storage", "aws_networking", "aws_database"]
+  },
+  {
+    "id": "azure_fundamentals",
+    "title": "Microsoft Azure Fundamentals",
+    "type": "main_node",
+    "estimated_time": 50,
+    "load": "heavy",
+    "difficulty": 6,
+    "resources": {},
+    "embedding": [1.10, 1.11, 1.12],
+    "prerequisites": ["cloud_foundations"],
+    "subnodes": ["azure_compute", "azure_storage", "azure_networking", "azure_ai"]
+  },
+  {
+    "id": "cloud_architecture",
+    "title": "Cloud Architecture & Design",
+    "type": "main_node",
+    "estimated_time": 42,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [1.15, 1.16, 1.17],
+    "prerequisites": ["aws_core_services", "azure_fundamentals"],
+    "subnodes": ["cloud_design_patterns", "scalability_design", "cost_optimization"]
+  },
+  {
+    "id": "cloud_devops",
+    "title": "Cloud DevOps & Automation",
+    "type": "main_node",
+    "estimated_time": 48,
+    "load": "heavy",
+    "difficulty": 8,
+    "resources": {},
+    "embedding": [1.20, 1.21, 1.22],
+    "prerequisites": ["cloud_architecture"],
+    "subnodes": ["iac_terraform", "ci_cd_pipelines", "containerization"]
+  },
+  {
+    "id": "cloud_concepts",
+    "title": "Cloud Computing Concepts",
+    "type": "subnode",
+    "estimated_time": 8,
+    "load": "light",
+    "difficulty": 3,
+    "resources": {
+      "Short_videos": ["https://youtu.be/mxT233EdY5c", "https://youtu.be/2LaAJqRzOoE"],
+      "Long_videos": ["https://youtu.be/2LaAJqRzOoE", "https://youtu.be/mxT233EdY5c"],
+      "reading_material": ["https://aws.amazon.com/what-is-cloud-computing/", "https://azure.microsoft.com/en-us/overview/what-is-cloud-computing/"],
+      "projects": ["cloud_service_comparison"],
+      "quizzes": ["cloud_concepts_quiz"]
+    },
+    "embedding": [1.01, 1.02, 1.03],
+    "prerequisites": [],
+    "subtopics": [
+      "Cloud Service Models (IaaS, PaaS, SaaS)",
+      "Deployment Models (Public, Private, Hybrid)",
+      "Cloud Economics",
+      "Major Cloud Providers",
+      "Cloud Migration Strategies",
+      "Projects: Cloud provider comparison"
+    ]
+  },
+  {
+    "id": "aws_compute",
+    "title": "AWS Compute Services",
+    "type": "subnode",
+    "estimated_time": 12,
+    "load": "medium",
+    "difficulty": 5,
+    "resources": {
+      "Short_videos": ["https://youtu.be/h_ZD2jQj4_k", "https://youtu.be/iS2kyRg1DIY"],
+      "Long_videos": ["https://youtu.be/h_ZD2jQj4_k", "https://youtu.be/iS2kyRg1DIY"],
+      "reading_material": ["https://aws.amazon.com/ec2/", "https://aws.amazon.com/lambda/"],
+      "projects": ["ec2_instance_deployment"],
+      "quizzes": ["aws_compute_quiz"]
+    },
+    "embedding": [1.06, 1.07, 1.08],
+    "prerequisites": ["cloud_concepts"],
+    "subtopics": [
+      "EC2 Instances & Auto Scaling",
+      "Lambda Functions",
+      "Elastic Beanstalk",
+      "ECS & EKS",
+      "Load Balancing",
+      "Projects: Serverless application"
+    ]
+  }
+
+]
+
