@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { logUserActivity } from "@/features/user_activity";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,14 +26,22 @@ const Login = () => {
       const response = await fetch("http://localhost:8000/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, password }), // ✅ send name + password
+        body: JSON.stringify({ name, password }),
       });
 
       const data = await response.json();
+      localStorage.setItem("userId", data.user.id);
 
       if (data.success && data.user) {
         localStorage.setItem("userData", JSON.stringify(data.user));
-        navigate("/");
+        navigate("/")
+        console.log("success");
+        await logUserActivity(
+          data.user.id,
+          "login",
+          "User successfully logged in",
+          10
+        );
       } else {
         setError(true);
       }

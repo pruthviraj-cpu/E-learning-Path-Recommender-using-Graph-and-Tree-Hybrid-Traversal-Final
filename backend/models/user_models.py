@@ -2,6 +2,7 @@ from models.database import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, JSON, DateTime,func
 from datetime import datetime
 from sqlalchemy.orm import relationship
+from models.user_activity_models import UserActivity
 
 class User(Base):
     __tablename__='users'
@@ -10,3 +11,5 @@ class User(Base):
     password=Column(String(100))
     path = Column(JSON)
     created_at = Column(DateTime, default=func.now())
+
+    activities = relationship("UserActivity", back_populates="user", cascade="all, delete")
