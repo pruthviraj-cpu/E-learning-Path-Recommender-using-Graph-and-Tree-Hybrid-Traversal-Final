@@ -23,3 +23,7 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return{"message": "Welcome to LearnerPath API"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
