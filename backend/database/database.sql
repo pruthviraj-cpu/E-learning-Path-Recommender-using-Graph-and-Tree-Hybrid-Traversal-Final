@@ -31,3 +31,24 @@ CREATE TABLE topics (
     prerequisites JSON,
     subtopics JSON
 );
+
+
+CREATE TABLE user_learning_paths (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    learner_type VARCHAR(50) NOT NULL,
+    time_availability VARCHAR(50) NOT NULL,
+    learning_domain VARCHAR(50) NOT NULL,
+    study_weeks INTEGER DEFAULT 12,
+    path_data JSON NOT NULL,
+    weekly_schedule JSON NOT NULL,
+    stats JSON NOT NULL,
+    current_week INTEGER DEFAULT 1,
+    completed_nodes JSON DEFAULT '[]',
+    progress_percentage INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_active INTEGER DEFAULT 1
+);
