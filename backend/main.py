@@ -16,7 +16,7 @@ app.include_router(path_generation_router)
 # Allow frontend to access backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # or ["http://localhost:3000"] for specific frontend
+    allow_origins=["http://localhost:3000", "http://localhost:8080"],  # or ["http://localhost:3000"] for specific frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
