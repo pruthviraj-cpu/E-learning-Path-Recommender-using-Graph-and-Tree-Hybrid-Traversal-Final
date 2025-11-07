@@ -4,14 +4,42 @@ import * as feather from "feather-icons";
 import Navbar from "@/components/Navbar";
 import { toast } from "@/hooks/use-toast";
 
+interface ModuleContent {
+  video_url?: string;
+  sections?: Array<{
+    title: string;
+    content: string;
+  }>;
+}
+
+interface Assessment {
+  id: string;
+  type: string;
+  questions: string[];
+  options: string[];
+  correct_answer: number;
+  explanation?: string;
+  points: number;
+}
+
+interface Module {
+  id: string;
+  title: string;
+  description?: string;
+  content?: ModuleContent;
+  assessments?: Assessment[];
+  skills?: string[];
+  difficulty?: string;
+}
+
 const Pathways = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [currentModule, setCurrentModule] = useState<any>(null);
+  const [currentModule, setCurrentModule] = useState<Module | null>(null);
   const [activeTab, setActiveTab] = useState('content');
   const [confidenceRating, setConfidenceRating] = useState<number | null>(null);
-  const [assessments, setAssessments] = useState<any[]>([]);
+  const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [userAnswers, setUserAnswers] = useState<{ [key: number]: number }>({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -30,36 +58,36 @@ const Pathways = () => {
       const storedPath = localStorage.getItem('currentLearningPath');
       const storedModuleIndex = localStorage.getItem('currentModule');
       
-      // if (!storedPath) {
-      //   navigate('/');
-      //   return;
-      // }
+      if (!storedPath) {
+        navigate('/learning');
+        return;
+      }
 
       const path = JSON.parse(storedPath);
       const moduleIndex = storedModuleIndex ? parseInt(storedModuleIndex) : path.progress?.current_module || 0;
       
-      if (path.modules && path.modules[moduleIndex]) {
-        const module = path.modules[moduleIndex];
+      if (path.path_data && path.path_data[moduleIndex]) {
+        const module = path.path_data[moduleIndex];
         
-        // Fetch module content if we have path_id and module title
-        if (path.path_id && module.title) {
-          try {
-            const response = await fetch(`http://localhost:8000/learningpaths/${path.path_id}/modules/${module.title}`);
-            if (response.ok) {
-              const moduleData = await response.json();
-              setCurrentModule(moduleData);
-              
-              if (moduleData.assessments) {
-                setAssessments(moduleData.assessments);
-              }
-            } else {
-              setCurrentModule(module);
+        // Fetch module content and assessments from backend
+        try {
+          const response = await fetch(`http://localhost:8000/learningpaths/modules/${module.id}/content`);
+          if (response.ok) {
+            const moduleData = await response.json();
+            setCurrentModule(moduleData);
+            
+            // Fetch assessments for this module
+            const assessmentResponse = await fetch(`http://localhost:8000/learningpaths/modules/${module.id}/assessments`);
+            if (assessmentResponse.ok) {
+              const assessmentData = await assessmentResponse.json();
+              setAssessments(assessmentData.assessments || []);
             }
-          } catch (err) {
-            console.error('Error fetching module details:', err);
+          } else {
+            // Fallback to basic module data
             setCurrentModule(module);
           }
-        } else {
+        } catch (err) {
+          console.error('Error fetching module details:', err);
           setCurrentModule(module);
         }
       } else {
@@ -74,17 +102,35 @@ const Pathways = () => {
     }
   };
 
-  const handleConfidenceSelect = (rating: number) => {
+  const handleConfidenceSelect = async (rating: number) => {
     setConfidenceRating(rating);
-  };
-
-  const submitConfidence = async () => {
-    if (confidenceRating === null) return;
-
-    toast({
-      title: "Progress Saved",
-      description: "Your confidence rating has been recorded.",
-    });
+    
+    try {
+      const userId = localStorage.getItem('userId');
+      const storedPath = localStorage.getItem('currentLearningPath');
+      
+      if (userId && storedPath) {
+        const path = JSON.parse(storedPath);
+        await fetch(`http://localhost:8000/learningpaths/user/${userId}/confidence`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            module_id: currentModule?.id,
+            confidence_rating: rating,
+            path_id: path.path_id
+          })
+        });
+      }
+      
+      toast({
+        title: "Confidence Saved",
+        description: `You rated your confidence as ${rating}/5`,
+      });
+    } catch (err) {
+      console.error('Error saving confidence rating:', err);
+    }
   };
 
   const handleAnswerSelect = (questionIndex: number, optionIndex: number) => {
@@ -117,6 +163,32 @@ const Pathways = () => {
 
     const score = Math.round((correct / assessments.length) * 100);
     
+    // Save assessment results
+    try {
+      const userId = localStorage.getItem('userId');
+      const storedPath = localStorage.getItem('currentLearningPath');
+      
+      if (userId && storedPath && currentModule) {
+        const path = JSON.parse(storedPath);
+        await fetch(`http://localhost:8000/learningpaths/user/${userId}/assessment-results`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            module_id: currentModule.id,
+            path_id: path.path_id,
+            score: score,
+            total_questions: assessments.length,
+            correct_answers: correct,
+            user_answers: userAnswers
+          })
+        });
+      }
+    } catch (err) {
+      console.error('Error saving assessment results:', err);
+    }
+    
     toast({
       title: "Assessment Complete!",
       description: `You scored ${score}%. Great job!`,
@@ -124,6 +196,8 @@ const Pathways = () => {
   };
 
   const generateAIQuiz = async () => {
+    if (!currentModule) return;
+
     toast({
       title: "Generating Quiz",
       description: "Creating AI-powered questions for you...",
@@ -170,6 +244,38 @@ const Pathways = () => {
         description: "Failed to generate quiz. Please try again.",
         variant: "destructive"
       });
+    }
+  };
+
+  const markModuleComplete = async () => {
+    if (!currentModule) return;
+
+    try {
+      const userId = localStorage.getItem('userId');
+      const storedPath = localStorage.getItem('currentLearningPath');
+      
+      if (userId && storedPath) {
+        const path = JSON.parse(storedPath);
+        const response = await fetch(
+          `http://localhost:8000/generate-path/user/${userId}/path/${path.path_id}/complete-node`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ node_id: currentModule.id })
+          }
+        );
+
+        if (response.ok) {
+          toast({
+            title: "Module Completed!",
+            description: "Great job! You've completed this module.",
+          });
+        }
+      }
+    } catch (err) {
+      console.error('Error marking module complete:', err);
     }
   };
 
@@ -277,6 +383,17 @@ const Pathways = () => {
                       <p className="text-gray-600">Learning materials will be available here.</p>
                     </div>
                   )}
+
+                  {/* Mark Complete Button */}
+                  <div className="mt-8 pt-6 border-t">
+                    <button 
+                      onClick={markModuleComplete}
+                      className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center"
+                    >
+                      <i data-feather="check-circle" className="w-4 h-4 mr-2"></i>
+                      Mark Module as Complete
+                    </button>
+                  </div>
                 </div>
               )}
 
@@ -385,12 +502,9 @@ const Pathways = () => {
               </div>
               
               {confidenceRating && (
-                <button 
-                  onClick={submitConfidence}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-                >
-                  Save Rating
-                </button>
+                <div className="text-center text-sm text-gray-600">
+                  Selected: {confidenceRating}/5
+                </div>
               )}
             </div>
 

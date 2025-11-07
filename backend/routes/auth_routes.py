@@ -112,20 +112,20 @@ def get_enrolled_paths(user_id: int, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    # user.path should be list of integers
+    # user.path should be list of integers like [2, 4]
     path_ids = user.path or []
     if not path_ids:
         return []
-    
+
     paths = db.query(Path).filter(Path.id.in_(path_ids)).all()
     return [
         {
             "id": p.id,
-            "name": p.name,
-            "description": p.description,
+            "name": p.title,  # ✅ Use 'title' instead of 'name'
+            "description": f"{p.type} path - {p.load} load",  # Create description
             "difficulty": p.difficulty,
-            "topics": p.topics,
-            "is_active": p.id in path_ids  # mark active if included
+            "topics": p.subnodes or [],  # Use subnodes as topics
+            "is_active": p.id in path_ids
         }
         for p in paths
     ]

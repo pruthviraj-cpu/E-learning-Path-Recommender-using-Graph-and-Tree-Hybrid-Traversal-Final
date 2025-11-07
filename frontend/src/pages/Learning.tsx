@@ -136,14 +136,19 @@ const Learning = () => {
     }
   };
 
-  const startModule = (moduleIndex: number) => {
-    if (!learningPath) return;
-    
-    const module = learningPath.path_data[moduleIndex];
-    localStorage.setItem('currentModule', moduleIndex.toString());
-    localStorage.setItem('currentModuleData', JSON.stringify(module));
-    navigate('/pathways');
-  };
+ const startModule = (moduleIndex: number) => {
+  if (!learningPath) return;
+  
+  const module = learningPath.path_data[moduleIndex];
+  
+  // Store current module information
+  localStorage.setItem('currentModule', moduleIndex.toString());
+  localStorage.setItem('currentModuleData', JSON.stringify(module));
+  localStorage.setItem('currentLearningPath', JSON.stringify(learningPath));
+  
+  // Navigate to pathways page
+  navigate('/pathways');
+ };
 
   const markModuleComplete = async (moduleId: string) => {
     try {
