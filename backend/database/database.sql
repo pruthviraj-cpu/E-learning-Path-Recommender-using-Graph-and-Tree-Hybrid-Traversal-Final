@@ -52,3 +52,14 @@ CREATE TABLE user_learning_paths (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_active INTEGER DEFAULT 1
 );
+
+
+--------For Storing user activity----------
+CREATE TABLE user_activity (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    action_type VARCHAR(100) NOT NULL,      
+    description TEXT,                       
+    duration_seconds INTEGER DEFAULT 0,     
+    created_at TIMESTAMP DEFAULT NOW()      
+);

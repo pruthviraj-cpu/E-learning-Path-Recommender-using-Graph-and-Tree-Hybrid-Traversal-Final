@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as feather from "feather-icons";
+// import { logUserActivity } from "@/features/user_activity";
 
 const Navbar = () => {
   const location = useLocation();
@@ -21,6 +22,14 @@ const Navbar = () => {
     localStorage.removeItem('userData');
     localStorage.removeItem('currentLearningPath');
     window.location.href = '/login';
+    // const userId = localStorage.getItem("userId");
+    // console.log("success");
+    // await logUserActivity(
+    //   userId,
+    //   "login",
+    //   "User successfully logged in",
+    //   10
+    // );
   };
 
   const getUserInitial = () => {
@@ -43,26 +52,26 @@ const Navbar = () => {
             <h1 className="text-xl font-bold text-gray-800">LearnPath</h1>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className={`font-medium ${isActive('/') ? 'text-blue-600 border-b-2 border-blue-600 pb-1' : 'text-gray-600 hover:text-blue-600'}`}
             >
               Dashboard
             </Link>
-            <Link 
-              to="/pathways" 
+            <Link
+              to="/pathways"
               className={`font-medium ${isActive('/pathways') ? 'text-blue-600 border-b-2 border-blue-600 pb-1' : 'text-gray-600 hover:text-blue-600'}`}
             >
               My Pathways
             </Link>
-            <Link 
-              to="/learning" 
+            <Link
+              to="/learning"
               className={`font-medium ${isActive('/learning') ? 'text-blue-600 border-b-2 border-blue-600 pb-1' : 'text-gray-600 hover:text-blue-600'}`}
             >
               Learning
             </Link>
-            <Link 
-              to="/onboarding" 
+            <Link
+              to="/onboarding"
               className={`font-medium ${isActive('/onboarding') ? 'text-blue-600 border-b-2 border-blue-600 pb-1' : 'text-gray-600 hover:text-blue-600'}`}
             >
               Onboarding
@@ -71,8 +80,8 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Search..."
               className="pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
