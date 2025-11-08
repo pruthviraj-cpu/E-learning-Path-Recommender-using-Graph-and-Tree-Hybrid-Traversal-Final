@@ -129,3 +129,29 @@ def get_enrolled_paths(user_id: int, db: Session = Depends(get_db)):
         }
         for p in paths
     ]
+
+@auth_router.post("/signup")
+async def registyer_user(credentials: LoginCredentials, db: Session = Depends(get_db)):
+    existing_user = db.query(User).filter(User.name == credentials.name).first()
+
+    if existing_user:
+        return {"success": False, "message": "User already exists"}
+    
+    new_user = User(
+        name=credentials.name,
+        password=credentials.password,
+        created_at=datetime.now()
+    )
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+
+    response = {
+        "success" :True,
+        "user": {
+            "id":new_user.id,
+            "name":new_user.name,
+            "created_at":new_user.created_at,
+        }
+    }
+    return response

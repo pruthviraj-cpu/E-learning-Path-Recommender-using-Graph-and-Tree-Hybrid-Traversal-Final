@@ -42,11 +42,13 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // const storedUser = localStorage.getItem("userData");
+    // if (!storedUser) {
+    //   navigate("/login");
+    //   return;
+    // }
+
     const storedUser = localStorage.getItem("userData");
-    if (!storedUser) {
-      navigate("/login");
-      return;
-    }
 
     const user = JSON.parse(storedUser);
     setUserData(user);
