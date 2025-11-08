@@ -1,0 +1,2006 @@
+{
+  "domains": [
+    {
+      "name": "Data Science",
+      "levels": {
+        "beginner": [
+          {
+            "id": "ds_b_1",
+            "text": "What is the primary goal of Data Science?",
+            "options": {
+              "a": "To build websites",
+              "b": "To extract insights and knowledge from data",
+              "c": "To design computer networks",
+              "d": "To manage software projects"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_2",
+            "text": "Which of the following is a supervised learning task?",
+            "options": {
+              "a": "Clustering",
+              "b": "Dimensionality Reduction",
+              "c": "Classification",
+              "d": "Association"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_3",
+            "text": "What does SQL stand for?",
+            "options": {
+              "a": "Structured Question Language",
+              "b": "Structured Query Language",
+              "c": "Simple Query Logic",
+              "d": "System Query Language"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_4",
+            "text": "In Python, which library is primarily used for numerical computations and working with arrays?",
+            "options": {
+              "a": "Pandas",
+              "b": "Matplotlib",
+              "c": "NumPy",
+              "d": "Scikit-learn"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_5",
+            "text": "What is a 'DataFrame'?",
+            "options": {
+              "a": "A type of chart",
+              "b": "A 2-dimensional labeled data structure in Pandas",
+              "c": "A statistical model",
+              "d": "A database server"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_6",
+            "text": "Which type of variable is 'customer age'?",
+            "options": {
+              "a": "Categorical",
+              "b": "Ordinal",
+              "c": "Numerical (Continuous)",
+              "d": "Boolean"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_7",
+            "text": "What is the purpose of a Jupyter Notebook?",
+            "options": {
+              "a": "To compile C++ code",
+              "b": "To create interactive web dashboards",
+              "c": "To write and share documents containing live code, equations, and visualizations",
+              "d": "To manage version control"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_8",
+            "text": "What does CSV stand for?",
+            "options": {
+              "a": "Comma-Separated Values",
+              "b": "Computer System Validation",
+              "c": "Code Source Version",
+              "d": "Columnar Storage Value"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_b_9",
+            "text": "Which chart is best for showing the distribution of a continuous variable?",
+            "options": {
+              "a": "Pie Chart",
+              "b": "Bar Chart",
+              "c": "Histogram",
+              "d": "Line Chart"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_10",
+            "text": "What is the mean of the list: [2, 4, 6, 8]?",
+            "options": {
+              "a": "4",
+              "b": "5",
+              "c": "6",
+              "d": "20"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_11",
+            "text": "What is 'Overfitting' in a machine learning model?",
+            "options": {
+              "a": "The model is too simple",
+              "b": "The model performs well on training data but poorly on unseen data",
+              "c": "The model has not trained for enough epochs",
+              "d": "The model has a high bias"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_12",
+            "text": "Which function is used to read a CSV file into a Pandas DataFrame?",
+            "options": {
+              "a": "read_csv()",
+              "b": "load_csv()",
+              "c": "import_csv()",
+              "d": "get_csv()"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_b_13",
+            "text": "What is the main use of the 'Seaborn' library?",
+            "options": {
+              "a": "Web Scraping",
+              "b": "Statistical Data Visualization",
+              "c": "Deep Learning",
+              "d": "Database Management"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_14",
+            "text": "What does the .head() method do in Pandas?",
+            "options": {
+              "a": "Returns the last few rows",
+              "b": "Returns the first few rows",
+              "c": "Returns the column names",
+              "d": "Returns the shape of the DataFrame"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_15",
+            "text": "What is a 'API' in the context of data science?",
+            "options": {
+              "a": "A Python library",
+              "b": "A type of database",
+              "c": "Application Programming Interface, a way for programs to interact with each other",
+              "d": "A machine learning algorithm"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_16",
+            "text": "Which of the following is a classification algorithm?",
+            "options": {
+              "a": "Linear Regression",
+              "b": "K-Means",
+              "c": "Logistic Regression",
+              "d": "Apriori"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_17",
+            "text": "What is the purpose of a 'Training Set'?",
+            "options": {
+              "a": "To finally evaluate the model's performance",
+              "b": "To tune the model's hyperparameters",
+              "c": "To train the machine learning model",
+              "d": "To clean the data"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_18",
+            "text": "What does 'NaN' stand for in a dataset?",
+            "options": {
+              "a": "Not a Number",
+              "b": "New and Null",
+              "c": "Number and Numeric",
+              "d": "Noted as Null"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_b_19",
+            "text": "Which Python library is used for web scraping?",
+            "options": {
+              "a": "NumPy",
+              "b": "BeautifulSoup",
+              "c": "TensorFlow",
+              "d": "SciPy"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_20",
+            "text": "What is the output of 2 ** 3 in Python?",
+            "options": {
+              "a": "6",
+              "b": "8",
+              "c": "9",
+              "d": "23"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_21",
+            "text": "What is the key difference between a list and a tuple in Python?",
+            "options": {
+              "a": "Lists are immutable, tuples are mutable.",
+              "b": "Tuples are immutable, lists are mutable.",
+              "c": "Lists can only hold numbers.",
+              "d": "Tuples use square brackets."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_22",
+            "text": "What is the term for converting categorical data into numerical indicators (0/1)?",
+            "options": {
+              "a": "Normalization",
+              "b": "Imputation",
+              "c": "One-Hot Encoding",
+              "d": "Standardization"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_23",
+            "text": "Which metric is used to evaluate a regression model?",
+            "options": {
+              "a": "Accuracy",
+              "b": "F1-Score",
+              "c": "Mean Squared Error (MSE)",
+              "d": "Precision"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_24",
+            "text": "What is the role of a 'Target Variable'?",
+            "options": {
+              "a": "It is the input to the model.",
+              "b": "It is the variable we are trying to predict.",
+              "c": "It is a variable we remove from the dataset.",
+              "d": "It is used to split the data."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_25",
+            "text": "What is Git primarily used for?",
+            "options": {
+              "a": "Data analysis",
+              "b": "Version control",
+              "c": "Machine learning",
+              "d": "Database management"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_26",
+            "text": "What does the .describe() method in Pandas provide?",
+            "options": {
+              "a": "A list of all columns",
+              "b": "Descriptive statistics of the DataFrame",
+              "c": "A plot of the data",
+              "d": "The data types of each column"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_b_27",
+            "text": "What is the purpose of the 'Value Counts' method in Pandas?",
+            "options": {
+              "a": "To count the total number of cells",
+              "b": "To count the missing values",
+              "c": "To count unique values in a series",
+              "d": "To calculate the sum of a column"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_28",
+            "text": "Which of the following is a NoSQL database?",
+            "options": {
+              "a": "MySQL",
+              "b": "PostgreSQL",
+              "c": "MongoDB",
+              "d": "SQLite"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_29",
+            "text": "What is the main purpose of the 'OS' module in Python?",
+            "options": {
+              "a": "To perform statistical tests",
+              "b": "To create graphs",
+              "c": "To interact with the operating system (e.g., files, directories)",
+              "d": "To connect to the internet"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_b_30",
+            "text": "In a box plot, what does the 'box' itself represent?",
+            "options": {
+              "a": "The mean and mode of the data",
+              "b": "The interquartile range (IQR) from Q1 to Q3",
+              "c": "The total range of the data",
+              "d": "The outliers in the data"
+            },
+            "correct_answer": "b"
+          }
+        ],
+        "intermediate": [
+          {
+            "id": "ds_i_1",
+            "text": "What is the difference between 'fit_transform' and 'transform' in Scikit-learn?",
+            "options": {
+              "a": "There is no difference.",
+              "b": "'fit_transform' is for training data, 'transform' is for test data using parameters learned from training.",
+              "c": "'transform' is for training data, 'fit_transform' is for test data.",
+              "d": "'fit_transform' is faster."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_2",
+            "text": "What is the curse of dimensionality?",
+            "options": {
+              "a": "Data becomes easier to model as dimensions increase.",
+              "b": "As features increase, data becomes sparse, and model performance can degrade.",
+              "c": "It refers to the high cost of data storage.",
+              "d": "It is a problem with 2D data only."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_3",
+            "text": "How does a Random Forest algorithm reduce overfitting compared to a single Decision Tree?",
+            "options": {
+              "a": "By using deeper trees",
+              "b": "By averaging the results of multiple decorrelated trees",
+              "c": "By using only a subset of features",
+              "d": "Both b and c"
+            },
+            "correct_answer": "d"
+          },
+          {
+            "id": "ds_i_4",
+            "text": "What is the purpose of a 'Pipeline' in Scikit-learn?",
+            "options": {
+              "a": "To deploy models to production",
+              "b": "To sequentially apply a list of transforms and a final estimator",
+              "c": "To visualize the data flow",
+              "d": "To connect to a database"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_5",
+            "text": "What is L2 Regularization (Ridge) designed to do?",
+            "options": {
+              "a": "Increase model complexity",
+              "b": "Penalize the absolute magnitude of coefficients",
+              "c": "Penalize the square of the magnitude of coefficients",
+              "d": "Remove features entirely"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_i_6",
+            "text": "In SQL, what is the difference between an INNER JOIN and a LEFT JOIN?",
+            "options": {
+              "a": "INNER JOIN returns all rows from both tables, LEFT JOIN only matching rows.",
+              "b": "LEFT JOIN returns all rows from the left table and matched rows from the right, INNER JOIN only matching rows.",
+              "c": "They are the same.",
+              "d": "INNER JOIN is faster."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_7",
+            "text": "What is the bias-variance tradeoff?",
+            "options": {
+              "a": "The goal to minimize both bias and variance error.",
+              "b": "The tension between a model's ability to minimize bias and variance, often requiring a balance.",
+              "c": "The idea that bias and variance are the same thing.",
+              "d": "A problem only present in linear models."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_8",
+            "text": "What is the purpose of a 'Confusion Matrix'?",
+            "options": {
+              "a": "To visualize the clustering of data",
+              "b": "To summarize the performance of a classification algorithm",
+              "c": "To show the correlation between features",
+              "d": "To plot the loss function of a model"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_9",
+            "text": "What does AUC-ROC curve represent?",
+            "options": {
+              "a": "The tradeoff between precision and recall.",
+              "b": "The tradeoff between true positive rate and false positive rate.",
+              "c": "The tradeoff between training and test error.",
+              "d": "The tradeoff between bias and variance."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_10",
+            "text": "What is 'Cross-Validation' used for?",
+            "options": {
+              "a": "To train the final model",
+              "b": "To get a more robust estimate of model performance and tune hyperparameters",
+              "c": "To clean the data",
+              "d": "To visualize data"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_11",
+            "text": "How does a Gradient Boosting Machine (GBM) work?",
+            "options": {
+              "a": "It builds trees independently.",
+              "b": "It builds trees sequentially, where each new tree corrects the errors of the previous one.",
+              "c": "It uses only a bootstrap sample of data.",
+              "d": "It is an unsupervised method."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_12",
+            "text": "What is the purpose of the 'Elbow Method' in K-Means clustering?",
+            "options": {
+              "a": "To classify data points",
+              "b": "To determine the optimal number of clusters (k)",
+              "c": "To measure cluster density",
+              "d": "To initialize centroids"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_13",
+            "text": "What is Principal Component Analysis (PCA) used for?",
+            "options": {
+              "a": "Classification",
+              "b": "Dimensionality Reduction",
+              "c": "Clustering",
+              "d": "Regression"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_14",
+            "text": "In a time series context, what is 'Stationarity'?",
+            "options": {
+              "a": "The data has a trend.",
+              "b": "The data has seasonal components.",
+              "c": "The statistical properties (mean, variance) are constant over time.",
+              "d": "The data is random."
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_i_15",
+            "text": "What is the difference between 'Bagging' and 'Boosting'?",
+            "options": {
+              "a": "Bagging builds models sequentially, Boosting builds them in parallel.",
+              "b": "Bagging builds models in parallel, Boosting builds them sequentially.",
+              "c": "They are the same.",
+              "d": "Bagging is for regression, Boosting is for classification."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_16",
+            "text": "What is a 'Hyperparameter'?",
+            "options": {
+              "a": "A parameter that the model learns from the data.",
+              "b": "A parameter that is set before the learning process begins (e.g., k in KNN, learning rate).",
+              "c": "The output of the model.",
+              "d": "A feature in the dataset."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_17",
+            "text": "How do you handle missing data in a dataset?",
+            "options": {
+              "a": "Always delete rows with missing data.",
+              "b": "Use imputation methods like mean/median/mode or model-based imputation.",
+              "c": "Ignore them, models can handle it automatically.",
+              "d": "There is only one correct way."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_18",
+            "text": "What is the purpose of the 'F1-Score'?",
+            "options": {
+              "a": "To measure the model's speed",
+              "b": "To combine precision and recall into a single metric",
+              "c": "To measure the variance",
+              "d": "To evaluate regression models"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_19",
+            "text": "What is 'Feature Engineering'?",
+            "options": {
+              "a": "The process of selecting a model.",
+              "b": "The process of creating new features from existing data to improve model performance.",
+              "c": "The process of deploying a model.",
+              "d": "The process of cleaning data."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_20",
+            "text": "What is a 'Lambda Function' in Python?",
+            "options": {
+              "a": "A large, complex function.",
+              "b": "A small anonymous function defined with the lambda keyword.",
+              "c": "A function that is only used in AWS.",
+              "d": "A function for mathematical calculus."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_21",
+            "text": "What is the difference between 'iterrows()' and 'itertuples()' in Pandas?",
+            "options": {
+              "a": "iterrows() is faster.",
+              "b": "itertuples() is generally faster as it returns namedtuples.",
+              "c": "iterrows() returns tuples.",
+              "d": "There is no difference."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_22",
+            "text": "What is 'Multicollinearity' and why is it a problem in linear regression?",
+            "options": {
+              "a": "When features are independent; it improves the model.",
+              "b": "When features are highly correlated; it makes coefficient estimates unstable.",
+              "c": "When the target variable is categorical; it requires encoding.",
+              "d": "When there is missing data; it causes errors."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_23",
+            "text": "What is the purpose of the 'Flask' framework in Python?",
+            "options": {
+              "a": "For data analysis",
+              "b": "For creating machine learning models",
+              "c": "For building web applications and APIs",
+              "d": "For numerical computations"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_i_24",
+            "text": "What is an 'ETL' pipeline?",
+            "options": {
+              "a": "Extract, Train, Load",
+              "b": "Extract, Transform, Load",
+              "c": "Evaluate, Test, Label",
+              "d": "Estimate, Tune, Learn"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_25",
+            "text": "What is the 'Attention Mechanism' in neural networks?",
+            "options": {
+              "a": "A method for data cleaning.",
+              "b": "A technique that allows the model to focus on specific parts of the input.",
+              "c": "A type of activation function.",
+              "d": "A regularization technique."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_26",
+            "text": "What is the difference between 'Batch Gradient Descent' and 'Stochastic Gradient Descent'?",
+            "options": {
+              "a": "Batch GD uses one sample per update, Stochastic GD uses the whole dataset.",
+              "b": "Stochastic GD uses one sample per update, Batch GD uses the whole dataset.",
+              "c": "They are the same.",
+              "d": "Stochastic GD is only for classification."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_27",
+            "text": "What is 'Transfer Learning'?",
+            "options": {
+              "a": "Transferring data from one database to another.",
+              "b": "Using a pre-trained model on a new, similar problem.",
+              "c": "The process of splitting data into train and test sets.",
+              "d": "A method for feature selection."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_28",
+            "text": "What is 'A/B Testing' used for?",
+            "options": {
+              "a": "To compare two machine learning models.",
+              "b": "To compare two versions of a web page or feature to see which performs better.",
+              "c": "To test the A and B keys on a keyboard.",
+              "d": "To split data into two parts."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_29",
+            "text": "What is 'Docker' commonly used for in Data Science?",
+            "options": {
+              "a": "Data visualization",
+              "b": "Containerizing applications to ensure consistency across environments",
+              "c": "Writing SQL queries",
+              "d": "Statistical analysis"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_i_30",
+            "text": "What is the 'Keras' library?",
+            "options": {
+              "a": "A database management system",
+              "b": "A high-level neural networks API, often running on top of TensorFlow",
+              "c": "A web framework",
+              "d": "A data visualization tool"
+            },
+            "correct_answer": "b"
+          }
+        ],
+        "advanced": [
+          {
+            "id": "ds_a_1",
+            "text": "How does the Transformer architecture differ from RNNs/LSTMs?",
+            "options": {
+              "a": "Transformers are slower.",
+              "b": "Transformers rely entirely on attention mechanisms and are not recurrent, allowing for more parallelization.",
+              "c": "RNNs have better long-range dependency handling.",
+              "d": "They are the same."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_2",
+            "text": "What is the 'No Free Lunch' theorem in machine learning?",
+            "options": {
+              "a": "Machine learning models should be free.",
+              "b": "No one model works best for every problem.",
+              "c": "Lunch is not provided during data science conferences.",
+              "d": "Supervised learning is always better than unsupervised."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_3",
+            "text": "Explain the concept of 'Exploding Gradients' in RNNs and how it's mitigated.",
+            "options": {
+              "a": "Gradients become zero; solved by ReLU activation.",
+              "b": "Gradients become excessively large; mitigated by gradient clipping.",
+              "c": "It's a feature, not a problem.",
+              "d": "Gradients vanish; solved by LSTM units."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_4",
+            "text": "What is a 'Variational Autoencoder (VAE)' and how does it differ from a standard Autoencoder?",
+            "options": {
+              "a": "A VAE is deterministic, a standard AE is probabilistic.",
+              "b": "A VAE is a generative model that learns a probabilistic latent space, unlike the deterministic AE.",
+              "c": "They are the same.",
+              "d": "A standard AE is for images, a VAE is for text."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_5",
+            "text": "Describe the 'Monte Carlo Dropout' technique and its purpose.",
+            "options": {
+              "a": "A data augmentation technique.",
+              "b": "A method for model ensembling and uncertainty estimation at test time by using dropout during inference.",
+              "c": "A feature selection method.",
+              "d": "A type of cross-validation."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_6",
+            "text": "What is 'Federated Learning'?",
+            "options": {
+              "a": "Training a model centrally on all data.",
+              "b": "Training a model across multiple decentralized devices holding local data samples.",
+              "c": "A type of federated database system.",
+              "d": "Learning from federal government data."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_7",
+            "text": "How does a 'Graph Neural Network (GNN)' operate?",
+            "options": {
+              "a": "It processes data in a grid-like structure.",
+              "b": "It operates on graph data by passing messages between nodes.",
+              "c": "It is used only for linear regression.",
+              "d": "It is another name for a decision tree."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_8",
+            "text": "What is the 'REINFORCE' algorithm in the context of Reinforcement Learning?",
+            "options": {
+              "a": "A policy gradient method.",
+              "b": "A value iteration method.",
+              "c": "A Q-learning algorithm.",
+              "d": "A clustering algorithm."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_a_9",
+            "text": "Explain the concept of 'Differential Privacy'.",
+            "options": {
+              "a": "Making data publicly available without any changes.",
+              "b": "A system for anonymizing data so that the output does not reveal information about any individual in the dataset.",
+              "c": "A type of private database.",
+              "d": "Encrypting data."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_10",
+            "text": "What is a 'GAN' (Generative Adversarial Network) and how do its two components interact?",
+            "options": {
+              "a": "A single network for classification.",
+              "b": "A generator creates fake data, and a discriminator tries to distinguish real from fake; they are trained adversarially.",
+              "c": "Two networks that cooperate to clean data.",
+              "d": "A type of autoencoder."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_11",
+            "text": "What is 'Causal Inference' and how does it differ from correlation?",
+            "options": {
+              "a": "They are the same.",
+              "b": "Causal inference aims to identify the effect of one variable on another, going beyond observed association (correlation).",
+              "c": "Correlation implies causation.",
+              "d": "Causal inference is only possible with A/B tests."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_12",
+            "text": "What is 'Thompson Sampling' in the context of Multi-Armed Bandits?",
+            "options": {
+              "a": "A method for clustering.",
+              "b": "A probability matching algorithm for the exploration-exploitation trade-off.",
+              "c": "A technique for data sampling.",
+              "d": "A type of neural network layer."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_13",
+            "text": "Describe the 'Bayesian Optimization' process for hyperparameter tuning.",
+            "options": {
+              "a": "A grid search over parameters.",
+              "b": "A random search over parameters.",
+              "c": "Building a probabilistic model of the objective function to find the minimum/maximum with fewer evaluations.",
+              "d": "A manual tuning process."
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "ds_a_14",
+            "text": "What is the 'Manifold Hypothesis' in machine learning?",
+            "options": {
+              "a": "That data lies on a low-dimensional manifold within the high-dimensional space.",
+              "b": "That all data is high-dimensional.",
+              "c": "A hypothesis about data collection.",
+              "d": "A type of statistical test."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_a_15",
+            "text": "What are 'Residual Connections' in a neural network and why are they used?",
+            "options": {
+              "a": "They add the input of a layer to its output to help mitigate the vanishing gradient problem in deep networks.",
+              "b": "They are used for residual error calculation.",
+              "c": "They are connections only in the output layer.",
+              "d": "They prevent overfitting by dropping connections."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_a_16",
+            "text": "Explain the concept of 'Meta-Learning' or 'Learning to Learn'.",
+            "options": {
+              "a": "Learning on metadata.",
+              "b": "Algorithms that learn how to learn, often adapting to new tasks with few examples.",
+              "c": "Teaching humans how to learn.",
+              "d": "A type of unsupervised learning."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_17",
+            "text": "What is the 'CAP Theorem' in distributed systems?",
+            "options": {
+              "a": "A theorem about capital investment.",
+              "b": "It states that a distributed system can only provide two out of three: Consistency, Availability, Partition Tolerance.",
+              "c": "A theorem about model capacity.",
+              "d": "A rule for data partitioning."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_18",
+            "text": "What is 'SHAP' (SHapley Additive exPlanations) used for?",
+            "options": {
+              "a": "For model training.",
+              "b": "For explaining the output of any machine learning model using game theory.",
+              "c": "For data visualization.",
+              "d": "For hyperparameter tuning."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_19",
+            "text": "Describe the 'Expectation-Maximization (EM) algorithm'.",
+            "options": {
+              "a": "An algorithm for finding maximum likelihood estimates in models with latent variables.",
+              "b": "A gradient descent variant.",
+              "c": "A database query algorithm.",
+              "d": "A method for expectation calculation only."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_a_20",
+            "text": "What is 'Probabilistic Programming'?",
+            "options": {
+              "a": "Programming with probabilities.",
+              "b": "A paradigm that defines probabilistic models and then performs inference in those models.",
+              "c": "A deterministic programming method.",
+              "d": "A type of functional programming."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_21",
+            "text": "What is the difference between 'Episodic' and 'Continual' Reinforcement Learning?",
+            "options": {
+              "a": "Episodic RL has no terminal state, Continual does.",
+              "b": "Episodic RL has clear episodes with terminal states, Continual RL is a never-ending process.",
+              "c": "They are the same.",
+              "d": "Episodic RL is for games, Continual is for robotics."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_22",
+            "text": "What is a 'Normalizing Flow'?",
+            "options": {
+              "a": "A type of data normalization.",
+              "b": "A generative model that transforms a simple distribution into a complex one using invertible transformations.",
+              "c": "A constant flow of data.",
+              "d": "A regularization technique."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_23",
+            "text": "Explain the concept of 'Adversarial Examples' in deep learning.",
+            "options": {
+              "a": "Examples used in GANs.",
+              "b": "Inputs designed to fool a model, often with small, intentional perturbations.",
+              "c": "Examples of good model behavior.",
+              "d": "A type of training data."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_24",
+            "text": "What is 'Multi-Task Learning'?",
+            "options": {
+              "a": "Training a model to do multiple things at once, often improving generalization.",
+              "b": "Training multiple models on one task.",
+              "c": "A type of transfer learning.",
+              "d": "Learning from multiple datasets."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_a_25",
+            "text": "What is the 'Kullback-Leibler (KL) Divergence'?",
+            "options": {
+              "a": "A distance metric between two probabilities.",
+              "b": "A measure of how one probability distribution diverges from a second, reference distribution.",
+              "c": "A clustering algorithm.",
+              "d": "A feature importance score."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_26",
+            "text": "What is 'Self-Supervised Learning'?",
+            "options": {
+              "a": "Learning without a teacher.",
+              "b": "A form of unsupervised learning where the data itself provides the supervision signal.",
+              "c": "The same as supervised learning.",
+              "d": "Learning on a single computer."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_27",
+            "text": "Describe the 'Neural Turing Machine' architecture.",
+            "options": {
+              "a": "A neural network with an external memory bank that it can read from and write to.",
+              "b": "An old-fashioned computer.",
+              "c": "A type of Turing test.",
+              "d": "A machine for data storage."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "ds_a_28",
+            "text": "What is the 'Fisher Information Matrix' used for in machine learning?",
+            "options": {
+              "a": "For fishing data from the web.",
+              "b": "It characterizes the curvature of the likelihood function and is used in Natural Gradient Descent.",
+              "c": "A matrix for image processing.",
+              "d": "A data structure."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_29",
+            "text": "What is 'Quantization' in the context of model deployment?",
+            "options": {
+              "a": "Making a model qualitative.",
+              "b": "Reducing the precision of the numbers used in a model (e.g., 32-bit to 8-bit) to reduce size and latency.",
+              "c": "Counting the parameters in a model.",
+              "d": "A method for evaluating model quality."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "ds_a_30",
+            "text": "Explain the 'XGBoost' algorithm and why it often performs well.",
+            "options": {
+              "a": "It is a simple linear model.",
+              "b": "It is an implementation of gradient boosting that is highly optimized with regularization, handling missing values, and tree pruning.",
+              "c": "It is a bagging algorithm.",
+              "d": "It is an unsupervised algorithm."
+            },
+            "correct_answer": "b"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Web Development",
+      "levels": {
+        "beginner": [
+          {
+            "id": "web_b_1",
+            "text": "What does HTML stand for?",
+            "options": {
+              "a": "Hyper Text Markup Language",
+              "b": "High Tech Modern Language",
+              "c": "Hyper Transfer Markup Language",
+              "d": "Home Tool Markup Language"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_2",
+            "text": "Which tag is used to create a hyperlink in HTML?",
+            "options": {
+              "a": "<link>",
+              "b": "<a>",
+              "c": "<href>",
+              "d": "<hyper>"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_3",
+            "text": "What does CSS stand for?",
+            "options": {
+              "a": "Computer Style Sheets",
+              "b": "Creative Style System",
+              "c": "Cascading Style Sheets",
+              "d": "Colorful Style Sheets"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "web_b_4",
+            "text": "Which property is used to change the background color in CSS?",
+            "options": {
+              "a": "color",
+              "b": "bgcolor",
+              "c": "background-color",
+              "d": "bg-color"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "web_b_5",
+            "text": "Which of the following is a JavaScript data type?",
+            "options": {
+              "a": "Number",
+              "b": "Array",
+              "c": "Boolean",
+              "d": "All of the above"
+            },
+            "correct_answer": "d"
+          },
+          {
+            "id": "web_b_6",
+            "text": "How do you declare a variable in JavaScript?",
+            "options": {
+              "a": "variable x;",
+              "b": "var x;",
+              "c": "v x;",
+              "d": "declare x;"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_7",
+            "text": "What is the correct file extension for a JavaScript file?",
+            "options": {
+              "a": ".java",
+              "b": ".js",
+              "c": ".javascript",
+              "d": ".script"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_8",
+            "text": "Which HTML tag is used for the largest heading?",
+            "options": {
+              "a": "<h6>",
+              "b": "<head>",
+              "c": "<h1>",
+              "d": "<heading>"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "web_b_9",
+            "text": "How can you include an external CSS file in your HTML?",
+            "options": {
+              "a": "<style src='style.css'>",
+              "b": "<link rel='stylesheet' href='style.css'>",
+              "c": "<css>style.css</css>",
+              "d": "<script src='style.css'>"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_10",
+            "text": "What is the purpose of the <img> tag in HTML?",
+            "options": {
+              "a": "To create a link",
+              "b": "To embed an image",
+              "c": "To make text italic",
+              "d": "To import JavaScript"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_11",
+            "text": "Which symbol is used for single-line comments in JavaScript?",
+            "options": {
+              "a": "//",
+              "b": "<!-- -->",
+              "c": "/* */",
+              "d": "#"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_12",
+            "text": "What is the correct way to write an IF statement in JavaScript?",
+            "options": {
+              "a": "if (x == 5)",
+              "b": "if x = 5",
+              "c": "if x == 5 then",
+              "d": "if {x == 5}"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_13",
+            "text": "Which CSS property controls the text size?",
+            "options": {
+              "a": "text-style",
+              "b": "font-size",
+              "c": "text-size",
+              "d": "font-style"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_14",
+            "text": "In HTML, which attribute is used to specify a unique ID for an element?",
+            "options": {
+              "a": "class",
+              "b": "id",
+              "c": "unique",
+              "d": "name"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_15",
+            "text": "What will `console.log(2 + '2')` output in JavaScript?",
+            "options": {
+              "a": "4",
+              "b": "22",
+              "c": "Error",
+              "d": "NaN"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_16",
+            "text": "Which tag is used to define an unordered list in HTML?",
+            "options": {
+              "a": "<ol>",
+              "b": "<list>",
+              "c": "<ul>",
+              "d": "<li>"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "web_b_17",
+            "text": "How do you select an element with the ID 'header' in CSS?",
+            "options": {
+              "a": ".header",
+              "b": "#header",
+              "c": "header",
+              "d": "*header"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_18",
+            "text": "Which method is used to write text to the web page in JavaScript?",
+            "options": {
+              "a": "document.write()",
+              "b": "console.log()",
+              "c": "window.alert()",
+              "d": "print()"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_19",
+            "text": "What is the default display value for a <div> element in CSS?",
+            "options": {
+              "a": "inline",
+              "b": "block",
+              "c": "flex",
+              "d": "inline-block"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_20",
+            "text": "Which HTML tag is used to define a table row?",
+            "options": {
+              "a": "<td>",
+              "b": "<tr>",
+              "c": "<th>",
+              "d": "<table>"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_21",
+            "text": "What does the 'C' in CSS stand for?",
+            "options": {
+              "a": "Computer",
+              "b": "Cascading",
+              "c": "Creative",
+              "d": "Custom"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_22",
+            "text": "How do you create a function in JavaScript?",
+            "options": {
+              "a": "function myFunction()",
+              "b": "create myFunction()",
+              "c": "func myFunction()",
+              "d": "def myFunction()"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_23",
+            "text": "Which property is used to change the left margin of an element in CSS?",
+            "options": {
+              "a": "padding-left",
+              "b": "margin-left",
+              "c": "indent",
+              "d": "left-margin"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_24",
+            "text": "What is the correct way to create an array in JavaScript?",
+            "options": {
+              "a": "var colors = (1,2,3)",
+              "b": "var colors = [1,2,3]",
+              "c": "var colors = {1,2,3}",
+              "d": "var colors = '1,2,3'"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_25",
+            "text": "Which HTML element is used to specify a footer for a document or section?",
+            "options": {
+              "a": "<bottom>",
+              "b": "<footer>",
+              "c": "<section>",
+              "d": "<div>"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_26",
+            "text": "Which event occurs when the user clicks on an HTML element?",
+            "options": {
+              "a": "onmouseclick",
+              "b": "onchange",
+              "c": "onclick",
+              "d": "onmouseover"
+            },
+            "correct_answer": "c"
+          },
+          {
+            "id": "web_b_27",
+            "text": "How do you round the number 7.25 to the nearest integer in JavaScript?",
+            "options": {
+              "a": "Math.round(7.25)",
+              "b": "round(7.25)",
+              "c": "Math.rnd(7.25)",
+              "d": "rnd(7.25)"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_28",
+            "text": "Which CSS property is used to change the font of an element?",
+            "options": {
+              "a": "font-family",
+              "b": "font-style",
+              "c": "text-font",
+              "d": "font-weight"
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_b_29",
+            "text": "What is the purpose of the <head> tag in HTML?",
+            "options": {
+              "a": "To display the main content",
+              "b": "To contain metadata and links to scripts/stylesheets",
+              "c": "To define a header section",
+              "d": "To create a hyperlink"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_b_30",
+            "text": "Which operator is used to assign a value to a variable in JavaScript?",
+            "options": {
+              "a": "=",
+              "b": "==",
+              "c": "===",
+              "d": "=>"
+            },
+            "correct_answer": "a"
+          }
+        ],
+        "intermediate": [
+          {
+            "id": "web_i_1",
+            "text": "What is the difference between 'let', 'const', and 'var' in JavaScript?",
+            "options": {
+              "a": "They are all the same.",
+              "b": "'let' and 'const' are block-scoped, 'var' is function-scoped. 'const' cannot be reassigned.",
+              "c": "'var' is block-scoped, 'let' and 'const' are global.",
+              "d": "'const' can be reassigned."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_2",
+            "text": "What is a CSS Flexbox layout designed for?",
+            "options": {
+              "a": "For styling tables",
+              "b": "For one-dimensional layout (either a row or a column)",
+              "c": "For complex 3D transformations",
+              "d": "For print styles"
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_3",
+            "text": "What is the purpose of the 'this' keyword in JavaScript?",
+            "options": {
+              "a": "It refers to the current function.",
+              "b": "It refers to the object from which it was called.",
+              "c": "It refers to the global object.",
+              "d": "It is a placeholder."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_4",
+            "text": "What are JavaScript Promises used for?",
+            "options": {
+              "a": "For declaring variables.",
+              "b": "For handling asynchronous operations.",
+              "c": "For creating loops.",
+              "d": "For defining functions."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_5",
+            "text": "What is the CSS Box Model?",
+            "options": {
+              "a": "A model for designing boxes.",
+              "b": "A concept that every element is a box with content, padding, border, and margin.",
+              "c": "A 3D model in CSS.",
+              "d": "A way to package CSS files."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_6",
+            "text": "What is the purpose of media queries in CSS?",
+            "options": {
+              "a": "To query a media database.",
+              "b": "To apply styles based on device characteristics (e.g., screen width).",
+              "c": "To play audio and video.",
+              "d": "To create animations."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_7",
+            "text": "What is an API in the context of web development?",
+            "options": {
+              "a": "A type of database.",
+              "b": "Application Programming Interface, a set of rules for programs to communicate.",
+              "c": "A Python library.",
+              "d": "An Apple product."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_8",
+            "text": "What is the difference between '==' and '===' in JavaScript?",
+            "options": {
+              "a": "'==' checks value, '===' checks value and type.",
+              "b": "'===' checks value, '==' checks value and type.",
+              "c": "They are the same.",
+              "d": "'==' is newer."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_9",
+            "text": "What is the purpose of the 'z-index' property in CSS?",
+            "options": {
+              "a": "To control the font size.",
+              "b": "To control the stacking order of positioned elements.",
+              "c": "To create 3D effects.",
+              "d": "To control the zoom level."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_10",
+            "text": "What is a 'closure' in JavaScript?",
+            "options": {
+              "a": "A function that has access to its own scope, the outer function's scope, and the global scope.",
+              "b": "A way to close a web page.",
+              "c": "A CSS property.",
+              "d": "An HTML tag."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_11",
+            "text": "What is the 'event loop' in JavaScript?",
+            "options": {
+              "a": "A loop for creating events.",
+              "b": "The mechanism that allows JavaScript to perform non-blocking operations despite being single-threaded.",
+              "c": "A type of for-loop.",
+              "d": "A feature in Node.js only."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_12",
+            "text": "What is the purpose of the 'alt' attribute in an <img> tag?",
+            "options": {
+              "a": "To provide alternative text if the image cannot be displayed.",
+              "b": "To align the image.",
+              "c": "To add a title to the image.",
+              "d": "To link the image."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_13",
+            "text": "What is a 'RESTful API'?",
+            "options": {
+              "a": "An API that uses REST architectural principles, often using HTTP requests.",
+              "b": "An API for sleeping.",
+              "c": "A specific programming language.",
+              "d": "A type of database."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_14",
+            "text": "What does the 'fetch' API do in JavaScript?",
+            "options": {
+              "a": "It fetches data from the server asynchronously.",
+              "b": "It is used for fetching CSS styles.",
+              "c": "It is an older version of XMLHttpRequest.",
+              "d": "It is a method for searching arrays."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_15",
+            "text": "What is the CSS Grid layout designed for?",
+            "options": {
+              "a": "For one-dimensional layouts.",
+              "b": "For two-dimensional layouts (rows and columns).",
+              "c": "For styling text.",
+              "d": "For creating grids in images."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_16",
+            "text": "What is 'JSON'?",
+            "options": {
+              "a": "A JavaScript Object, native to JavaScript only.",
+              "b": "JavaScript Object Notation, a lightweight data-interchange format.",
+              "c": "A Java library.",
+              "d": "A CSS framework."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_17",
+            "text": "What is the purpose of the 'npm' command?",
+            "options": {
+              "a": "Node Package Manager, to manage JavaScript packages.",
+              "b": "New Project Manager.",
+              "c": "A command for native programming.",
+              "d": "A Python package manager."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_18",
+            "text": "What is the 'Document Object Model' (DOM)?",
+            "options": {
+              "a": "A programming language.",
+              "b": "A tree-like structure of the HTML page that JavaScript can manipulate.",
+              "c": "A CSS style sheet.",
+              "d": "A database model."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_19",
+            "text": "What is the 'viewport' meta tag used for in HTML?",
+            "options": {
+              "a": "To control the layout on mobile browsers.",
+              "b": "To set the background view.",
+              "c": "To import a view.",
+              "d": "To create a 3D view."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_20",
+            "text": "What is 'Sass'?",
+            "options": {
+              "a": "A JavaScript framework.",
+              "b": "A CSS preprocessor that adds features like variables and nesting.",
+              "c": "An HTML template language.",
+              "d": "A database."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_21",
+            "text": "What is the purpose of the 'localStorage' object in JavaScript?",
+            "options": {
+              "a": "To store data on the server.",
+              "b": "To store data in the user's browser with no expiration time.",
+              "c": "To store session variables.",
+              "d": "To manage local files."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_22",
+            "text": "What is the 'Same-Origin Policy' in web security?",
+            "options": {
+              "a": "A policy for website design.",
+              "b": "A policy that restricts how a document/script from one origin can interact with a resource from another origin.",
+              "c": "A policy for naming origins.",
+              "d": "A policy for data storage."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_23",
+            "text": "What is the 'async' attribute in a script tag?",
+            "options": {
+              "a": "It makes the script synchronous.",
+              "b": "It downloads the script asynchronously and executes it as soon as it's available.",
+              "c": "It is used for asynchronous functions.",
+              "d": "It is an alternative to 'defer'."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_24",
+            "text": "What is a 'CDN' (Content Delivery Network)?",
+            "options": {
+              "a": "A type of database.",
+              "b": "A distributed network of servers that delivers web content based on geographic location.",
+              "c": "A CSS framework.",
+              "d": "A JavaScript library."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_25",
+            "text": "What is the purpose of the 'defer' attribute in a script tag?",
+            "options": {
+              "a": "To defer errors.",
+              "b": "To delay script execution until the HTML parser has finished.",
+              "c": "To make the script asynchronous.",
+              "d": "To defer loading of images."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_26",
+            "text": "What is 'Node.js'?",
+            "options": {
+              "a": "A JavaScript library for front-end development.",
+              "b": "A runtime environment that allows JavaScript to be run on the server.",
+              "c": "A package manager.",
+              "d": "A new programming language."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_27",
+            "text": "What is 'JSX'?",
+            "options": {
+              "a": "A JavaScript XML syntax extension popularized by React.",
+              "b": "A type of CSS.",
+              "c": "A database query language.",
+              "d": "A JavaScript testing framework."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_i_28",
+            "text": "What is the purpose of the 'aria-label' attribute?",
+            "options": {
+              "a": "To label audio files.",
+              "b": "To provide an accessible name for an element for assistive technologies.",
+              "c": "To style elements.",
+              "d": "To link to external resources."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_29",
+            "text": "What is 'Webpack' used for?",
+            "options": {
+              "a": "For packing web servers.",
+              "b": "A module bundler for JavaScript applications.",
+              "c": "A CSS framework.",
+              "d": "An alternative to HTML."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_i_30",
+            "text": "What is 'CORS' (Cross-Origin Resource Sharing)?",
+            "options": {
+              "a": "A security feature that allows restricted resources to be requested from another domain.",
+              "b": "A way to style cross-origin elements.",
+              "c": "A type of CSS origin.",
+              "d": "A JavaScript error."
+            },
+            "correct_answer": "a"
+          }
+        ],
+        "advanced": [
+          {
+            "id": "web_a_1",
+            "text": "What is the 'Virtual DOM' in React?",
+            "options": {
+              "a": "A faster version of the real DOM.",
+              "b": "A programming concept where a virtual representation of the UI is kept in memory and synced with the real DOM.",
+              "c": "A fake DOM used for testing.",
+              "d": "A browser feature."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_2",
+            "text": "Explain the concept of 'Memoization' in the context of React or performance optimization.",
+            "options": {
+              "a": "Memorizing code.",
+              "b": "An optimization technique used to speed up applications by storing the results of expensive function calls.",
+              "c": "A memory management technique.",
+              "d": "A way to create memos in code."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_3",
+            "text": "What are 'Web Workers'?",
+            "options": {
+              "a": "People who build websites.",
+              "b": "A JavaScript script that runs in the background, independently of other scripts, without blocking the UI.",
+              "c": "A CSS feature for animations.",
+              "d": "A type of server."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_4",
+            "text": "What is 'Tree Shaking' in JavaScript?",
+            "options": {
+              "a": "A gardening technique.",
+              "b": "A process in bundlers to eliminate dead code from the final bundle.",
+              "c": "A way to manipulate the DOM tree.",
+              "d": "A sorting algorithm."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_5",
+            "text": "Describe the 'Strategy Pattern' in software design and give a use case in front-end development.",
+            "options": {
+              "a": "A pattern for winning at coding.",
+              "b": "A behavioral pattern that enables selecting an algorithm at runtime, useful for form validation strategies.",
+              "c": "A pattern for structuring code in strategies.",
+              "d": "A React-specific pattern."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_6",
+            "text": "What is 'Server-Side Rendering' (SSR) and what are its benefits?",
+            "options": {
+              "a": "Rendering on the client.",
+              "b": "Rendering the initial HTML on the server, improving SEO and initial page load performance.",
+              "c": "A server configuration.",
+              "d": "A type of CSS rendering."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_7",
+            "text": "What is the 'Observer Pattern' and how is it implemented in JavaScript?",
+            "options": {
+              "a": "A pattern for observing users.",
+              "b": "A pattern where an object maintains a list of dependents and notifies them of state changes, often using events or Pub/Sub.",
+              "c": "A pattern only used in Node.js.",
+              "d": "A visual pattern."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_8",
+            "text": "What are 'Higher-Order Components' (HOC) in React?",
+            "options": {
+              "a": "Components that are physically higher.",
+              "b": "A function that takes a component and returns a new component with enhanced functionality.",
+              "c": "Components with more features.",
+              "d": "A replacement for hooks."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_9",
+            "text": "What is 'GraphQL' and how does it differ from REST?",
+            "options": {
+              "a": "A graphing library.",
+              "b": "A query language for APIs that allows clients to request exactly the data they need, unlike REST's fixed endpoints.",
+              "c": "A database language.",
+              "d": "A type of SQL."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_10",
+            "text": "Explain the 'Microfrontends' architecture.",
+            "options": {
+              "a": "A very small frontend.",
+              "b": "An architectural style where a frontend app is decomposed into individual, semi-independent 'microapps'.",
+              "c": "A frontend for microservices.",
+              "d": "A new JavaScript framework."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_11",
+            "text": "What is the 'Critical Rendering Path'?",
+            "options": {
+              "a": "A path for critical errors.",
+              "b": "The sequence of steps the browser goes through to convert HTML, CSS, and JavaScript into pixels on the screen.",
+              "c": "A CSS property.",
+              "d": "A JavaScript function."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_12",
+            "text": "What are 'CSS-in-JS' libraries (like Styled-Components) and what problems do they solve?",
+            "options": {
+              "a": "JavaScript inside CSS.",
+              "b": "Libraries that allow writing CSS styles in JavaScript, solving scoping and dynamic styling issues.",
+              "c": "A way to replace HTML.",
+              "d": "A type of preprocessor."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_13",
+            "text": "What is 'Time to Interactive' (TTI) and why is it an important performance metric?",
+            "options": {
+              "a": "Time for a user to interact.",
+              "b": "The time from navigation until the page is visually rendered and the main thread is idle enough to handle user input.",
+              "c": "The time it takes to load all images.",
+              "d": "A metric for server response time."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_14",
+            "text": "What is 'Progressive Hydration'?",
+            "options": {
+              "a": "Drinking water while coding.",
+              "b": "A technique where you server-side render an application, and then gradually 'hydrate' it piece by piece on the client.",
+              "c": "A CSS feature for water effects.",
+              "d": "A JavaScript hydration library."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_15",
+            "text": "What is the 'Module Federation' in Webpack 5?",
+            "options": {
+              "a": "A federal module system.",
+              "b": "A architecture that allows multiple separate builds to form a single application dynamically.",
+              "c": "A way to federate modules.",
+              "d": "A new module syntax."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_16",
+            "text": "What are 'WebAssembly' (Wasm) and its potential use cases?",
+            "options": {
+              "a": "A new version of HTML.",
+              "b": "A binary instruction format for a stack-based virtual machine, enabling high-performance applications on the web.",
+              "c": "An assembly language for the web.",
+              "d": "A CSS framework."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_17",
+            "text": "Explain the 'Compound Components' pattern in React.",
+            "options": {
+              "a": "Components made of other components that work together as a single unit, sharing implicit state.",
+              "b": "Complex components.",
+              "c": "A pattern for composing functions.",
+              "d": "A state management pattern."
+            },
+            "correct_answer": "a"
+          },
+          {
+            "id": "web_a_18",
+            "text": "What is the 'Intersection Observer API'?",
+            "options": {
+              "a": "An API for observing intersections in code.",
+              "b": "An API that asynchronously observes changes in the intersection of a target element with an ancestor element or viewport.",
+              "c": "An API for observing user interaction.",
+              "d": "A React hook."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_19",
+            "text": "What is 'OAuth 2.0' and how does it work?",
+            "options": {
+              "a": "A type of authentication for oats.",
+              "b": "An authorization framework that enables applications to obtain limited access to user accounts on an HTTP service.",
+              "c": "A new HTML standard.",
+              "d": "A JavaScript library."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_20",
+            "text": "What is 'JWT' (JSON Web Token) and how is it used for authentication?",
+            "options": {
+              "a": "A Java Web Tool.",
+              "b": "A compact, URL-safe means of representing claims to be transferred between two parties, often used for stateless authentication.",
+              "c": "A JavaScript widget.",
+              "d": "A type of CSS token."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_21",
+            "text": "What is the 'PRPL Pattern'?",
+            "options": {
+              "a": "A pattern for purpling.",
+              "b": "A performance pattern emphasizing Push, Render, Pre-cache, Lazy-load.",
+              "c": "A programming language pattern.",
+              "d": "A React pattern."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_22",
+            "text": "What is 'Code Splitting' and how is it achieved in modern bundlers?",
+            "options": {
+              "a": "Splitting code into multiple files manually.",
+              "b": "Splitting code into various bundles which can be loaded on demand, using dynamic imports.",
+              "c": "A way to break code.",
+              "d": "A testing strategy."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_23",
+            "text": "What is 'Design System' in front-end development?",
+            "options": {
+              "a": "A system for designing.",
+              "b": "A collection of reusable components, guided by clear standards, that can be assembled to build applications.",
+              "c": "A UI/UX tool.",
+              "d": "A CSS naming convention."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_24",
+            "text": "What is the 'Service Worker' lifecycle?",
+            "options": {
+              "a": "The life of a worker.",
+              "b": "The sequence of events: Register, Install, Activate, which allows for caching and offline functionality.",
+              "c": "A worker thread lifecycle.",
+              "d": "A JavaScript function lifecycle."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_25",
+            "text": "What is 'Web Components'?",
+            "options": {
+              "a": "All components on the web.",
+              "b": "A suite of web platform APIs that allow you to create new custom, reusable, encapsulated HTML tags.",
+              "c": "Components made by Google.",
+              "d": "A React-specific feature."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_26",
+            "text": "What is 'Static Site Generation' (SSG) and how does it compare to SSR?",
+            "options": {
+              "a": "Generating static CSS.",
+              "b": "Pre-rendering pages at build time, resulting in static HTML files, as opposed to rendering on each request (SSR).",
+              "c": "A type of server.",
+              "d": "A way to generate sites statically without a build process."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_27",
+            "text": "What is 'React Fiber'?",
+            "options": {
+              "a": "A dietary supplement for React.",
+              "b": "The new reconciliation engine in React 16, enabling features like incremental rendering.",
+              "c": "A type of React component.",
+              "d": "A state management library."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_28",
+            "text": "What is the 'Principle of Least Privilege' in web security?",
+            "options": {
+              "a": "A principle for user interface design.",
+              "b": "A security concept where a user/process is given the minimum levels of access necessary to complete its tasks.",
+              "c": "A principle for code organization.",
+              "d": "A principle for using privileges."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_29",
+            "text": "What is 'Domain-Driven Design' (DDD) and can it be applied to front-end?",
+            "options": {
+              "a": "Designing for domains.",
+              "b": "An approach to software development that centers on the business domain, and can structure complex front-end state logic.",
+              "c": "A database design pattern.",
+              "d": "A back-end only pattern."
+            },
+            "correct_answer": "b"
+          },
+          {
+            "id": "web_a_30",
+            "text": "What is 'Web Vitals'?",
+            "options": {
+              "a": "A set of vital signs for the web.",
+              "b": "Google's initiative to provide unified guidance for quality signals essential to delivering a great user experience on the web.",
+              "c": "A JavaScript library for health apps.",
+              "d": "A CSS framework."
+            },
+            "correct_answer": "b"
+          }
+        ]
+      }
+    }
+  ]
+}
