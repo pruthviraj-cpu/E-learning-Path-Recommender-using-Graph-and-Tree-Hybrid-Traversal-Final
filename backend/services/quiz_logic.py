@@ -51,7 +51,9 @@ def paraphrase_text(text):
 
 def load_questions(domain_name):
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    data = json.load(open(os.path.join(base_dir, "learner_level.json")))
+    data_path = os.path.abspath(os.path.join(base_dir, "..", "database", "learner_level.json"))
+    data = json.load(open(data_path))
+    # print("done") #for debugging
     domain_data = next((d for d in data["domains"] if d["name"].lower() == domain_name.lower()), None)
     if not domain_data:
         return None
