@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as feather from "feather-icons";
 import Navbar from "@/components/Navbar";
 import { toast } from "@/hooks/use-toast";
+import { UserAnswer, QuizResultCreate } from '@/types/quiz';
 
 interface ModuleContent {
   video_url?: string;
@@ -62,6 +63,26 @@ const Pathways = () => {
   const [generatingQuiz, setGeneratingQuiz] = useState(false);
   const [timeStarted, setTimeStarted] = useState<Date | null>(null);
   const [timeCompleted, setTimeCompleted] = useState<Date | null>(null);
+
+
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [userAnalytics, setUserAnalytics] = useState<any>(null);
+
+  const fetchUserAnalytics = async () => {
+    try {
+      const userId = localStorage.getItem('userId');
+      if (!userId) return;
+
+      const response = await fetch(`http://localhost:8000/learningpaths/user/${userId}/quiz-analytics`);
+      if (response.ok) {
+        const analytics = await response.json();
+        setUserAnalytics(analytics);
+        setShowAnalytics(true);
+      }
+    } catch (error) {
+      console.error('Error fetching analytics:', error);
+    }
+  };
 
   useEffect(() => {
     initializeApp();
@@ -215,48 +236,95 @@ const Pathways = () => {
     });
   };
 
+// Update the submitQuiz function
   const submitQuiz = async () => {
     setTimeCompleted(new Date());
     setQuizCompleted(true);
     
     let correct = 0;
+    const userAnswersDetailed: UserAnswer[] = [];
+    
     assessments.forEach((assessment, index) => {
-      if (userAnswers[index] === assessment.correct_answer) {
+      const isCorrect = userAnswers[index] === assessment.correct_answer;
+      if (isCorrect) {
         correct++;
       }
+      
+      userAnswersDetailed.push({
+        question_id: assessment.id,
+        selected_option: userAnswers[index],
+        is_correct: isCorrect,
+        time_taken: 0 // You can implement per-question timing if needed
+      });
     });
 
     const score = Math.round((correct / assessments.length) * 100);
     setQuizScore(score);
     
-    // Save quiz results
+    // Calculate time spent
+    const timeSpent = timeStarted && timeCompleted 
+      ? Math.round((timeCompleted.getTime() - timeStarted.getTime()) / 1000)
+      : 0;
+
+    // Save quiz results with detailed data
     try {
       const userId = localStorage.getItem('userId');
       const storedPath = localStorage.getItem('currentLearningPath');
       
       if (userId && storedPath && currentModule) {
         const path = JSON.parse(storedPath);
-        await fetch(`http://localhost:8000/learningpaths/user/${userId}/assessment-results`, {
+        
+        const quizResultData: QuizResultCreate = {
+          user_id: parseInt(userId),
+          module_id: currentModule.id,
+          topic: currentModule.title,
+          num_questions: assessments.length,
+          difficulty_level: quizConfig.difficulty,
+          score: score,
+          correct_answers: correct,
+          completion_status: "completed",
+          quiz_data: {
+            questions: assessments,
+            quiz_title: `AI Quiz - ${currentModule.title}`,
+            difficulty: quizConfig.difficulty,
+            question_types: quizConfig.questionTypes
+          },
+          user_answers: userAnswersDetailed,
+          time_taken_seconds: timeSpent,
+          confidence_rating: confidenceRating
+        };
+
+        const response = await fetch(`http://localhost:8000/learningpaths/user/${userId}/assessment-results`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            module_id: currentModule.id,
-            path_id: path.path_id,
-            score: score,
-            total_questions: assessments.length,
-            correct_answers: correct,
-            user_answers: userAnswers,
-            time_spent: timeStarted && timeCompleted ? Math.round((timeCompleted.getTime() - timeStarted.getTime()) / 1000) : 0
-          })
+          body: JSON.stringify(quizResultData)
         });
+
+        if (response.ok) {
+          const savedResult = await response.json();
+          console.log('✅ Quiz results saved:', savedResult);
+          
+          toast({
+            title: "Quiz Completed!",
+            description: `Your results have been saved. Score: ${score}%`,
+          });
+        } else {
+          throw new Error('Failed to save quiz results');
+        }
       }
     } catch (err) {
       console.error('Error saving quiz results:', err);
+      toast({
+        title: "Warning",
+        description: "Quiz completed but results couldn't be saved.",
+        variant: "destructive"
+      });
     }
   };
 
+  // Update the generateAIQuiz function to include quiz data
   const generateAIQuiz = async () => {
     if (!currentModule) return;
 
@@ -673,6 +741,66 @@ const Pathways = () => {
     );
   };
 
+  const QuizAnalyticsPanel = () => (
+    <div className="bg-white rounded-xl shadow-md p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-bold text-gray-800">Your Progress</h3>
+        <button 
+          onClick={() => setShowAnalytics(false)}
+          className="text-gray-500 hover:text-gray-700"
+        >
+          <i data-feather="x" className="w-4 h-4"></i>
+        </button>
+      </div>
+      
+      {userAnalytics ? (
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-3 bg-blue-50 rounded-lg">
+              <div className="text-2xl font-bold text-blue-600">{userAnalytics.total_quizzes_taken}</div>
+              <div className="text-xs text-blue-800">Quizzes Taken</div>
+            </div>
+            <div className="text-center p-3 bg-green-50 rounded-lg">
+              <div className="text-2xl font-bold text-green-600">{userAnalytics.average_score}%</div>
+              <div className="text-xs text-green-800">Avg Score</div>
+            </div>
+          </div>
+          
+          <div className="text-center p-3 bg-purple-50 rounded-lg">
+            <div className="text-xl font-bold text-purple-600">{userAnalytics.best_score}%</div>
+            <div className="text-xs text-purple-800">Best Score</div>
+          </div>
+          
+          <div className="border-t pt-3">
+            <h4 className="font-semibold text-gray-700 mb-2">Topic Performance</h4>
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Strongest:</span>
+                <span className="text-green-600 font-medium">{userAnalytics.strongest_topic}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span>Needs Practice:</span>
+                <span className="text-red-600 font-medium">{userAnalytics.weakest_topic}</span>
+              </div>
+            </div>
+          </div>
+          
+          <button 
+            onClick={() => navigate('/progress')}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-200 text-sm"
+          >
+            View Detailed Analytics
+          </button>
+        </div>
+      ) : (
+        <div className="text-center py-4">
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="text-gray-600 mt-2 text-sm">Loading analytics...</p>
+        </div>
+      )}
+    </div>
+  );
+
   // Helper functions for quiz results
   const getOptionResultClass = (question: Assessment, optionIndex: number) => {
     if (optionIndex === question.correct_answer) {
@@ -883,6 +1011,23 @@ const Pathways = () => {
               )}
             </div>
 
+            {/* Progress Analytics */}
+            {showAnalytics ? (
+              <QuizAnalyticsPanel />
+            ) : (
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <h3 className="font-bold text-gray-800 mb-4">Your Progress</h3>
+                <p className="text-sm text-gray-600 mb-4">Track your learning journey</p>
+                <button 
+                  onClick={fetchUserAnalytics}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center"
+                >
+                  <i data-feather="bar-chart" className="w-4 h-4 mr-2"></i>
+                  View Analytics
+                </button>
+              </div>
+            )}
+
             {/* Module Info */}
             <div className="bg-white rounded-xl shadow-md p-6">
               <h3 className="font-bold text-gray-800 mb-4">Module Info</h3>
@@ -911,13 +1056,20 @@ const Pathways = () => {
             </div>
 
             {/* Navigation */}
-            <div className="bg-white rounded-xl shadow-md p-6">
+            <div className="bg-white rounded-xl shadow-md p-6 space-y-3">
               <button 
                 onClick={() => navigate('/learning')}
                 className="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center"
               >
                 <i data-feather="arrow-left" className="w-4 h-4 mr-2"></i>
                 Back to Path
+              </button>
+              <button 
+                onClick={() => navigate('/progress')}
+                className="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center"
+              >
+                <i data-feather="trending-up" className="w-4 h-4 mr-2"></i>
+                View Progress
               </button>
             </div>
           </div>
