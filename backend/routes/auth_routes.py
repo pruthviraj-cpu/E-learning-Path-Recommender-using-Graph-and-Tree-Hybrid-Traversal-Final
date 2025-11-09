@@ -1,7 +1,7 @@
 from fastapi import APIRouter,Depends, HTTPException
 from typing import List
 from datetime import datetime
-from schemas.user_schemas import LoginCredentials
+from schemas.user_schemas import LoginCredentials,LearnerUpdate
 from models.user_models import User
 from models.path_models import Path
 from sqlalchemy.orm import Session
@@ -130,28 +130,105 @@ def get_enrolled_paths(user_id: int, db: Session = Depends(get_db)):
         for p in paths
     ]
 
-@auth_router.post("/signup")
-async def registyer_user(credentials: LoginCredentials, db: Session = Depends(get_db)):
-    existing_user = db.query(User).filter(User.name == credentials.name).first()
+# @auth_router.post("/signup")
+# async def registyer_user(credentials: LoginCredentials, db: Session = Depends(get_db)):
+#     existing_user = db.query(User).filter(User.name == credentials.name).first()
 
+#     if existing_user:
+#         return {"success": False, "message": "User already exists"}
+    
+#     new_user = User(
+#         name=credentials.name,
+#         password=credentials.password,
+#         created_at=datetime.now()
+#     )
+#     db.add(new_user)
+#     db.commit()
+#     db.refresh(new_user)
+
+#     response = {
+#         "success" :True,
+#         "user": {
+#             "id":new_user.id,
+#             "name":new_user.name,
+#             "created_at":new_user.created_at,
+#         }
+#     }
+#     return response
+
+# # @auth_router.post("/signup")
+# # async def register_user(credentials: LoginCredentials, db: Session = Depends(get_db)):
+# #     existing_user = db.query(User).filter(User.name == credentials.name).first()
+# #     if existing_user:
+# #         return {"success": False, "message": "User already exists"}
+
+# #     new_user = User(
+# #         name=credentials.name,
+# #         password=credentials.password,
+# #         learner_type=credentials.learner_type,  # ✅ from frontend
+# #         created_at=datetime.now()
+# #     )
+# #     db.add(new_user)
+# #     db.commit()
+# #     db.refresh(new_user)
+
+# #     return {
+# #         "success": True,
+# #         "user": {
+# #             "id": new_user.id,
+# #             "name": new_user.name,
+# #             "learner_type": new_user.learner_type,
+# #             "created_at": new_user.created_at,
+# #         }
+# #     }
+
+# @auth_router.post("/save-learner-type")
+# async def save_learner_type(user_id: int, learner_type: str, db: Session = Depends(get_db)):
+#     user = db.query(User).filter(User.id == user_id).first()
+#     if not user:
+#         return {"success": False, "message": "User not found"}
+
+#     user.learner_type = learner_type
+#     db.commit()
+#     db.refresh(user)
+#     return {"success": True, "message": "Learner type saved successfully"}
+
+@auth_router.post("/signup")
+async def register_user(credentials: LoginCredentials, db: Session = Depends(get_db)):
+    existing_user = db.query(User).filter(User.name == credentials.name).first()
     if existing_user:
         return {"success": False, "message": "User already exists"}
-    
+
     new_user = User(
         name=credentials.name,
         password=credentials.password,
+        learner_type=credentials.learner_type,
         created_at=datetime.now()
     )
+
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
 
-    response = {
-        "success" :True,
+    return {
+        "success": True,
         "user": {
-            "id":new_user.id,
-            "name":new_user.name,
-            "created_at":new_user.created_at,
-        }
+            "id": new_user.id,
+            "name": new_user.name,
+            "password":new_user.password,
+            "learner_type": new_user.learner_type,
+            "created_at": new_user.created_at,
+        },
     }
-    return response
+
+@auth_router.put("/learner-type")
+def update_learner_type(data: LearnerUpdate, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.name == data.name).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user.learner_type = data.learner_type
+    db.commit()
+    db.refresh(user)
+
+    return {"success": True, "message": "Learner type updated successfully"}

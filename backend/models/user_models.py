@@ -10,6 +10,7 @@ class User(Base):
     name=Column(String(100))
     password=Column(String(100))
     path = Column(JSON)
+    learner_type = Column(String, nullable=True)
     created_at = Column(DateTime, default=func.now())
 
     activities = relationship("UserActivity", back_populates="user", cascade="all, delete")

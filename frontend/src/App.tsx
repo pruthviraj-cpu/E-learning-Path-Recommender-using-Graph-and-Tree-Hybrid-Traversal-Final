@@ -8,7 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import SignupWithLearnerQuiz from "./pages/SignupWithLearnerQuiz";
 import Onboarding from "./pages/Onboarding";
 import Learning from "./pages/Learning";
 import Pathways from "./pages/Pathways";
@@ -36,7 +36,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp/>} />
+            <Route path="/signup" element={<SignupWithLearnerQuiz/>} />
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/onboarding" element={<Onboarding/>} />

@@ -63,5 +63,5 @@ def load_questions(domain_name):
         for q in qs:
             q["level"] = level
             all_questions.append(q)
-    random.shuffle(all_questions)
+    # random.shuffle(all_questions)
     return all_questions[:6]

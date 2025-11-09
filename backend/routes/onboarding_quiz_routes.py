@@ -27,20 +27,23 @@ def get_quiz(domain: str):
 @onboarding_quiz_router.post("/submit-quiz")
 def submit_quiz(req: AnswerRequest):
     questions = load_questions(req.domain)
+    if not questions:
+        return {"score": 0, "level": "Beginner", "learner_type": "beginner"}
+
     score = 0
     for idx, q in enumerate(questions):
-        if str(idx) in req.answers and req.answers[str(idx)].lower() == q["correct_answer"].lower():
-            score += 1
+        qid = str(idx) 
+        if qid in req.answers:
+            ans = req.answers[qid].strip().lower()
+            correct = q["correct_answer"].strip().lower()
+            if ans == correct:
+                score += 1
 
     if score >= 4:
         level = "Advanced"
-    elif (score >= 2 and score < 4):
+    elif 2 <= score < 4:
         level = "Intermediate"
     else:
-        level = "Begginer"
+        level = "Beginner"
 
-    return {
-        "score": score,
-        "level": level,
-        "learner_type": level.lower()  
-    }
+    return {"score": score, "level": level, "learner_type": level.lower()}

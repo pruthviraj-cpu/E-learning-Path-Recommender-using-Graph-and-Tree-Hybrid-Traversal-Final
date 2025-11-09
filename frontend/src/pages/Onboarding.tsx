@@ -18,7 +18,7 @@ const OnboardingQuiz = () => {
     const [generatingPath, setGeneratingPath] = useState(false)
 
     const navigate = useNavigate()
-    const availableDomains = ["data science", "web development"]
+    const availableDomains = ["Data Science", "Web Development"]
 
     useEffect(() => {
         if (!domain) return
@@ -46,6 +46,8 @@ const OnboardingQuiz = () => {
     }
 
     const handleSubmit = () => {
+        console.log("Submitting:", JSON.stringify({ domain, answers }, null, 2));
+        console.log("Answers object:", answers);
         fetch("http://localhost:8000/onboarding_quiz/submit-quiz", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -53,11 +55,12 @@ const OnboardingQuiz = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                setResult(data)
-                setSubmitted(true)
+                console.log("Result:", data);
+                setResult(data);
+                setSubmitted(true);
             })
-            .catch((err) => console.error("Error submitting quiz:", err))
-    }
+            .catch((err) => console.error("Error submitting quiz:", err));
+    };
 
     const handleGeneratePath = () => {
         if (!result || !result.learner_type) {
@@ -72,15 +75,15 @@ const OnboardingQuiz = () => {
             console.error("User not logged in!");
             return;
         }
-        
+
         const availability = timeAvailability <= "2" ? "part_time" : timeAvailability <= "5" ? "full_time" : "intensive"
 
         const domainMap: Record<string, string> = {
-            "data science": "ai_ml",
-            "web development": "web_dev",
-            cybersecurity: "cybersecurity",
+            "Data Science": "ai_ml",
+            "Web Development": "web_dev",
+            "cybersecurity": "cybersecurity",
             "cloud computing": "cloud_computing",
-            full_stack: "full_stck",
+            "full_stack": "full_stck",
         }
 
         setGeneratingPath(true)
@@ -300,7 +303,7 @@ const OnboardingQuiz = () => {
                                             name={`q${currentQuestion.id}`}
                                             value={key}
                                             checked={answers[currentQuestion.id] === key}
-                                            onChange={() => handleSelect(currentQuestion.id, key)}
+                                            onChange={() => handleSelect(String(currentQuestion.id), key)}
                                             className="w-5 h-5 mt-1 text-blue-600 cursor-pointer accent-blue-600"
                                         />
                                         <span className="ml-4 text-gray-700 group-hover:text-gray-900 transition">
