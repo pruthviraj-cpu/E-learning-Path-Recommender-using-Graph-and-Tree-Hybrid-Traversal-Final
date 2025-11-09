@@ -32,12 +32,12 @@ def submit_quiz(req: AnswerRequest):
         if str(idx) in req.answers and req.answers[str(idx)].lower() == q["correct_answer"].lower():
             score += 1
 
-    if score <= 2:
-        level = "Beginner"
-    elif score <= 4:
+    if score >= 4:
+        level = "Advanced"
+    elif (score >= 2 and score < 4):
         level = "Intermediate"
     else:
-        level = "Advanced"
+        level = "Begginer"
 
     return {
         "score": score,

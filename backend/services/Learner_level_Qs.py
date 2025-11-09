@@ -67,10 +67,12 @@ def paraphrase_text(text):
 
 # --- Load learner-level JSON ---
 base_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(base_dir, "learner_level.json")
+# file_path = os.path.join(base_dir, "learner_level.json")
+data_path = os.path.abspath(os.path.join(base_dir, "..", "database", "learner_level.json"))
+data = json.load(open(data_path))
 
-with open(file_path, "r") as f:
-    data = json.load(f)
+# with open(data, "r") as f:
+#     data = json.load(f)
 
 # --- Domain selection ---
 domain = input("Choose your domain (Data Science / Web Development): ").strip()
@@ -109,13 +111,13 @@ for idx, q in enumerate(selected_questions, start=1):
         score += 1
 
 # --- Determine learner level ---
-if score <= 2:
-    level = "Beginner"
-elif score <= 4:
+if score >= 4:
+    level = "Advanced"
+elif (score >= 2 and score < 4):
     level = "Intermediate"
 else:
-    level = "Advanced"
+    level = "Begginer"
 
 print("\n Results")
-# print(f"Your score: {score}/6") # Keep this command optional and uncomment if needed
+print(f"Your score: {score}/6") # Keep this command optional and uncomment if needed
 print(f"You are an {domain} {level} learner!")
