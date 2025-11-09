@@ -1,16 +1,16 @@
-from sqlalchemy import Column, Integer, String, Float, JSON
+from sqlalchemy import Column, Integer, String, Float, JSON,ARRAY
 from models.database import Base
 
 class Topic(Base):
     __tablename__ = "topics"
 
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(100))
-    type = Column(String(50))
-    estimated_time = Column(Float)
-    load = Column(String(50))
+    id = Column(String, primary_key=True)
+    title = Column(String, nullable=False)
+    # description = Column(String)
+    type = Column(String)
+    estimated_time = Column(Integer)
+    load = Column(String)
     difficulty = Column(Integer)
+    prerequisites = Column(ARRAY(String))
+    subtopics = Column(ARRAY(String))
     resources = Column(JSON)
-    embedding = Column(JSON)
-    prerequisites = Column(JSON)
-    subtopics = Column(JSON)

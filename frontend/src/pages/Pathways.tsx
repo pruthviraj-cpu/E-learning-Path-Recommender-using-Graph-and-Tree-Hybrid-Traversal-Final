@@ -5,13 +5,24 @@ import Navbar from "@/components/Navbar";
 import { toast } from "@/hooks/use-toast";
 import { UserAnswer, QuizResultCreate } from '@/types/quiz';
 
+// interface ModuleContent {
+//   video_url?: string;
+//   sections?: Array<{
+//     title: string;
+//     content: string;
+//   }>;
+// }
+
+// just for fun
 interface ModuleContent {
   video_url?: string;
-  sections?: Array<{
-    title: string;
-    content: string;
-  }>;
+  short_videos?: string;
+  long_videos?: string;
+  sections?: Array<{ title: string; content: string }>;
+  reading_materials?: Array<{ title: string; link?: string; content?: string }>;
+  projects?: Array<{ title: string; description: string; link?: string }>;
 }
+
 
 interface Assessment {
   id: string;
@@ -49,6 +60,11 @@ const Pathways = () => {
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [userAnswers, setUserAnswers] = useState<{ [key: number]: number }>({});
   const [submitted, setSubmitted] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [currentVideoType, setCurrentVideoType] = useState<'long' | 'short'>('long');
+  const [userData, setUserData] = useState<any>(null);
+  const [learnerType, setLearnerType] = useState<string>(''); // Add this to your state
+
 
   // Quiz state management
   const [quizConfig, setQuizConfig] = useState<QuizConfig>({
@@ -94,40 +110,174 @@ const Pathways = () => {
     }
   }, [loading, activeTab, quizStarted, quizCompleted]);
 
+
+  // for learner type
+  // useEffect(() => {
+  //   setLoading(true);
+
+  //   
+  // },[]);
+
+  // const initializeApp = async () => {
+  //   try {
+  //     const storedPath = localStorage.getItem('currentLearningPath');
+  //     const storedModuleIndex = localStorage.getItem('currentModule');
+
+  //     if (!storedPath) {
+  //       navigate('/learning');
+  //       return;
+  //     }
+
+  //     const path = JSON.parse(storedPath);
+  //     const moduleIndex = storedModuleIndex ? parseInt(storedModuleIndex) : path.progress?.current_module || 0;
+
+  //     if (path.path_data && path.path_data[moduleIndex]) {
+  //       const module = path.path_data[moduleIndex];
+
+  //       // Fetch module content and assessments from backend
+  //       try {
+  //         const response = await fetch(`http://localhost:8000/learningpaths/modules/${module.id}/content`);
+  //         if (response.ok) {
+  //           const moduleData = await response.json();
+  //           setCurrentModule(moduleData);
+  //         } else {
+  //           // Fallback to basic module data
+  //           setCurrentModule(module);
+  //         }
+  //       } catch (err) {
+  //         console.error('Error fetching module details:', err);
+  //         setCurrentModule(module);
+  //       }
+  //     } else {
+  //       setError('Module not found');
+  //     }
+
+  //     setLoading(false);
+  //   } catch (err) {
+  //     console.error('Error loading content:', err);
+  //     setError('Failed to load learning content');
+  //     setLoading(false);
+  //   }
+  // };
+
+
+
+// const getLearnerType = () => {
+//   try {
+//     const storedUser = localStorage.getItem("userData");
+    
+//     if (!storedUser) {
+//       console.warn("No user data found in localStorage");
+//       setLoading(false);
+//       return;
+//     }
+
+//     let user;
+//     try {
+//       user = JSON.parse(storedUser);
+//     } catch (parseError) {
+//       console.error("Invalid JSON in userData:", parseError);
+//       setLoading(false);
+//       return;
+//     }
+
+//     setUserData(user);
+
+//     if (user.learnerType) {
+//       console.log(`User is a ${user.learnerType} learner`);
+//       setLearnerType(user.learnerType);
+      
+//       // Auto-select recommended tab based on learner type
+//       switch(user.learnerType.toLowerCase()) {
+//         case 'visual':
+//           setActiveTab('content');
+//           break;
+//         case 'reading':
+//           setActiveTab('reading');
+//           break;
+//         case 'kinesthetic':
+//         case 'hands-on':
+//           setActiveTab('project');
+//           break;
+//         default:
+//           setActiveTab('content'); // default fallback
+//       }
+//     } else {
+//       console.warn("Learner type not found in user data");
+//       setLearnerType('general');
+//     }
+
+//   } catch (err) {
+//     console.error("Unexpected error loading user data:", err);
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+
   const initializeApp = async () => {
     try {
       const storedPath = localStorage.getItem('currentLearningPath');
       const storedModuleIndex = localStorage.getItem('currentModule');
-      
+
       if (!storedPath) {
         navigate('/learning');
         return;
       }
 
       const path = JSON.parse(storedPath);
-      const moduleIndex = storedModuleIndex ? parseInt(storedModuleIndex) : path.progress?.current_module || 0;
-      
-      if (path.path_data && path.path_data[moduleIndex]) {
-        const module = path.path_data[moduleIndex];
-        
-        // Fetch module content and assessments from backend
-        try {
-          const response = await fetch(`http://localhost:8000/learningpaths/modules/${module.id}/content`);
-          if (response.ok) {
-            const moduleData = await response.json();
-            setCurrentModule(moduleData);
-          } else {
-            // Fallback to basic module data
-            setCurrentModule(module);
-          }
-        } catch (err) {
-          console.error('Error fetching module details:', err);
-          setCurrentModule(module);
-        }
-      } else {
+      const moduleIndex = storedModuleIndex
+        ? parseInt(storedModuleIndex)
+        : path.progress?.current_module || 0;
+
+      if (!(path.path_data && path.path_data[moduleIndex])) {
         setError('Module not found');
+        setLoading(false);
+        return;
       }
-      
+
+      const module = path.path_data[moduleIndex];
+
+      // Ensure reading_materials is always an array of objects
+      const transformReadingMaterials = (materials: any[]) =>
+        (materials || []).map((rm: any) => ({
+          title: rm.title || rm || 'No Title',
+          link: rm.link || (typeof rm === 'string' ? rm : ''),
+          content: rm.content || ''
+        }));
+
+      const buildModuleContent = (data: any) => ({
+        long_videos: data?.long_videos || [],
+        short_videos: data?.short_videos || [],
+        reading_materials: transformReadingMaterials(data?.reading_materials || []),
+        quizzes: data?.quizzes || [],
+        projects: data?.projects || []
+      });
+
+      try {
+        const response = await fetch(
+          `http://localhost:8000/learningpaths/modules/${module.id}/content`
+        );
+
+        if (response.ok) {
+          const moduleData = await response.json();
+          setCurrentModule({
+            ...moduleData,
+            content: buildModuleContent(moduleData.content)
+          });
+        } else {
+          setCurrentModule({
+            ...module,
+            content: buildModuleContent(module)
+          });
+        }
+      } catch (err) {
+        console.error('Error fetching module details:', err);
+        setCurrentModule({
+          ...module,
+          content: buildModuleContent(module)
+        });
+      }
+
       setLoading(false);
     } catch (err) {
       console.error('Error loading content:', err);
@@ -136,13 +286,14 @@ const Pathways = () => {
     }
   };
 
+
   const handleConfidenceSelect = async (rating: number) => {
     setConfidenceRating(rating);
-    
+
     try {
       const userId = localStorage.getItem('userId');
       const storedPath = localStorage.getItem('currentLearningPath');
-      
+
       if (userId && storedPath) {
         const path = JSON.parse(storedPath);
         await fetch(`http://localhost:8000/learningpaths/user/${userId}/confidence`, {
@@ -157,7 +308,7 @@ const Pathways = () => {
           })
         });
       }
-      
+
       toast({
         title: "Confidence Saved",
         description: `You rated your confidence as ${rating}/5`,
@@ -194,7 +345,7 @@ const Pathways = () => {
     }
 
     setSubmitted(true);
-    
+
     let correct = 0;
     assessments.forEach((assessment, index) => {
       if (userAnswers[index] === assessment.correct_answer) {
@@ -203,12 +354,12 @@ const Pathways = () => {
     });
 
     const score = Math.round((correct / assessments.length) * 100);
-    
+
     // Save assessment results
     try {
       const userId = localStorage.getItem('userId');
       const storedPath = localStorage.getItem('currentLearningPath');
-      
+
       if (userId && storedPath && currentModule) {
         const path = JSON.parse(storedPath);
         await fetch(`http://localhost:8000/learningpaths/user/${userId}/assessment-results`, {
@@ -229,27 +380,27 @@ const Pathways = () => {
     } catch (err) {
       console.error('Error saving assessment results:', err);
     }
-    
+
     toast({
       title: "Assessment Complete!",
       description: `You scored ${score}%. Great job!`,
     });
   };
 
-// Update the submitQuiz function
+  // Update the submitQuiz function
   const submitQuiz = async () => {
     setTimeCompleted(new Date());
     setQuizCompleted(true);
-    
+
     let correct = 0;
     const userAnswersDetailed: UserAnswer[] = [];
-    
+
     assessments.forEach((assessment, index) => {
       const isCorrect = userAnswers[index] === assessment.correct_answer;
       if (isCorrect) {
         correct++;
       }
-      
+
       userAnswersDetailed.push({
         question_id: assessment.id,
         selected_option: userAnswers[index],
@@ -260,9 +411,9 @@ const Pathways = () => {
 
     const score = Math.round((correct / assessments.length) * 100);
     setQuizScore(score);
-    
+
     // Calculate time spent
-    const timeSpent = timeStarted && timeCompleted 
+    const timeSpent = timeStarted && timeCompleted
       ? Math.round((timeCompleted.getTime() - timeStarted.getTime()) / 1000)
       : 0;
 
@@ -270,10 +421,10 @@ const Pathways = () => {
     try {
       const userId = localStorage.getItem('userId');
       const storedPath = localStorage.getItem('currentLearningPath');
-      
+
       if (userId && storedPath && currentModule) {
         const path = JSON.parse(storedPath);
-        
+
         const quizResultData: QuizResultCreate = {
           user_id: parseInt(userId),
           module_id: currentModule.id,
@@ -305,7 +456,7 @@ const Pathways = () => {
         if (response.ok) {
           const savedResult = await response.json();
           console.log('✅ Quiz results saved:', savedResult);
-          
+
           toast({
             title: "Quiz Completed!",
             description: `Your results have been saved. Score: ${score}%`,
@@ -353,12 +504,12 @@ const Pathways = () => {
           type: q.type || 'mcq',
           questions: [q.question],
           options: q.type === 'mcq' ? Object.values(q.options || {}) : ['True', 'False'],
-          correct_answer: q.type === 'true_false' ? (q.correct_answer === 'true' ? 0 : 1) : 
-                        ['A', 'B', 'C', 'D'].indexOf(q.correct_answer),
+          correct_answer: q.type === 'true_false' ? (q.correct_answer === 'true' ? 0 : 1) :
+            ['A', 'B', 'C', 'D'].indexOf(q.correct_answer),
           explanation: q.explanation,
           points: 1
         }));
-        
+
         setAssessments(transformedQuestions);
         setUserAnswers({});
         setSubmitted(false);
@@ -366,7 +517,7 @@ const Pathways = () => {
         setTimeStarted(new Date());
         setCurrentQuestionIndex(0);
         setQuizCompleted(false);
-        
+
         toast({
           title: "Quiz Generated!",
           description: "Your AI-powered quiz is ready.",
@@ -418,7 +569,7 @@ const Pathways = () => {
     try {
       const userId = localStorage.getItem('userId');
       const storedPath = localStorage.getItem('currentLearningPath');
-      
+
       if (userId && storedPath) {
         const path = JSON.parse(storedPath);
         const response = await fetch(
@@ -448,7 +599,7 @@ const Pathways = () => {
   const QuizConfigurator = () => (
     <div className="bg-white rounded-xl shadow-md p-6 mb-6">
       <h3 className="text-xl font-bold text-gray-800 mb-4">Configure Your Quiz</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -456,7 +607,7 @@ const Pathways = () => {
           </label>
           <select
             value={quizConfig.numQuestions}
-            onChange={(e) => setQuizConfig({...quizConfig, numQuestions: parseInt(e.target.value)})}
+            onChange={(e) => setQuizConfig({ ...quizConfig, numQuestions: parseInt(e.target.value) })}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value={5}>5 Questions</option>
@@ -472,7 +623,7 @@ const Pathways = () => {
           </label>
           <select
             value={quizConfig.difficulty}
-            onChange={(e) => setQuizConfig({...quizConfig, difficulty: e.target.value})}
+            onChange={(e) => setQuizConfig({ ...quizConfig, difficulty: e.target.value })}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="beginner">Beginner</option>
@@ -495,7 +646,7 @@ const Pathways = () => {
                     const newTypes = e.target.checked
                       ? [...quizConfig.questionTypes, type]
                       : quizConfig.questionTypes.filter(t => t !== type);
-                    setQuizConfig({...quizConfig, questionTypes: newTypes});
+                    setQuizConfig({ ...quizConfig, questionTypes: newTypes });
                   }}
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
@@ -511,11 +662,10 @@ const Pathways = () => {
       <button
         onClick={generateAIQuiz}
         disabled={generatingQuiz}
-        className={`w-full mt-6 py-3 px-4 rounded-lg font-medium transition duration-200 flex items-center justify-center ${
-          generatingQuiz
-            ? 'bg-gray-400 cursor-not-allowed'
-            : 'bg-purple-600 hover:bg-purple-700 text-white'
-        }`}
+        className={`w-full mt-6 py-3 px-4 rounded-lg font-medium transition duration-200 flex items-center justify-center ${generatingQuiz
+          ? 'bg-gray-400 cursor-not-allowed'
+          : 'bg-purple-600 hover:bg-purple-700 text-white'
+          }`}
       >
         {generatingQuiz ? (
           <>
@@ -555,7 +705,7 @@ const Pathways = () => {
   // Single Question Component
   const QuizQuestion = () => {
     if (!assessments[currentQuestionIndex]) return null;
-    
+
     const question = assessments[currentQuestionIndex];
     const userAnswer = userAnswers[currentQuestionIndex];
     const isAnswered = userAnswer !== undefined;
@@ -588,22 +738,20 @@ const Pathways = () => {
           {question.options.map((option, index) => {
             const isSelected = userAnswer === index;
             const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F'];
-            
+
             return (
               <div
                 key={index}
                 onClick={() => !quizCompleted && handleQuizAnswerSelect(index)}
-                className={`flex items-center space-x-4 p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                  isSelected
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-blue-300 hover:bg-blue-25'
-                } ${quizCompleted ? getOptionResultClass(question, index) : ''}`}
+                className={`flex items-center space-x-4 p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${isSelected
+                  ? 'border-blue-500 bg-blue-50'
+                  : 'border-gray-200 hover:border-blue-300 hover:bg-blue-25'
+                  } ${quizCompleted ? getOptionResultClass(question, index) : ''}`}
               >
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center font-medium ${
-                  isSelected
-                    ? 'border-blue-500 bg-blue-500 text-white'
-                    : 'border-gray-300 text-gray-600'
-                } ${quizCompleted ? getOptionBadgeClass(question, index) : ''}`}>
+                <div className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center font-medium ${isSelected
+                  ? 'border-blue-500 bg-blue-500 text-white'
+                  : 'border-gray-300 text-gray-600'
+                  } ${quizCompleted ? getOptionBadgeClass(question, index) : ''}`}>
                   {optionLetters[index]}
                 </div>
                 <label className="text-gray-700 cursor-pointer flex-1 text-lg">
@@ -634,9 +782,8 @@ const Pathways = () => {
       <button
         onClick={prevQuestion}
         disabled={currentQuestionIndex === 0}
-        className={`bg-gray-500 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center space-x-2 ${
-          currentQuestionIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-600'
-        }`}
+        className={`bg-gray-500 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center space-x-2 ${currentQuestionIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-600'
+          }`}
       >
         <i data-feather="arrow-left" className="w-4 h-4"></i>
         <span>Previous</span>
@@ -646,11 +793,10 @@ const Pathways = () => {
         <button
           onClick={nextQuestion}
           disabled={userAnswers[currentQuestionIndex] === undefined}
-          className={`bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center space-x-2 ${
-            userAnswers[currentQuestionIndex] === undefined
-              ? 'opacity-50 cursor-not-allowed'
-              : 'hover:bg-blue-700'
-          }`}
+          className={`bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center space-x-2 ${userAnswers[currentQuestionIndex] === undefined
+            ? 'opacity-50 cursor-not-allowed'
+            : 'hover:bg-blue-700'
+            }`}
         >
           <span>Next Question</span>
           <i data-feather="arrow-right" className="w-4 h-4"></i>
@@ -659,11 +805,10 @@ const Pathways = () => {
         <button
           onClick={submitQuiz}
           disabled={userAnswers[currentQuestionIndex] === undefined}
-          className={`bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center space-x-2 ${
-            userAnswers[currentQuestionIndex] === undefined
-              ? 'opacity-50 cursor-not-allowed'
-              : 'hover:bg-green-700'
-          }`}
+          className={`bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center space-x-2 ${userAnswers[currentQuestionIndex] === undefined
+            ? 'opacity-50 cursor-not-allowed'
+            : 'hover:bg-green-700'
+            }`}
         >
           <i data-feather="check-circle" className="w-4 h-4"></i>
           <span>Submit Quiz</span>
@@ -674,11 +819,11 @@ const Pathways = () => {
 
   // Quiz Results Component
   const QuizResults = () => {
-    const correctAnswers = assessments.filter((assessment, index) => 
+    const correctAnswers = assessments.filter((assessment, index) =>
       userAnswers[index] === assessment.correct_answer
     ).length;
-    
-    const timeSpent = timeStarted && timeCompleted 
+
+    const timeSpent = timeStarted && timeCompleted
       ? Math.round((timeCompleted.getTime() - timeStarted.getTime()) / 1000 / 60)
       : 0;
 
@@ -695,10 +840,10 @@ const Pathways = () => {
         <div className={`w-20 h-20 rounded-full bg-${result.color}-100 flex items-center justify-center mx-auto mb-6`}>
           <i data-feather={result.icon} className={`w-10 h-10 text-${result.color}-600`}></i>
         </div>
-        
+
         <h3 className="text-3xl font-bold text-gray-800 mb-2">{result.message}</h3>
         <p className="text-gray-600 mb-6">You completed the quiz with a score of {quizScore}%</p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-2xl mx-auto">
           <div className="text-center p-4 bg-gray-50 rounded-lg">
             <div className="text-2xl font-bold text-blue-600">{correctAnswers}/{assessments.length}</div>
@@ -713,7 +858,7 @@ const Pathways = () => {
             <div className="text-sm text-gray-600">Time Spent</div>
           </div>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
           <button
             onClick={() => setCurrentQuestionIndex(0)}
@@ -745,14 +890,14 @@ const Pathways = () => {
     <div className="bg-white rounded-xl shadow-md p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-bold text-gray-800">Your Progress</h3>
-        <button 
+        <button
           onClick={() => setShowAnalytics(false)}
           className="text-gray-500 hover:text-gray-700"
         >
           <i data-feather="x" className="w-4 h-4"></i>
         </button>
       </div>
-      
+
       {userAnalytics ? (
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
@@ -765,12 +910,12 @@ const Pathways = () => {
               <div className="text-xs text-green-800">Avg Score</div>
             </div>
           </div>
-          
+
           <div className="text-center p-3 bg-purple-50 rounded-lg">
             <div className="text-xl font-bold text-purple-600">{userAnalytics.best_score}%</div>
             <div className="text-xs text-purple-800">Best Score</div>
           </div>
-          
+
           <div className="border-t pt-3">
             <h4 className="font-semibold text-gray-700 mb-2">Topic Performance</h4>
             <div className="space-y-2">
@@ -784,8 +929,8 @@ const Pathways = () => {
               </div>
             </div>
           </div>
-          
-          <button 
+
+          <button
             onClick={() => navigate('/progress')}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-200 text-sm"
           >
@@ -852,7 +997,7 @@ const Pathways = () => {
             <i data-feather="alert-triangle" className="w-12 h-12 text-red-500 mx-auto mb-4"></i>
             <h3 className="text-lg font-medium text-red-800 mb-2">Failed to load content</h3>
             <p className="text-red-600 mb-4">{error}</p>
-            <button 
+            <button
               onClick={initializeApp}
               className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
             >
@@ -874,19 +1019,35 @@ const Pathways = () => {
             {/* Content Tabs */}
             <div className="border-b border-gray-200">
               <nav className="flex -mb-px">
-                <button 
+                <button
                   className={`mr-8 py-4 px-1 font-medium text-sm ${activeTab === 'content' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
                   onClick={() => setActiveTab('content')}
                 >
                   <i data-feather="play" className="w-4 h-4 mr-2 inline"></i>
-                  Content
+                  Visual
                 </button>
-                <button 
+                <button
                   className={`mr-8 py-4 px-1 font-medium text-sm ${activeTab === 'assessment' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
                   onClick={() => setActiveTab('assessment')}
                 >
                   <i data-feather="check-square" className="w-4 h-4 mr-2 inline"></i>
-                  Assessment
+                  Quiz
+                </button>
+
+                <button
+                  className={`mr-8 py-4 px-1 font-medium text-sm ${activeTab === 'reading' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+                  onClick={() => setActiveTab('reading')}
+                >
+                  <i data-feather="book-open" className="w-4 h-4 mr-2 inline"></i>
+                  Reading
+                </button>
+
+                <button
+                  className={`mr-8 py-4 px-1 font-medium text-sm ${activeTab === 'project' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+                  onClick={() => setActiveTab('project')}
+                >
+                  <i data-feather="clipboard" className="w-4 h-4 mr-2 inline"></i>
+                  Project
                 </button>
               </nav>
             </div>
@@ -897,20 +1058,59 @@ const Pathways = () => {
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">{currentModule.title}</h2>
                   <p className="text-gray-600 mb-6">{currentModule.description || 'Learn about this important topic.'}</p>
-                  
+
                   {/* Video Section */}
-                  {currentModule.content?.video_url && (
+                  {((currentModule.content?.long_videos?.length || 0) + (currentModule.content?.short_videos?.length || 0)) > 0 && (
                     <div className="mb-8">
                       <h3 className="text-lg font-semibold text-gray-800 mb-3">Video Lecture</h3>
-                      <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
-                        <iframe
-                          className="absolute top-0 left-0 w-full h-full"
-                          src={currentModule.content.video_url}
-                          title="Video Lecture"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
+
+                      {(() => {
+                        // Combine long and short videos into one array
+                        const videos = [
+                          ...(currentModule.content?.long_videos || []),
+                          ...(currentModule.content?.short_videos || [])
+                        ];
+
+                        if (videos.length === 0) return null;
+
+                        const video = videos[currentVideoIndex];
+
+                        return (
+                          <div>
+                            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                              <iframe
+                                className="absolute top-0 left-0 w-full h-full"
+                                src={video.replace("youtu.be", "www.youtube.com/embed")}
+                                title={`Video Lecture ${currentVideoIndex + 1}`}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              ></iframe>
+                            </div>
+
+                            {/* Video Navigation */}
+                            <div className="flex justify-between mt-2">
+                              <button
+                                onClick={() => setCurrentVideoIndex(prev => Math.max(prev - 1, 0))}
+                                disabled={currentVideoIndex === 0}
+                                className="px-4 py-2 bg-gray-200 rounded-lg disabled:opacity-50"
+                              >
+                                Previous
+                              </button>
+                              <button
+                                onClick={() => setCurrentVideoIndex(prev => Math.min(prev + 1, videos.length - 1))}
+                                disabled={currentVideoIndex === videos.length - 1}
+                                className="px-4 py-2 bg-gray-200 rounded-lg disabled:opacity-50"
+                              >
+                                Next
+                              </button>
+                            </div>
+
+                            <p className="text-sm text-gray-500 mt-1">
+                              Video {currentVideoIndex + 1} of {videos.length}
+                            </p>
+                          </div>
+                        );
+                      })()}
                     </div>
                   )}
 
@@ -926,7 +1126,7 @@ const Pathways = () => {
                     </div>
                   )}
 
-                  {!currentModule.content?.video_url && !currentModule.content?.sections && (
+                  {!currentModule.content?.short_videos && !currentModule.content?.sections && (
                     <div className="text-center py-12">
                       <i data-feather="book-open" className="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
                       <h4 className="text-lg font-medium text-gray-800 mb-2">Content Coming Soon</h4>
@@ -936,7 +1136,7 @@ const Pathways = () => {
 
                   {/* Mark Complete Button */}
                   <div className="mt-8 pt-6 border-t">
-                    <button 
+                    <button
                       onClick={markModuleComplete}
                       className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center"
                     >
@@ -978,6 +1178,52 @@ const Pathways = () => {
                   )}
                 </div>
               )}
+
+              {activeTab === "project" && (
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">Projects</h2>
+                  {currentModule.content?.projects?.map((p, i) => (
+                    <div key={i} className="mb-4 p-4 border rounded-lg bg-gray-50">
+                      <h3 className="font-semibold text-gray-800">{p.title}</h3>
+                      <p className="text-gray-600">{p.description}</p>
+                      {p.link && (
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          className="text-blue-600 hover:underline mt-2 inline-block"
+                        >
+                          Open Project
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === "reading" && (
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    Reading Materials
+                  </h2>
+                  {currentModule.content?.reading_materials?.map((r, i) => (
+                    <div key={i} className="mb-4 p-4 border rounded-lg bg-gray-50">
+                      <h3 className="font-semibold text-gray-800">{r.title}</h3>
+                      <p className="text-gray-600">{r.content}</p>
+                      {r.link && (
+                        <a
+                          href={r.link}
+                          target="_blank"
+                          className="text-blue-600 hover:underline mt-2 inline-block"
+                        >
+                          Open Resource
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+
             </div>
           </div>
 
@@ -987,23 +1233,22 @@ const Pathways = () => {
             <div className="bg-white rounded-xl shadow-md p-6">
               <h3 className="font-bold text-gray-800 mb-4">How confident are you?</h3>
               <p className="text-sm text-gray-600 mb-4">Rate your understanding of this module</p>
-              
+
               <div className="flex justify-between mb-4">
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <button
                     key={rating}
                     onClick={() => handleConfidenceSelect(rating)}
-                    className={`w-12 h-12 rounded-full transition-all ${
-                      confidenceRating === rating 
-                        ? 'bg-blue-600 text-white scale-125' 
-                        : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-                    }`}
+                    className={`w-12 h-12 rounded-full transition-all ${confidenceRating === rating
+                      ? 'bg-blue-600 text-white scale-125'
+                      : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                      }`}
                   >
                     {rating}
                   </button>
                 ))}
               </div>
-              
+
               {confidenceRating && (
                 <div className="text-center text-sm text-gray-600">
                   Selected: {confidenceRating}/5
@@ -1018,7 +1263,7 @@ const Pathways = () => {
               <div className="bg-white rounded-xl shadow-md p-6">
                 <h3 className="font-bold text-gray-800 mb-4">Your Progress</h3>
                 <p className="text-sm text-gray-600 mb-4">Track your learning journey</p>
-                <button 
+                <button
                   onClick={fetchUserAnalytics}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center"
                 >
@@ -1057,14 +1302,14 @@ const Pathways = () => {
 
             {/* Navigation */}
             <div className="bg-white rounded-xl shadow-md p-6 space-y-3">
-              <button 
+              <button
                 onClick={() => navigate('/learning')}
                 className="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center"
               >
                 <i data-feather="arrow-left" className="w-4 h-4 mr-2"></i>
                 Back to Path
               </button>
-              <button 
+              <button
                 onClick={() => navigate('/progress')}
                 className="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center justify-center"
               >

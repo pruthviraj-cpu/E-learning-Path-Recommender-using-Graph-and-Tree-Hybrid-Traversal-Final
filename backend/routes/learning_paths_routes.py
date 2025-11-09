@@ -3,11 +3,14 @@ from sqlalchemy.orm import Session
 from typing import Dict, Any, List, Optional
 import json
 
+from itertools import zip_longest
 from models.database import get_db
 from services.quiz_generator import quiz_generator
 from models.quiz_results import QuizResult
+from models.topic_models import Topic
 from schemas.quiz_results_schemas import QuizResultCreate, QuizResultResponse, QuizAnalytics
 from schemas.quiz_schemas import QuizRequest, QuizResponse, ContentQuizRequest
+from schemas.topic_schemas import ModuleContent,ModuleResponse,ReadingMaterial,Section,Project
 
 learning_paths_router = APIRouter(
     prefix="/learningpaths",
@@ -196,41 +199,99 @@ async def get_module_progress(
         raise HTTPException(status_code=500, detail=f"Error fetching module progress: {str(e)}")
 
 
-@learning_paths_router.get("/modules/{module_id}/content")
+# @learning_paths_router.get("/modules/{module_id}/content")
+# async def get_module_content(module_id: str, db: Session = Depends(get_db)):
+#     """
+#     Get detailed content for a specific module
+#     """
+#     try:
+#         # This would typically fetch from your database
+#         # For now, returning mock data - replace with actual database queries
+        
+#         # Example module content structure
+#         module_content = {
+#             "id": module_id,
+#             "title": f"Module {module_id}",
+#             "description": f"Detailed content for module {module_id}",
+#             "content": {
+#                 "sections": [
+#                     {
+#                         "title": "Introduction",
+#                         "content": f"This is the introduction section for module {module_id}..."
+#                     },
+#                     {
+#                         "title": "Key Concepts", 
+#                         "content": f"Here are the key concepts for module {module_id}..."
+#                     }
+#                 ],
+#                 "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ"  # Example video
+#             },
+#             "skills": ["Skill 1", "Skill 2", "Skill 3"],
+#             "difficulty": "Intermediate"
+#         }
+        
+#         return module_content
+        
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=f"Error fetching module content: {str(e)}")
+
+@learning_paths_router.get("/modules/{module_id}/content", response_model=ModuleResponse)
 async def get_module_content(module_id: str, db: Session = Depends(get_db)):
-    """
-    Get detailed content for a specific module
-    """
-    try:
-        # This would typically fetch from your database
-        # For now, returning mock data - replace with actual database queries
-        
-        # Example module content structure
-        module_content = {
-            "id": module_id,
-            "title": f"Module {module_id}",
-            "description": f"Detailed content for module {module_id}",
-            "content": {
-                "sections": [
-                    {
-                        "title": "Introduction",
-                        "content": f"This is the introduction section for module {module_id}..."
-                    },
-                    {
-                        "title": "Key Concepts", 
-                        "content": f"Here are the key concepts for module {module_id}..."
-                    }
-                ],
-                "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ"  # Example video
-            },
-            "skills": ["Skill 1", "Skill 2", "Skill 3"],
-            "difficulty": "Intermediate"
-        }
-        
-        return module_content
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching module content: {str(e)}")
+    module = db.query(Topic).filter(Topic.id == module_id).first()
+    if not module:
+        raise HTTPException(status_code=404, detail="Module not found")
+
+    resources = module.resources or {}
+
+    # Videos and quizzes
+    long_videos = resources.get("Long_videos", [])
+    short_videos = resources.get("Short_videos", [])
+    quizzes = resources.get("quizzes", [])
+
+    # Sections
+    sections = [Section(title=t, content="") for t in module.subtopics or []]
+
+    # Reading materials
+    titles = resources.get("reading_material_titles", [])  # optional array of titles
+    links = resources.get("reading_material", [])
+
+    reading_materials = []
+    for i, link in enumerate(links):
+        title = titles[i] if i < len(titles) else link
+        reading_materials.append(
+            ReadingMaterial(title=title, link=link, content="")
+        )
+
+
+    # Projects
+    projects = [
+    Project(
+        title=p.get("title", ""),
+        description=p.get("description", ""),
+        link=p.get("link")
+    )
+    for p in resources.get("projects", [])
+]
+
+
+    return ModuleResponse(
+        id=module.id,
+        title=module.title,
+        content=ModuleContent(
+            long_videos=long_videos,
+            short_videos=short_videos,
+            reading_materials=reading_materials,
+            projects=projects,
+            quizzes=quizzes,
+            sections=sections,
+            video_url=short_videos[0] if short_videos else None
+        ),
+        skills=getattr(module, 'skills', []),
+        difficulty=str(getattr(module, 'difficulty', '0'))
+    )
+
+
+
 
 @learning_paths_router.get("/modules/{module_id}/assessments")
 async def get_module_assessments(module_id: str):

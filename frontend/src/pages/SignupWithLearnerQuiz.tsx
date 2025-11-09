@@ -125,9 +125,12 @@ const SignupWithLearnerQuiz = () => {
       const data = await response.json();
       setResult(data);
 
-      // ✅ Also send learner type to backend for the signed-up user
+      // Save learner type locally
       const storedUser = JSON.parse(localStorage.getItem("userData") || "{}");
+      storedUser.learner_type = data.learner_type;
+      localStorage.setItem("userData", JSON.stringify(storedUser));
 
+      // Update backend
       await fetch("http://localhost:8000/auth/learner-type", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -144,6 +147,7 @@ const SignupWithLearnerQuiz = () => {
       setQuizError("Failed to submit quiz. Please try again.");
     }
   };
+
 
 
   const handleContinue = () => {

@@ -102,6 +102,7 @@ def login(credentials: LoginCredentials, db: Session = Depends(get_db)):
             "id": user.id,
             "name": user.name,
             "path": safe_path,
+            "learner_type":user.learner_type
         },
     }
 
