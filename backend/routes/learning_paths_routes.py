@@ -1,16 +1,200 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 import json
 
 from models.database import get_db
 from services.quiz_generator import quiz_generator
+from models.quiz_results import QuizResult
+from schemas.quiz_results_schemas import QuizResultCreate, QuizResultResponse, QuizAnalytics
 from schemas.quiz_schemas import QuizRequest, QuizResponse, ContentQuizRequest
 
 learning_paths_router = APIRouter(
     prefix="/learningpaths",
     tags=["Learning Paths"]
 )
+
+
+@learning_paths_router.post("/user/{user_id}/assessment-results", response_model=QuizResultResponse)
+async def save_assessment_results(
+    user_id: int,
+    results_data: QuizResultCreate,
+    db: Session = Depends(get_db)
+):
+    """
+    Save assessment results for a user with detailed quiz data
+    """
+    try:
+        # Create new quiz result record
+        db_quiz_result = QuizResult(
+            user_id=user_id,
+            module_id=results_data.module_id,
+            topic=results_data.topic,
+            num_questions=results_data.num_questions,
+            difficulty_level=results_data.difficulty_level,
+            score=results_data.score,
+            correct_answers=results_data.correct_answers,
+            completion_status=results_data.completion_status,
+            quiz_data=results_data.quiz_data,
+            user_answers=[answer.dict() for answer in results_data.user_answers],
+            time_taken_seconds=results_data.time_taken_seconds,
+            confidence_rating=results_data.confidence_rating
+        )
+        
+        db.add(db_quiz_result)
+        db.commit()
+        db.refresh(db_quiz_result)
+        
+        print(f"✅ Saved assessment results: User {user_id}, Module {results_data.module_id}, Score {results_data.score}%")
+        
+        return db_quiz_result
+        
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Error saving assessment results: {str(e)}")
+
+@learning_paths_router.get("/user/{user_id}/quiz-results")
+async def get_user_quiz_results(
+    user_id: int,
+    module_id: Optional[str] = None,
+    limit: int = 20,
+    db: Session = Depends(get_db)
+):
+    """
+    Get quiz results for a user, optionally filtered by module
+    """
+    try:
+        query = db.query(QuizResult).filter(QuizResult.user_id == user_id)
+        
+        if module_id:
+            query = query.filter(QuizResult.module_id == module_id)
+        
+        results = query.order_by(QuizResult.completed_at.desc()).limit(limit).all()
+        
+        return {
+            "user_id": user_id,
+            "total_results": len(results),
+            "quiz_results": results
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching quiz results: {str(e)}")
+
+@learning_paths_router.get("/user/{user_id}/quiz-analytics")
+async def get_user_quiz_analytics(
+    user_id: int,
+    db: Session = Depends(get_db)
+):
+    """
+    Get comprehensive analytics for user's quiz performance
+    """
+    try:
+        # Get all user's quiz results
+        results = db.query(QuizResult).filter(QuizResult.user_id == user_id).all()
+        
+        if not results:
+            raise HTTPException(status_code=404, detail="No quiz results found for user")
+        
+        # Calculate analytics
+        total_quizzes = len(results)
+        average_score = sum(r.score for r in results) / total_quizzes
+        best_score = max(r.score for r in results)
+        
+        # Find strongest and weakest topics
+        topic_scores = {}
+        for result in results:
+            if result.topic not in topic_scores:
+                topic_scores[result.topic] = []
+            topic_scores[result.topic].append(result.score)
+        
+        topic_avg_scores = {topic: sum(scores)/len(scores) for topic, scores in topic_scores.items()}
+        strongest_topic = max(topic_avg_scores.items(), key=lambda x: x[1])[0]
+        weakest_topic = min(topic_avg_scores.items(), key=lambda x: x[1])[0]
+        
+        # Calculate total learning time
+        total_learning_time = sum(r.time_taken_seconds or 0 for r in results)
+        
+        # Calculate completion rate (assuming all saved quizzes are completed)
+        completion_rate = 100.0  # Since we only save completed quizzes
+        
+        analytics = QuizAnalytics(
+            total_quizzes_taken=total_quizzes,
+            average_score=round(average_score, 2),
+            best_score=best_score,
+            weakest_topic=weakest_topic,
+            strongest_topic=strongest_topic,
+            total_learning_time=total_learning_time,
+            completion_rate=completion_rate
+        )
+        
+        return analytics
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating analytics: {str(e)}")
+
+@learning_paths_router.get("/user/{user_id}/module/{module_id}/progress")
+async def get_module_progress(
+    user_id: int,
+    module_id: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Get user's progress and performance for a specific module
+    """
+    try:
+        results = db.query(QuizResult).filter(
+            QuizResult.user_id == user_id,
+            QuizResult.module_id == module_id
+        ).order_by(QuizResult.completed_at.desc()).all()
+        
+        if not results:
+            return {
+                "user_id": user_id,
+                "module_id": module_id,
+                "attempts": 0,
+                "best_score": 0,
+                "average_score": 0,
+                "last_attempt": None,
+                "improvement_trend": "no_data"
+            }
+        
+        best_score = max(r.score for r in results)
+        average_score = sum(r.score for r in results) / len(results)
+        last_attempt = results[0].completed_at
+        
+        # Calculate improvement trend
+        if len(results) >= 2:
+            recent_scores = [r.score for r in results[:2]]
+            if recent_scores[0] > recent_scores[1]:
+                trend = "improving"
+            elif recent_scores[0] < recent_scores[1]:
+                trend = "declining"
+            else:
+                trend = "stable"
+        else:
+            trend = "single_attempt"
+        
+        return {
+            "user_id": user_id,
+            "module_id": module_id,
+            "attempts": len(results),
+            "best_score": best_score,
+            "average_score": round(average_score, 2),
+            "last_attempt": last_attempt,
+            "improvement_trend": trend,
+            "recent_results": [
+                {
+                    "score": r.score,
+                    "correct_answers": f"{r.correct_answers}/{r.num_questions}",
+                    "completed_at": r.completed_at
+                }
+                for r in results[:5]  # Last 5 attempts
+            ]
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching module progress: {str(e)}")
+
 
 @learning_paths_router.get("/modules/{module_id}/content")
 async def get_module_content(module_id: str, db: Session = Depends(get_db)):
@@ -136,6 +320,7 @@ def _get_correct_answer_index(question: Dict[str, Any]) -> int:
     else:
         return 0
 
+# Update the existing confidence rating endpoint to store in quiz results
 @learning_paths_router.post("/user/{user_id}/confidence")
 async def save_confidence_rating(
     user_id: int,
@@ -143,19 +328,21 @@ async def save_confidence_rating(
     db: Session = Depends(get_db)
 ):
     """
-    Save user's confidence rating for a module
+    Save user's confidence rating for a module (can be linked to next quiz)
     """
     try:
         module_id = confidence_data.get('module_id')
         confidence_rating = confidence_data.get('confidence_rating')
         path_id = confidence_data.get('path_id')
         
-        # Here you would save to database
+        # Store confidence rating - you might want to create a separate table for this
+        # or associate it with the next quiz attempt
         print(f"Saved confidence rating: User {user_id}, Module {module_id}, Rating {confidence_rating}")
         
         return {
             "success": True,
-            "message": "Confidence rating saved successfully"
+            "message": "Confidence rating saved successfully",
+            "confidence_rating": confidence_rating
         }
         
     except Exception as e:

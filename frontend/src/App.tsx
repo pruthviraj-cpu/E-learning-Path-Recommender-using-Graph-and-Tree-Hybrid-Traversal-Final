@@ -15,6 +15,7 @@ import Pathways from "./pages/Pathways";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
+import Progress from '@/pages/Progress';
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/onboarding" element={<Onboarding/>} />
             <Route path="/learning" element={<Learning />} />
             <Route path="/pathways" element={<Pathways />} />
+            <Route path="/progress" element={<Progress />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
