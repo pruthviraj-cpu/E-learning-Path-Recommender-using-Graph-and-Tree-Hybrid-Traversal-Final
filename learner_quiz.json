@@ -1,0 +1,139 @@
+{
+  "questions": [
+    {
+      "question": "When you try to remember something, you are most likely to:",
+      "options": [
+        "Visualize a picture in your mind",
+        "Repeat the words out loud or in your head",
+        "Remember how you felt or what you were doing"
+      ],
+      "weights": {"visual": 3, "auditory": 2, "kinesthetic": 1}
+    },
+    {
+      "question": "When learning a new skill, you prefer to:",
+      "options": [
+        "Watch someone demonstrate it",
+        "Listen to instructions or explanations",
+        "Try it yourself right away"
+      ],
+      "weights": {"visual": 2, "auditory": 2, "kinesthetic": 3}
+    },
+    {
+      "question": "In a classroom, you prefer teachers who:",
+      "options": [
+        "Use diagrams, charts, or slides",
+        "Explain clearly and talk through the topic",
+        "Include activities and real-life examples"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "When following directions to a new place, you:",
+      "options": [
+        "Prefer looking at a map",
+        "Like hearing directions spoken out loud",
+        "Want to just start moving and figure it out"
+      ],
+      "weights": {"visual": 3, "auditory": 2, "kinesthetic": 3}
+    },
+    {
+      "question": "You remember best when you:",
+      "options": [
+        "See written notes or images",
+        "Hear someone explain the concept",
+        "Physically engage with or act out the idea"
+      ],
+      "weights": {"visual": 3, "auditory": 2, "kinesthetic": 3}
+    },
+    {
+      "question": "While studying, you usually:",
+      "options": [
+        "Highlight and use color codes in notes",
+        "Read notes aloud or explain to others",
+        "Move around or use gestures while learning"
+      ],
+      "weights": {"visual": 3, "auditory": 2, "kinesthetic": 3}
+    },
+    {
+      "question": "You find it easier to learn from:",
+      "options": [
+        "Charts, mind maps, or videos",
+        "Podcasts, group discussions, or lectures",
+        "Labs, projects, or role-plays"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "When someone tells you a story, you tend to:",
+      "options": [
+        "Visualize it like a movie in your mind",
+        "Focus on the tone and rhythm of their voice",
+        "Imagine what it would feel like to be there"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "You are most distracted when:",
+      "options": [
+        "The environment looks messy or disorganized",
+        "There’s too much noise around",
+        "You can’t move or participate actively"
+      ],
+      "weights": {"visual": 2, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "When solving a problem, you prefer to:",
+      "options": [
+        "Draw or visualize the situation",
+        "Talk through it with someone",
+        "Use objects or physical examples"
+      ],
+      "weights": {"visual": 3, "auditory": 2, "kinesthetic": 3}
+    },
+    {
+      "question": "In a group project, you naturally:",
+      "options": [
+        "Design slides or organize visuals",
+        "Handle discussions and explanations",
+        "Take charge of execution and experiments"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "Your favorite form of entertainment is usually:",
+      "options": [
+        "Movies, art, or photography",
+        "Podcasts, music, or audiobooks",
+        "Sports, dance, or hands-on hobbies"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "When revising before an exam, you usually:",
+      "options": [
+        "Rewrite notes or use mind maps",
+        "Recite key points aloud or explain to others",
+        "Do sample problems or practice hands-on"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "You are more likely to say:",
+      "options": [
+        "I see what you mean",
+        "I hear what you’re saying",
+        "I get the feeling of what you mean"
+      ],
+      "weights": {"visual": 3, "auditory": 3, "kinesthetic": 3}
+    },
+    {
+      "question": "If given a new gadget, you prefer to:",
+      "options": [
+        "Read the manual first",
+        "Listen to someone explain how it works",
+        "Just start pressing buttons and testing it"
+      ],
+      "weights": {"visual": 3, "auditory": 2, "kinesthetic": 3}
+    }
+  ]
+}
