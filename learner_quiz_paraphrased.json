@@ -1,0 +1,199 @@
+{
+    "questions": [
+        {
+            "question": "You are most likely to remember something when you try.",
+            "options": [
+                "Think about a picture in your mind.",
+                "You can repeat the words out loud or in your head.",
+                "Do you remember how you felt or what you were doing?"
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 2,
+                "kinesthetic": 1
+            }
+        },
+        {
+            "question": "You prefer to learn a new skill.",
+            "options": [
+                "Someone will demonstrate it.",
+                "Listen to instructions or explanations.",
+                "It's best to try it yourself right away."
+            ],
+            "weights": {
+                "visual": 2,
+                "auditory": 2,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "In a classroom, you prefer your teachers.",
+            "options": [
+                "You can use diagrams, charts, or slides.",
+                "Explain and talk about the topic clearly.",
+                "Activities and real-life examples should be included."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "When following directions to a new place.",
+            "options": [
+                "I prefer looking at a map.",
+                "Like hearing directions spoken out loud.",
+                "Want to figure it out and just start moving."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 2,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You remember best when you're present.",
+            "options": [
+                "See written notes or images.",
+                "Listen to someone explain the concept.",
+                "Physically engage with or act out the idea."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 2,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You usually study while studying.",
+            "options": [
+                "Use color codes in notes.",
+                "Read the notes aloud or explain them to others.",
+                "Move around or use gestures while learning."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 2,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You find it easier to learn from it.",
+            "options": [
+                "Charts, mind maps, or videos are examples.",
+                "There are group discussions, lectures, and Podcasts.",
+                "Labs, projects, or role-plays are examples."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "When someone tells you a story, you tend to like it.",
+            "options": [
+                "picture information technology the likes of angstrom unit motion picture inch your nous",
+                "Focus on their voice's tone and rhythm.",
+                "Imagine what it would be like to be there."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You are most distracted when.",
+            "options": [
+                "The environment looks disorganized.",
+                "There is too much noise.",
+                "You can not move or participate actively."
+            ],
+            "weights": {
+                "visual": 2,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "When you solve a problem, you prefer it.",
+            "options": [
+                "Draw or visualize the situation.",
+                "Talk through it with someone.",
+                "Use objects or physical examples."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 2,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You naturally are in a group project.",
+            "options": [
+                "Design slides or organize visuals.",
+                "Explanations and discussions should be handled.",
+                "Take charge of execution and experiments."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "Your favorite form of entertainment is usually.",
+            "options": [
+                "Movies, art, Oregon picture taking",
+                "Podcasts, music, Beaver State audiobooks",
+                "Sports, dance, or hands-on hobbies are included."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You usually revise before an exam.",
+            "options": [
+                "Rewriting notes can be done using mind maps.",
+                "declaim key point out loud Beaver State explicate to others",
+                "Do sample problems or practice hands-on."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "You are more likely to say it.",
+            "options": [
+                "I see what you mean.",
+                "I hear what you are saying.",
+                "I get the feeling of what you mean."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 3,
+                "kinesthetic": 3
+            }
+        },
+        {
+            "question": "If presumption angstrom unit new gadget, you prefer to:",
+            "options": [
+                "Read the manual first.",
+                "Listen to someone explain how it works.",
+                "Just start pressing buttons and see how it goes."
+            ],
+            "weights": {
+                "visual": 3,
+                "auditory": 2,
+                "kinesthetic": 3
+            }
+        }
+    ]
+}

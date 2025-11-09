@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, JSON, DateTime, ForeignKey, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
 from models.database import Base
+from sqlalchemy.ext.mutable import MutableList
 
 class UserLearningPath(Base):
     __tablename__ = "user_learning_paths"
@@ -24,7 +25,7 @@ class UserLearningPath(Base):
     
     # Progress tracking
     current_week = Column(Integer, default=1)
-    completed_nodes = Column(JSON, default=[])  # List of completed node IDs
+    completed_nodes = Column(MutableList.as_mutable(JSON), default=list)
     progress_percentage = Column(Integer, default=0)
     
     # Timestamps
