@@ -1,9 +1,46 @@
 import json
 import networkx as nx
+import numpy as np
 from typing import List, Dict, Tuple, Set, Optional, Any
 from enum import Enum
 from pathlib import Path
 from dataclasses import dataclass, field
+from datetime import datetime
+import random
+
+# ---------- ADDED FOR GAN FORECASTER ----------
+
+def compute_difficulty(quiz_score=None, estimated_time=None, prereq_count=None):
+    """Estimate topic difficulty dynamically if not provided."""
+    base_difficulty = 5.0
+
+    if quiz_score is not None:
+        base_difficulty += (1 - quiz_score) * 3  # harder if score is low
+    if estimated_time is not None:
+        base_difficulty += (estimated_time / 20)  # 20h ≈ +1 difficulty
+    if prereq_count is not None:
+        base_difficulty += prereq_count * 0.5
+
+    # clamp to [1, 10]
+    return min(max(base_difficulty, 1.0), 10.0)
+
+
+def compute_load(difficulty, estimated_time, quiz_score=None):
+    """Estimate learner load ('low', 'medium', 'high') dynamically."""
+    if quiz_score is None:
+        quiz_score = 0.7  # fallback
+
+    # Compute a numeric load index
+    load_index = difficulty * (estimated_time / 10) * (1 - quiz_score)
+    
+    if load_index < 10:
+        return "low"
+    elif load_index < 25:
+        return "medium"
+    else:
+        return "high"
+
+# ---------- END ADDED FOR GAN FORECASTER ----------
 
 # ========== CONFIGURATION ==========
 JSON_FILE_PATH = Path(__file__).parent.parent / "database" / "learning_path.json"
@@ -61,7 +98,7 @@ class LearningPathService:
         self.nodes = self._create_nodes(self.dataset)
         self.graph = self._build_graph()
         self.domain_mapping = self._create_domain_mapping()
-        print(f"✅ Service initialized with {len(self.nodes)} nodes")
+        print(f"Service initialized with {len(self.nodes)} nodes")
     
     def _load_dataset(self) -> List[Dict]:
         """Load dataset from JSON file"""
@@ -72,10 +109,10 @@ class LearningPathService:
             
             with open(JSON_FILE_PATH, "r", encoding='utf-8') as f:
                 data = json.load(f)
-                print(f"✅ Loaded {len(data)} nodes from JSON")
+                print(f"Loaded {len(data)} nodes from JSON")
                 return data
         except Exception as e:
-            print(f"❌ Error loading JSON: {e}")
+            print(f"Error loading JSON: {e}")
             return []
     
     def _create_domain_mapping(self) -> Dict[LearningDomain, List[str]]:
@@ -105,24 +142,54 @@ class LearningPathService:
         nodes = {}
         for item in dataset:
             try:
+                # nodes[item['id']] = LearningNode(
+                #     id=item['id'],
+                #     title=item['title'],
+                #     type=item['type'],
+                #     estimated_time=item['estimated_time'],
+                #     load=item['load'],
+                #     difficulty=item['difficulty'],
+                #     prerequisites=item.get('prerequisites', []),
+                #     subnodes=item.get('subnodes', []),
+                #     subtopics=item.get('subtopics', []),
+                #     resources=item.get('resources', {}),
+                #     embedding=item.get('embedding', [])
+                # )
+
+                # ---------- ADDED FOR GAN FORECASTER ----------
+                # Auto-fill missing difficulty or load
+                estimated_time = item.get('estimated_time', 10)
+                quiz_score = item.get('quiz_score', 0.7)
+                prereqs = item.get('prerequisites', [])
+    
+                difficulty = item.get('difficulty')
+                if difficulty is None:
+                    difficulty = compute_difficulty(quiz_score, estimated_time, len(prereqs))
+    
+                load = item.get('load')
+                if load is None:
+                    load = compute_load(difficulty, estimated_time, quiz_score)
+    
                 nodes[item['id']] = LearningNode(
                     id=item['id'],
-                    title=item['title'],
-                    type=item['type'],
-                    estimated_time=item['estimated_time'],
-                    load=item['load'],
-                    difficulty=item['difficulty'],
-                    prerequisites=item.get('prerequisites', []),
+                    title=item.get('title', item['id']),
+                    type=item.get('type', 'module'),
+                    estimated_time=estimated_time,
+                    load=load,
+                    difficulty=difficulty,
+                    prerequisites=prereqs,
                     subnodes=item.get('subnodes', []),
                     subtopics=item.get('subtopics', []),
                     resources=item.get('resources', {}),
                     embedding=item.get('embedding', [])
+
+                    # ---------- ADDED FOR GAN FORECASTER ----------
                 )
             except Exception as e:
-                print(f"❌ Error creating node {item.get('id', 'unknown')}: {e}")
+                print(f"Error creating node {item.get('id', 'unknown')}: {e}")
                 continue
         
-        print(f"✅ Created {len(nodes)} LearningNode objects")
+        print(f"Created {len(nodes)} LearningNode objects")
         return nodes
         
     def _build_graph(self) -> nx.DiGraph:
@@ -140,7 +207,7 @@ class LearningPathService:
                 if subnode in self.nodes:
                     G.add_edge(node_id, subnode)
         
-        print(f"✅ Built graph with {len(G.nodes())} nodes and {len(G.edges())} edges")
+        print(f"Built graph with {len(G.nodes())} nodes and {len(G.edges())} edges")
         return G
     
     def calculate_total_available_hours(self, time_availability: TimeAvailability, weeks: int) -> int:
@@ -152,6 +219,8 @@ class LearningPathService:
         }
         return weekly_hours[time_availability] * weeks
     
+# If we want to add the GAN Path Forecaster then it shpuld be added here.
+
     def generate_learning_path(self, 
                             learner_type: str,
                             time_availability: str,
@@ -190,7 +259,7 @@ class LearningPathService:
                 node = self.nodes[node_id]
                 print(f"   • {node.title} (Difficulty: {node.difficulty}, Time: {node.estimated_time}hrs)")
         else:
-            print("❌ No nodes available after filtering!")
+            print("No nodes available after filtering!")
             print(f"   Domain nodes: {domain_filtered_nodes}")
             print(f"   All nodes: {list(self.nodes.keys())[:10]}...")  # Show first 10 nodes
         
@@ -219,7 +288,7 @@ class LearningPathService:
                 else:
                     print(f"⏳ Skipping {node.title} - exceeds available time")
         
-        print(f"✅ Generated path with {len(path_nodes)} nodes, total time: {total_time_used} hours")
+        print(f"Generated path with {len(path_nodes)} nodes, total time: {total_time_used} hours")
         
         weekly_schedule = self._create_weekly_schedule(path_nodes, time_availability_enum, study_weeks)
         
@@ -260,11 +329,11 @@ class LearningPathService:
         
         for main_node_id in domain_main_nodes:
             if main_node_id in self.nodes:
-                print(f"✅ Found main node: {main_node_id}")
+                print(f"Found main node: {main_node_id}")
                 domain_nodes.add(main_node_id)
                 self._add_subnodes_recursively(main_node_id, domain_nodes)
             else:
-                print(f"❌ Main node not found: {main_node_id}")
+                print(f"Main node not found: {main_node_id}")
         
         print(f"📊 Domain nodes found: {len(domain_nodes)}")
         return domain_nodes
@@ -331,8 +400,38 @@ class LearningPathService:
         if current_week_nodes and current_week <= total_weeks:
             schedule[f"Week {current_week}"] = current_week_nodes
         
-        print(f"📅 Created schedule with {len(schedule)} weeks")
+        print(f"Created schedule with {len(schedule)} weeks")
         return schedule
 
 # Global service instance
 path_service = LearningPathService()
+
+
+# ----------- ADDED FOR GAN FORECASTER ----------
+# ----------- Learner Path Retrieval for Gan Forecaster ----------
+
+def get_learner_path(learner_id: str):
+    """
+    Retrieve the learner's generated learning path.
+    This mock version assumes a JSON or in-memory dataset already exists.
+    Replace this with your real learner-path retrieval logic.
+    """
+    # For now, just load from the dataset and simulate learner path
+    learner_path = []
+    for node_id, node in path_service.nodes.items():
+        learner_path.append({
+            "id": node.id,
+            "title": node.title,
+            "difficulty": node.difficulty,
+            "embedding": node.embedding if node.embedding else [],
+            "quiz_score": np.random.uniform(0.5, 0.9),  # mock quiz scores
+            "timestamp": datetime.now().isoformat()
+        })
+    
+    # Optionally, filter only part of the path for realism
+    learner_path = learner_path[:min(20, len(learner_path))]
+
+    print(f"Retrieved learning path for {learner_id} with {len(learner_path)} nodes.")
+    return learner_path
+
+# -----------GAN Forecaster Service Ends -----------
