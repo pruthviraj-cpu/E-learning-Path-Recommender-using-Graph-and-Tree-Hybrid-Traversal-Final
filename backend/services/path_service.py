@@ -99,6 +99,45 @@ class LearningPathService:
         self.graph = self._build_graph()
         self.domain_mapping = self._create_domain_mapping()
         print(f"Service initialized with {len(self.nodes)} nodes")
+
+    def get_core_modules(self) -> List[str]:
+        """Get core modules based on graph analysis"""
+        core_modules = set()
+        
+        # Main nodes with no prerequisites
+        for node_id, node in self.nodes.items():
+            if node.type == "main_node" and not node.prerequisites:
+                core_modules.add(node.title)
+        
+        # Nodes that are prerequisites for many other nodes
+        prereq_count = {}
+        for node_id, node in self.nodes.items():
+            for prereq in node.prerequisites:
+                if prereq in self.nodes:
+                    prereq_node = self.nodes[prereq]
+                    prereq_count[prereq_node.title] = prereq_count.get(prereq_node.title, 0) + 1
+        
+        # Add top prerequisites
+        for title, count in sorted(prereq_count.items(), key=lambda x: x[1], reverse=True)[:5]:
+            if count >= 2:
+                core_modules.add(title)
+        
+        return list(core_modules)
+    
+    def is_core_module(self, module_title_or_id: str) -> bool:
+        """Check if a module is considered core"""
+        core_modules = self.get_core_modules()
+        
+        # Check by title
+        if module_title_or_id in core_modules:
+            return True
+        
+        # Check by ID
+        for node_id, node in self.nodes.items():
+            if (node_id == module_title_or_id or node.title == module_title_or_id) and node.title in core_modules:
+                return True
+        
+        return False
     
     def _load_dataset(self) -> List[Dict]:
         """Load dataset from JSON file"""
@@ -410,28 +449,28 @@ path_service = LearningPathService()
 # ----------- ADDED FOR GAN FORECASTER ----------
 # ----------- Learner Path Retrieval for Gan Forecaster ----------
 
-def get_learner_path(learner_id: str):
-    """
-    Retrieve the learner's generated learning path.
-    This mock version assumes a JSON or in-memory dataset already exists.
-    Replace this with your real learner-path retrieval logic.
-    """
-    # For now, just load from the dataset and simulate learner path
-    learner_path = []
-    for node_id, node in path_service.nodes.items():
-        learner_path.append({
-            "id": node.id,
-            "title": node.title,
-            "difficulty": node.difficulty,
-            "embedding": node.embedding if node.embedding else [],
-            "quiz_score": np.random.uniform(0.5, 0.9),  # mock quiz scores
-            "timestamp": datetime.now().isoformat()
-        })
+# def get_learner_path(learner_id: str):
+#     """
+#     Retrieve the learner's generated learning path.
+#     This mock version assumes a JSON or in-memory dataset already exists.
+#     Replace this with your real learner-path retrieval logic.
+#     """
+#     # For now, just load from the dataset and simulate learner path
+#     learner_path = []
+#     for node_id, node in path_service.nodes.items():
+#         learner_path.append({
+#             "id": node.id,
+#             "title": node.title,
+#             "difficulty": node.difficulty,
+#             "embedding": node.embedding if node.embedding else [],
+#             "quiz_score": np.random.uniform(0.5, 0.9),  # mock quiz scores
+#             "timestamp": datetime.now().isoformat()
+#         })
     
-    # Optionally, filter only part of the path for realism
-    learner_path = learner_path[:min(20, len(learner_path))]
+#     # Optionally, filter only part of the path for realism
+#     learner_path = learner_path[:min(20, len(learner_path))]
 
-    print(f"Retrieved learning path for {learner_id} with {len(learner_path)} nodes.")
-    return learner_path
+#     print(f"Retrieved learning path for {learner_id} with {len(learner_path)} nodes.")
+#     return learner_path
 
 # -----------GAN Forecaster Service Ends -----------
