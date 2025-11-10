@@ -1,3 +1,4 @@
+data base sql
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100),
@@ -62,4 +63,22 @@ CREATE TABLE user_activity (
     description TEXT,                       
     duration_seconds INTEGER DEFAULT 0,     
     created_at TIMESTAMP DEFAULT NOW()      
+);
+
+CREATE TABLE quiz_results (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    module_id VARCHAR(100) NOT NULL,
+    topic VARCHAR(200) NOT NULL,
+    num_questions INTEGER NOT NULL,
+    difficulty_level VARCHAR(50) NOT NULL,
+    score INTEGER NOT NULL,
+    correct_answers INTEGER NOT NULL,
+    completion_status VARCHAR(20) DEFAULT 'completed',
+    completed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    quiz_data JSONB, -- Store the complete quiz questions and answers
+    user_answers JSONB, -- Store what user selected for each question
+    time_taken_seconds INTEGER, -- Time taken to complete the quiz
+    confidence_rating INTEGER, -- User's confidence before/after quiz
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

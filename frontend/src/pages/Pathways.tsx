@@ -389,91 +389,102 @@ const Pathways = () => {
 
   // Update the submitQuiz function
   const submitQuiz = async () => {
-    setTimeCompleted(new Date());
-    setQuizCompleted(true);
-
-    let correct = 0;
-    const userAnswersDetailed: UserAnswer[] = [];
-
-    assessments.forEach((assessment, index) => {
-      const isCorrect = userAnswers[index] === assessment.correct_answer;
-      if (isCorrect) {
-        correct++;
-      }
-
-      userAnswersDetailed.push({
-        question_id: assessment.id,
-        selected_option: userAnswers[index],
-        is_correct: isCorrect,
-        time_taken: 0 // You can implement per-question timing if needed
-      });
-    });
-
-    const score = Math.round((correct / assessments.length) * 100);
-    setQuizScore(score);
-
-    // Calculate time spent
-    const timeSpent = timeStarted && timeCompleted
-      ? Math.round((timeCompleted.getTime() - timeStarted.getTime()) / 1000)
-      : 0;
-
-    // Save quiz results with detailed data
-    try {
-      const userId = localStorage.getItem('userId');
-      const storedPath = localStorage.getItem('currentLearningPath');
-
-      if (userId && storedPath && currentModule) {
-        const path = JSON.parse(storedPath);
-
-        const quizResultData: QuizResultCreate = {
-          user_id: parseInt(userId),
-          module_id: currentModule.id,
-          topic: currentModule.title,
-          num_questions: assessments.length,
-          difficulty_level: quizConfig.difficulty,
-          score: score,
-          correct_answers: correct,
-          completion_status: "completed",
-          quiz_data: {
-            questions: assessments,
-            quiz_title: `AI Quiz - ${currentModule.title}`,
-            difficulty: quizConfig.difficulty,
-            question_types: quizConfig.questionTypes
-          },
-          user_answers: userAnswersDetailed,
-          time_taken_seconds: timeSpent,
-          confidence_rating: confidenceRating
-        };
-
-        const response = await fetch(`http://localhost:8000/learningpaths/user/${userId}/assessment-results`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(quizResultData)
-        });
-
-        if (response.ok) {
-          const savedResult = await response.json();
-          console.log('✅ Quiz results saved:', savedResult);
-
-          toast({
-            title: "Quiz Completed!",
-            description: `Your results have been saved. Score: ${score}%`,
-          });
-        } else {
-          throw new Error('Failed to save quiz results');
+      // Ensure timeCompleted is set
+      const completionTime = new Date();
+      setTimeCompleted(completionTime);
+      setQuizCompleted(true);
+      
+      let correct = 0;
+      const userAnswersDetailed: UserAnswer[] = [];
+      
+      assessments.forEach((assessment, index) => {
+        const isCorrect = userAnswers[index] === assessment.correct_answer;
+        if (isCorrect) {
+          correct++;
         }
-      }
-    } catch (err) {
-      console.error('Error saving quiz results:', err);
-      toast({
-        title: "Warning",
-        description: "Quiz completed but results couldn't be saved.",
-        variant: "destructive"
+        
+        userAnswersDetailed.push({
+          question_id: assessment.id,
+          selected_option: userAnswers[index],
+          is_correct: isCorrect,
+          time_taken: 0 // You can implement per-question timing if needed
+        });
       });
-    }
-  };
+
+      const score = Math.round((correct / assessments.length) * 100);
+      setQuizScore(score);
+      
+      // Calculate time spent - FIXED: Ensure we have both timestamps
+      const startTime = timeStarted || new Date(); // Fallback if timeStarted is null
+      const timeSpent = Math.round((completionTime.getTime() - startTime.getTime()) / 1000);
+
+      console.log(`⏱️ Time tracking - Started: ${startTime}, Completed: ${completionTime}, Spent: ${timeSpent} seconds`);
+
+      // Save quiz results with detailed data
+      try {
+        const userId = localStorage.getItem('userId');
+        const storedPath = localStorage.getItem('currentLearningPath');
+        
+        if (userId && storedPath && currentModule) {
+          const path = JSON.parse(storedPath);
+          
+          const quizResultData: QuizResultCreate = {
+            user_id: parseInt(userId),
+            module_id: currentModule.id,
+            topic: currentModule.title,
+            num_questions: assessments.length,
+            difficulty_level: quizConfig.difficulty,
+            score: score,
+            correct_answers: correct,
+            completion_status: "completed",
+            quiz_data: {
+              questions: assessments,
+              quiz_title: `AI Quiz - ${currentModule.title}`,
+              difficulty: quizConfig.difficulty,
+              question_types: quizConfig.questionTypes
+            },
+            user_answers: userAnswersDetailed,
+            time_taken_seconds: timeSpent, // This should now be correctly set
+            confidence_rating: confidenceRating
+          };
+
+          console.log('📊 Saving quiz results:', {
+            time_taken_seconds: timeSpent,
+            score: score,
+            correct_answers: correct
+          });
+
+          const response = await fetch(`http://localhost:8000/learningpaths/user/${userId}/assessment-results`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(quizResultData)
+          });
+
+          if (response.ok) {
+            const savedResult = await response.json();
+            console.log('✅ Quiz results saved:', savedResult);
+            
+            toast({
+              title: "Quiz Completed!",
+              description: `Your results have been saved. Score: ${score}%`,
+            });
+          } else {
+            const errorText = await response.text();
+            console.error('❌ Backend error:', errorText);
+            throw new Error(`Backend error: ${errorText}`);
+          }
+        }
+      } catch (err) {
+        console.error('Error saving quiz results:', err);
+        toast({
+          title: "Warning",
+          description: "Quiz completed but results couldn't be saved.",
+          variant: "destructive"
+        });
+      }
+    };
 
   // Update the generateAIQuiz function to include quiz data
   const generateAIQuiz = async () => {
