@@ -11,7 +11,8 @@ from models.topic_models import Topic
 from schemas.quiz_results_schemas import QuizResultCreate, QuizResultResponse, QuizAnalytics
 from schemas.quiz_schemas import QuizRequest, QuizResponse, ContentQuizRequest
 from schemas.topic_schemas import ModuleContent,ModuleResponse,ReadingMaterial,Section,Project
-
+from services.quiz_feedback_service import QuizFeedbackService
+from schemas.quiz_feedbackresult_schemas import QuizFeedbackResponse, UserQuizHistory
 learning_paths_router = APIRouter(
     prefix="/learningpaths",
     tags=["Learning Paths"]
@@ -295,7 +296,7 @@ async def get_module_content(module_id: str, db: Session = Depends(get_db)):
 
 @learning_paths_router.get("/modules/{module_id}/assessments")
 async def get_module_assessments(module_id: str):
-    """
+    """ 
     Get AI-generated assessments for a specific module
     """
     try:
@@ -542,28 +543,295 @@ async def generate_module_quiz(module_id: str, num_questions: int = 5):
         print(f"❌ Error generating module quiz: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to generate module quiz: {str(e)}")
 
-@learning_paths_router.get("/ai/health")
-async def ai_health_check():
-    """
-    Check AI service status
-    """
-    return {
-        "ai_service_available": quiz_generator is not None,
-        "model": quiz_generator.model if quiz_generator else None,
-        "status": "healthy" if quiz_generator else "unavailable",
-        "message": "AI Quiz Generator Service"
-    }
 
-@learning_paths_router.get("/test")
-async def test_route():
-    """Test if learning paths router is working"""
-    return {"message": "Learning paths router is working!"}
 
-@learning_paths_router.get("/health")
-async def health_check():
-    """Check if AI quiz generator is available"""
-    return {
-        "status": "healthy",
-        "ai_quiz_available": quiz_generator is not None,
-        "message": "Learning paths API is running"
-    }
+
+
+@learning_paths_router.get("/user/{user_id}/quiz-feedback-by-id/{quiz_id}", response_model=QuizFeedbackResponse)
+async def get_quiz_feedback_by_id(
+    user_id: int,
+    quiz_id: int,
+    db: Session = Depends(get_db)
+):
+    """
+    Get detailed feedback for a specific quiz attempt by quiz ID
+    """
+    try:
+        print(f"🔍 Fetching feedback for quiz ID: {quiz_id}, user ID: {user_id}")
+        
+        # Find the quiz result by ID
+        quiz_result = db.query(QuizResult).filter(
+            QuizResult.id == quiz_id,
+            QuizResult.user_id == user_id
+        ).first()
+        
+        if not quiz_result:
+            raise HTTPException(
+                status_code=404, 
+                detail=f"No quiz found with ID {quiz_id} for user {user_id}"
+            )
+        
+        # Generate feedback using the existing service
+        quiz_data = quiz_result.quiz_data or {}
+        quiz_title = quiz_data.get('quiz_title', f'Quiz - {quiz_result.topic}')
+        
+        feedback = QuizFeedbackService.get_quiz_feedback(db, user_id, quiz_title)
+        
+        if not feedback:
+            raise HTTPException(
+                status_code=404, 
+                detail=f"Could not generate feedback for quiz {quiz_id}"
+            )
+        
+        return feedback
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Error retrieving quiz feedback by ID: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error retrieving quiz feedback: {str(e)}"
+        )
+
+@learning_paths_router.get("/user/{user_id}/quiz-feedback/{quiz_title}", response_model=QuizFeedbackResponse)
+async def get_quiz_feedback(
+    user_id: int,
+    quiz_title: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Get detailed feedback for a specific quiz attempt by quiz title
+    """
+    try:
+        print(f"🔍 Fetching feedback for quiz title: {quiz_title}, user ID: {user_id}")
+        
+        feedback = QuizFeedbackService.get_quiz_feedback(db, user_id, quiz_title)
+        
+        if not feedback:
+            raise HTTPException(
+                status_code=404, 
+                detail=f"No quiz found with title '{quiz_title}' for user {user_id}"
+            )
+        
+        return feedback
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ Error retrieving quiz feedback: {str(e)}")
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error retrieving quiz feedback: {str(e)}"
+        )
+
+@learning_paths_router.get("/user/{user_id}/quiz-history", response_model=List[UserQuizHistory])
+async def get_user_quiz_history(
+    user_id: int,
+    limit: int = 10,
+    db: Session = Depends(get_db)
+):
+    """
+    Get user's quiz attempt history
+    """
+    try:
+        history = QuizFeedbackService.get_user_quiz_history(db, user_id, limit)
+        return history
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error retrieving quiz history: {str(e)}"
+        )
+
+@learning_paths_router.get("/user/{user_id}/quizzes")
+async def get_user_quizzes(
+    user_id: int,
+    module_id: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    """
+    Get all quizzes taken by a user with basic info
+    """
+    try:
+        query = db.query(QuizResult).filter(QuizResult.user_id == user_id)
+        
+        if module_id:
+            query = query.filter(QuizResult.module_id == module_id)
+        
+        results = query.order_by(QuizResult.completed_at.desc()).all()
+        
+        quizzes = []
+        for result in results:
+            quiz_data = result.quiz_data or {}
+            quizzes.append({
+                "id": result.id,
+                "quiz_title": quiz_data.get('quiz_title', f'Quiz - {result.topic}'),
+                "module_id": result.module_id,
+                "topic": result.topic,
+                "score": result.score,
+                "correct_answers": result.correct_answers,
+                "total_questions": result.num_questions,
+                "difficulty_level": result.difficulty_level,
+                "time_taken_seconds": result.time_taken_seconds,
+                "confidence_rating": result.confidence_rating,
+                "completed_at": result.completed_at.isoformat(),
+                "question_types": quiz_data.get('question_types', [])
+            })
+        
+        return {
+            "user_id": user_id,
+            "total_quizzes": len(quizzes),
+            "quizzes": quizzes
+        }
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error fetching user quizzes: {str(e)}"
+        )
+    
+
+
+
+@learning_paths_router.post("/ai/real-time-feedback")
+async def get_real_time_feedback(
+    feedback_request: Dict[str, Any]
+):
+    """
+    Get real-time AI feedback for a single question answer
+    """
+    if not quiz_generator:
+        raise HTTPException(status_code=503, detail="AI feedback service is currently unavailable")
+    
+    try:
+        question_data = feedback_request.get('question_data')
+        user_answer = feedback_request.get('user_answer')
+        time_taken = feedback_request.get('time_taken')
+        user_context = feedback_request.get('user_context', {})
+        
+        if not question_data or user_answer is None:
+            raise HTTPException(status_code=400, detail="question_data and user_answer are required")
+        
+        print(f"🎯 Generating real-time feedback for question {question_data.get('id', 'unknown')}")
+        
+        feedback = quiz_generator.generate_real_time_feedback(
+            question_data=question_data,
+            user_answer=user_answer,
+            time_taken=time_taken,
+            user_context=user_context
+        )
+        
+        return {
+            "success": True,
+            "feedback": feedback,
+            "question_id": question_data.get('id', '')
+        }
+        
+    except Exception as e:
+        print(f"❌ Error generating real-time feedback: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to generate feedback: {str(e)}")
+
+@learning_paths_router.post("/ai/quiz-summary-feedback")
+async def get_quiz_summary_feedback(
+    summary_request: Dict[str, Any]
+):
+    """
+    Get comprehensive AI feedback after quiz completion
+    """
+    if not quiz_generator:
+        raise HTTPException(status_code=503, detail="AI feedback service is currently unavailable")
+    
+    try:
+        quiz_data = summary_request.get('quiz_data')
+        user_answers = summary_request.get('user_answers', [])
+        user_context = summary_request.get('user_context', {})
+        
+        if not quiz_data or not user_answers:
+            raise HTTPException(status_code=400, detail="quiz_data and user_answers are required")
+        
+        print(f"🎯 Generating quiz summary feedback for {len(user_answers)} questions")
+        
+        summary = quiz_generator.generate_quiz_summary_feedback(
+            quiz_data=quiz_data,
+            user_answers=user_answers,
+            user_context=user_context
+        )
+        
+        return {
+            "success": True,
+            "summary": summary,
+            "quiz_title": quiz_data.get('quiz_title', 'Unknown Quiz')
+        }
+        
+    except Exception as e:
+        print(f"❌ Error generating quiz summary feedback: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to generate summary: {str(e)}")
+
+@learning_paths_router.post("/user/{user_id}/submit-quiz-answer")
+async def submit_quiz_answer(
+    user_id: int,
+    answer_data: Dict[str, Any],
+    db: Session = Depends(get_db)
+):
+    """
+    Submit a single quiz answer and get immediate AI feedback
+    """
+    try:
+        question_data = answer_data.get('question_data')
+        user_answer = answer_data.get('selected_option')
+        time_taken = answer_data.get('time_taken')
+        quiz_session_id = answer_data.get('quiz_session_id')
+        
+        # Get user context for personalized feedback
+        user_context = await _get_user_context(user_id, db)
+        
+        # Generate real-time feedback
+        feedback = quiz_generator.generate_real_time_feedback(
+            question_data=question_data,
+            user_answer=user_answer,
+            time_taken=time_taken,
+            user_context=user_context
+        )
+        
+        # Store the answer temporarily (you might want to store in a session table)
+        print(f"✅ User {user_id} submitted answer for question {question_data.get('id')}")
+        
+        return {
+            "success": True,
+            "feedback": feedback,
+            "is_correct": feedback.get('is_correct', False),
+            "question_id": question_data.get('id', '')
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing quiz answer: {str(e)}")
+
+async def _get_user_context(user_id: int, db: Session) -> Dict[str, Any]:
+    """Get user context for personalized feedback"""
+    try:
+        # Get user's recent performance
+        recent_results = db.query(QuizResult).filter(
+            QuizResult.user_id == user_id
+        ).order_by(QuizResult.completed_at.desc()).limit(5).all()
+        
+        if recent_results:
+            avg_score = sum(r.score for r in recent_results) / len(recent_results)
+            
+            # Find weak areas
+            weak_areas = []
+            for result in recent_results:
+                if result.score < 70:  # Consider scores below 70% as weak areas
+                    weak_areas.append(result.topic)
+            
+            return {
+                'previous_performance': round(avg_score, 2),
+                'weak_areas': list(set(weak_areas))[:3],  # Top 3 unique weak areas
+                'total_quizzes_taken': len(recent_results)
+            }
+        
+        return {}
+        
+    except Exception as e:
+        print(f"⚠️ Error getting user context: {e}")
+        return {}
